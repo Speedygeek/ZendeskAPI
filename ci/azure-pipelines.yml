@@ -6,8 +6,7 @@
 resources:
 - repo: self
 
-pool:
-  vmImage: 'ubuntu-latest'
+
 
 variables:
   BuildConfiguration: 'Release'
@@ -28,12 +27,10 @@ pr:
   paths:
     exclude:
     - docs/*
+pool:
+  vmImage: 'ubuntu-latest'
 
-
-jobs:
-- job:
-  displayName: 'build and test'
-  steps:
+steps:
   - task: DotNetCoreInstaller@0
     displayName: 'Use .NET Core sdk 2.2.300'
     inputs:
@@ -56,7 +53,7 @@ jobs:
       command: pack
       searchPatternPack: 'src/Speedygeek.ZendeskAPI/Speedygeek.ZendeskAPI.csproj'
       nobuild: true
-      
+
 # - task: PowerShell@2
 #   inputs:
 #     filePath: .\ci\sign-package.ps1
