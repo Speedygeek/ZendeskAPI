@@ -3,7 +3,7 @@
 
 using System.IO;
 
-namespace Speedygeek.ZendeskAPI.Contract
+namespace Speedygeek.ZendeskAPI.Serialization
 {
     /// <summary>
     /// Contract for serializing and deserializing objects.
