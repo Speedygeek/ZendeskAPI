@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-    <LangVersion>7.2</LangVersion>
+    <LangVersion>latest</LangVersion>
     <Features>strict</Features>
     <Deterministic>true</Deterministic>
     <Features>pdb-path-determinism</Features>
@@ -21,7 +21,8 @@
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <!--
       Make sure any documentation comments which are included in code get checked for syntax during the build, but do
       not report warnings for missing comments.
