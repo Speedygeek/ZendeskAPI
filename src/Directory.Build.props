@@ -7,6 +7,10 @@
     <Deterministic>true</Deterministic>
     <Features>pdb-path-determinism</Features>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Net.Compilers" Version="3.1.1" PrivateAssets="All" />
+  </ItemGroup>
   
   <ItemGroup Condition="$(IsTestProject) != 'true'">
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json">
