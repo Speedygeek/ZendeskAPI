@@ -142,5 +142,21 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// Custom fields for the ticket.
         /// </summary>
         public IList<CustomField> CustomFields { get; set; }
+
+        /// <summary>
+        /// The satisfaction rating of the ticket, if it exists
+        /// </summary>
+        public SatisfactionRating SatisfactionRating { get; set; }
+
+        /// <summary>
+        /// The ids of the sharing agreements used for this ticket.
+        /// </summary>
+        public IList<long> SharingAgreementIds { get; set; }
+
+        /// <summary>
+        /// The ids of the followups created from this ticket. 
+        /// Ids are only visible once the ticket is closed
+        /// </summary>
+       public IList<long> FollowupIds {get; set; }
     }
 }
