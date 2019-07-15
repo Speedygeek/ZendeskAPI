@@ -49,17 +49,16 @@ steps:
       arguments: '--no-build -c $(BuildConfiguration)  /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura%2copencover /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/ /p:ExcludeByAttribute="Obsolete%2cGeneratedCodeAttribute%2cCompilerGeneratedAttribute"'
 
   - task: PowerShell@2
-    displayName: "Upload coverage to codecov.io"
+    displayName: 'Upload coverage to codecov.io'
     inputs:
       targetType: inline
-      script:|
+      script: |
         $ver = (gci "$env:userprofile\.nuget\packages\codecov").Name
         $cmd = "$env:userprofile\.nuget\packages\codecov\$ver\tools\codecov.exe";
         $fName = "$(Build.SourcesDirectory)/TestResults/Coverage/coverage.opencover.xml";
         $arg1 = "-f ""$fName""";
         $arg2 = "-t $(CODECOV_TOKEN)";
         & $cmd $arg1 $arg2
-
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet pack'
