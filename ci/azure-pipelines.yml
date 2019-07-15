@@ -26,7 +26,7 @@ pr:
     exclude:
     - docs/*
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'vs2019-windows2019'
 
 steps:
   - task: DotNetCoreInstaller@0
