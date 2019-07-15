@@ -91,6 +91,9 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// Update operations only
         /// Users to add as cc's when creating a ticket. See
         /// <seealso herf="https://developer.zendesk.com/rest_api/docs/support/tickets#setting-collaborators" />
+        /// NOTE: that setting collaborators this way will completely ignore what's already set,
+        /// so make sure to include existing collaborators in the array
+        /// if you wish to retain these on the ticket.
         /// </summary>
         [JsonConverter(typeof(CollaboratorConverter))]
         public IList<Collaborator> Collaborators { get; set; }
@@ -154,9 +157,75 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         public IList<long> SharingAgreementIds { get; set; }
 
         /// <summary>
-        /// The ids of the followups created from this ticket. 
+        /// The ids of the followup's created from this ticket.
         /// Ids are only visible once the ticket is closed
         /// </summary>
-       public IList<long> FollowupIds {get; set; }
+        public IList<long> FollowupIds { get; set; }
+
+        /// <summary>
+        /// Update operations only
+        /// The id of a closed ticket when creating a follow-up ticket.
+        /// <see href="https://developer.zendesk.com/rest_api/docs/support/tickets#creating-follow-up-tickets"/>
+        /// </summary>
+        public long ViaFollowupSourceId { get; set; }
+
+        /// <summary>
+        /// Update operations only
+        /// List of macro IDs to be recorded in the ticket audit
+        /// </summary>
+        public IList<long> MacroIds { get; set; }
+
+        /// <summary>
+        /// Enterprise Accounts only.
+        /// The id of the ticket form to render for the ticket
+        /// </summary>
+        public long TicketFormId { get; set; }
+
+        /// <summary>
+        /// Enterprise Accounts only.
+        /// The id of the brand this ticket is associated with
+        /// </summary>
+        public long BrandId { get; set; }
+
+        /// <summary>
+        /// Is false if channelback is disabled, true otherwise.
+        /// Only applicable for channels framework ticket
+        /// </summary>
+        public bool AllowChannelback { get; set; }
+
+        /// <summary>
+        /// When an agent responds, are they allowed to add attachments?
+        /// Defaults to true
+        /// </summary>
+        public bool AllowAttachments { get; set; }
+
+        /// <summary>
+        /// Is true if any comments are public, false otherwise
+        /// </summary>
+        public bool IsPublic { get; set; }
+
+        /// <summary>
+        /// Update operations only
+        /// Comment about the updates made.
+        /// </summary>
+        public Comment Comment { get; set; }
+
+        /// <summary>
+        /// Update operations only
+        /// Requester of the updates made.
+        /// </summary>
+        public Requester Requester { get; set; }
+
+        /// <summary>
+        /// Sideloaded
+        /// Comment Count for this Ticket
+        /// </summary>
+        public long CommentCount { get; set; }
+
+        /// <summary>
+        /// Sideloaded
+        /// Incident Count for this ticket
+        /// </summary>
+        public long IncidentCount { get; set; }
     }
 }

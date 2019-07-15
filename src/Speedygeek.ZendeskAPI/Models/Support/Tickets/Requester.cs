@@ -4,23 +4,25 @@
 namespace Speedygeek.ZendeskAPI.Models.Support
 {
     /// <summary>
-    /// End user Provided feedback.
+    /// Requester of a Ticket
     /// </summary>
-    public class SatisfactionRating
+    public class Requester
     {
         /// <summary>
-        /// Id for the satisfaction rating
+        /// Optional
+        /// The default locale for the user
         /// </summary>
-        public long Id { get; set; }
+        public long LocaleId { get; set; }
 
         /// <summary>
-        /// Feedback score
+        /// Optional only for existing user.
+        /// Users Name
         /// </summary>
-        public string Score { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
-        /// End user provided Comment.
+        /// Users Email address
         /// </summary>
-        public string Comment { get; set; }
+        public string Email { get; set; }
     }
 }

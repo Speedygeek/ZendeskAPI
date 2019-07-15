@@ -11,8 +11,8 @@ namespace Speedygeek.ZendeskAPI
     public interface IZendeskClient
     {
         /// <summary>
-        /// Ticket Operations
+        /// Support API for Zendesk
         /// </summary>
-        ITicketOperations Tickets { get; }
+        ISupportOperations Support { get; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -24,6 +25,22 @@ namespace Speedygeek.ZendeskAPI.Utilities
             {
                 d1.Add(kv);
             }
+        }
+
+        /// <summary>
+        ///  Build Query String
+        /// </summary>
+        /// <param name="requestUri">base URI</param>
+        /// <param name="queryStringParams">parameters to add</param>
+        /// <returns>query string</returns>
+        public static string BuildQueryString(this string requestUri, Dictionary<string, string> queryStringParams)
+        {
+            var queryString = string.Join("&", queryStringParams.Where(q => !string.IsNullOrWhiteSpace(q.Value))
+                .Select(q => $"{Uri.EscapeDataString(q.Key)}={Uri.EscapeDataString(q.Value)}").ToArray());
+
+            requestUri += requestUri.Contains("?") ? $"&{queryString}" : $"?{queryString}";
+
+            return requestUri;
         }
     }
 }

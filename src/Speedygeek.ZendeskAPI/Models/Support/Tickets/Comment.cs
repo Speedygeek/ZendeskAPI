@@ -4,8 +4,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Speedygeek.ZendeskAPI.Operations.Support;
 
-namespace Speedygeek.ZendeskAPI.Models.Support.Tickets
+namespace Speedygeek.ZendeskAPI.Models.Support
 {
     /// <summary>
     /// Ticket Comment
@@ -43,7 +44,18 @@ namespace Speedygeek.ZendeskAPI.Models.Support.Tickets
         /// </summary>
         public long AuthorId { get; set; }
 
-        // TODO: add attachment https://developer.zendesk.com/rest_api/docs/support/attachments
+        /// <summary>
+        /// Update/Create operations only
+        /// NOTE: For the upload attachment to succeed when updating a ticket, a comment must be included.
+        /// NOTE 2: Use <see cref="AttachmentOperations.UploadAttachment"/> to get the token first.
+        /// </summary>
+        public IList<string> Uploads { get; set; }
+
+        /// <summary>
+        /// Read operations only
+        /// Attachments for this comment
+        /// </summary>
+        public IList<Attachment> Attachments { get; set; }
 
         /// <summary>
         /// How the comment was created. See <see href="https://developer.zendesk.com/rest_api/docs/support/ticket_audits#the-via-object"/>
