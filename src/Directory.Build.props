@@ -6,12 +6,13 @@
     <Features>strict</Features>
     <Deterministic>true</Deterministic>
     <Features>pdb-path-determinism</Features>
+    <ExcludeByAttribute>GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Net.Compilers" Version="3.1.1" PrivateAssets="All" />
   </ItemGroup>
-  
+
   <ItemGroup Condition="$(IsTestProject) != 'true'">
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json">
       <Link>stylecop.json</Link>

@@ -6,8 +6,6 @@
 resources:
 - repo: self
 
-
-
 variables:
   BuildConfiguration: 'Release'
   System.Debug: true
@@ -35,18 +33,34 @@ steps:
     displayName: 'Use .NET Core sdk 2.2.300'
     inputs:
       version: 2.2.300
+
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build'
     inputs:
       command: build
       projects: 'src/ZendeskAPI.sln'
       arguments: '-c $(BuildConfiguration)'
+
   - task: DotNetCoreCLI@2
     displayName: 'dotnet test'
     inputs:
       command: test
       projects: 'src/Speedygeek.ZendeskAPI.UnitTests/Speedygeek.ZendeskAPI.UnitTests.csproj'
-      arguments: '--no-build -c $(BuildConfiguration)'
+      arguments: '--no-build -c $(BuildConfiguration)  /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura%2copencover /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/ /p:ExcludeByAttribute="Obsolete%2cGeneratedCodeAttribute%2cCompilerGeneratedAttribute"'
+
+  - task: PowerShell@2
+    displayName: "Upload coverage to codecov.io"
+    inputs:
+      targetType: inline
+      script:|
+        $ver = (gci "$env:userprofile\.nuget\packages\codecov").Name
+        $cmd = "$env:userprofile\.nuget\packages\codecov\$ver\tools\codecov.exe";
+        $fName = "$(Build.SourcesDirectory)/TestResults/Coverage/coverage.opencover.xml";
+        $arg1 = "-f ""$fName""";
+        $arg2 = "-t $(CODECOV_TOKEN)";
+        & $cmd $arg1 $arg2
+
+
   - task: DotNetCoreCLI@2
     displayName: 'dotnet pack'
     inputs:

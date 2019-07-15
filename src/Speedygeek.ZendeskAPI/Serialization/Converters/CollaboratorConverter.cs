@@ -46,6 +46,8 @@ namespace Speedygeek.ZendeskAPI.Serialization.Converters
             return collaborators;
         }
 
+        public override bool CanWrite { get => false; }
+
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             throw new NotImplementedException();
