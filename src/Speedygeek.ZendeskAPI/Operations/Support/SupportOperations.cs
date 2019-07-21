@@ -1,9 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System;
 
 namespace Speedygeek.ZendeskAPI.Operations.Support
 {
+    /// <summary>
+    /// Support Operations
+    /// </summary>
     public class SupportOperations : ISupportOperations
     {
         private readonly IRESTClient _restClient;
@@ -26,7 +30,5 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
 
         /// <inheritdoc />
         public IAttachmentOperations Attachments => AttachmentLazy.Value;
-
-
     }
 }

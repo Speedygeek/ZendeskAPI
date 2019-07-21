@@ -15,6 +15,8 @@ namespace Speedygeek.ZendeskAPI.Serialization.Converters
     /// </summary>
     internal class CollaboratorConverter : JsonConverter
     {
+        public override bool CanWrite { get => false; }
+
         public override bool CanConvert(Type objectType)
         {
             return typeof(List<Collaborator>).Equals(objectType);
@@ -45,8 +47,6 @@ namespace Speedygeek.ZendeskAPI.Serialization.Converters
 
             return collaborators;
         }
-
-        public override bool CanWrite { get => false; }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

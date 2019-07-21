@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,20 +21,18 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// </summary>
         /// <param name="file">file to upload</param>
         /// <param name="token">tracking token</param>
-        /// <param name="timeOut">time out override</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>The <see cref="UploadResponse"/></returns>
-        Task<UploadResponse> UploadAttachment(ZenFile file, string token = null, TimeSpan timeOut = default, CancellationToken cancellationToken = default);
+        Task<UploadResponse> Upload(ZenFile file, string token = null, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Upload Attachments
         /// </summary>
         /// <param name="files">files to be upload</param>
         /// <param name="token">tracking token</param>
-        /// <param name="timeOut">timeout override</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>The <see cref="UploadResponse"/></returns>
-        Task<UploadResponse> UploadAttachments(IEnumerable<ZenFile> files, string token = null, TimeSpan timeOut = default, CancellationToken cancellationToken = default);
+        Task<UploadResponse> Upload(IEnumerable<ZenFile> files, string token = null, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Downloads a given <see cref="Attachment"/>
@@ -39,7 +40,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="attachment"><see cref="Attachment"/> to download</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>a <see cref="ZenFile"/> of the downloaded file</returns>
-        Task<ZenFile> DownloadAttachment(Attachment attachment, CancellationToken cancellationToken = default);
+        Task<ZenFile> Download(Attachment attachment, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes a given upload
@@ -47,6 +48,6 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="token">tracking token</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> a <see cref="bool"/> true if successfully removed</returns>
-        Task<bool> DeleteUpload(string token, CancellationToken cancellationToken = default);
+        Task<bool> Delete(string token, CancellationToken cancellationToken = default);
     }
 }

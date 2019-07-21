@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -10,6 +13,17 @@ namespace Speedygeek.ZendeskAPI.Models
     /// </summary>
     public class ZenFile : IDisposable
     {
+        private bool _disposedValue = false; // To detect redundant calls
+
+        /// <summary>
+        /// Finalizes an instance of the <see cref="ZenFile"/> class.
+        /// </summary>
+        ~ZenFile()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(false);
+        }
+
         /// <summary>
         /// File Name
         /// </summary>
@@ -25,9 +39,10 @@ namespace Speedygeek.ZendeskAPI.Models
         /// </summary>
         public Stream FileData { get; set; }
 
-        #region IDisposable Support
-        private bool _disposedValue = false; // To detect redundant calls
-
+        /// <summary>
+        /// clean up memory
+        /// </summary>
+        /// <param name="disposing">should manged memory be clean up</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -36,23 +51,17 @@ namespace Speedygeek.ZendeskAPI.Models
                 {
                     FileData?.Dispose();
                 }
+
                 _disposedValue = true;
             }
         }
 
-         ~ZenFile()
-        {
-            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-            Dispose(false);
-        }
-
-        // This code added to correctly implement the disposable pattern.
+        /// <inheritdoc/>
         public void Dispose()
         {
             // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        #endregion
     }
 }

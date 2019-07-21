@@ -1,8 +1,13 @@
 ﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
+
 namespace Speedygeek.ZendeskAPI.Models.Support
 {
+    /// <summary>
+    /// The Thumbnail for an <see cref="Attachment"/>
+    /// </summary>
     public class Thumbnail
     {
         /// <summary>
@@ -13,7 +18,7 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// <summary>
         /// A full URL where the attachment image file can be downloaded
         /// </summary>
-        public string ContentUrl { get; set; }
+        public Uri ContentUrl { get; set; }
 
         /// <summary>
         /// The content type of the image file. Example value: image/png

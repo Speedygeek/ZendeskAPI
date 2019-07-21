@@ -14,6 +14,7 @@ namespace Speedygeek.ZendeskAPI.Configuration
     /// </summary>
     public class BasicCredentials : ICredentialsProvider
     {
+        private const string Message = "Parameter can not be null, empty or whitespace";
         private readonly string _userName;
         private readonly string _password;
 
@@ -26,12 +27,12 @@ namespace Speedygeek.ZendeskAPI.Configuration
         {
             if (string.IsNullOrWhiteSpace(userName))
             {
-                throw new ArgumentException(nameof(userName));
+                throw new ArgumentException(Message, nameof(userName));
             }
 
             if (string.IsNullOrWhiteSpace(password))
             {
-                throw new ArgumentException(nameof(password));
+                throw new ArgumentException(Message, nameof(password));
             }
 
             _userName = userName;
@@ -45,6 +46,11 @@ namespace Speedygeek.ZendeskAPI.Configuration
         /// <returns><see cref="Task"/> when completed</returns>
         public Task ConfigureHttpClient(HttpClient client)
         {
+            if (client is null)
+            {
+                throw new ArgumentNullException(nameof(client));
+            }
+
             var auth = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_userName}:{_password}"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", auth);
             return Task.CompletedTask;

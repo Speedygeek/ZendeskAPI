@@ -1,20 +1,19 @@
 ﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using System;
 using System.Collections.Generic;
-using System.Text;
+using Speedygeek.ZendeskAPI.Models.Base;
 
-namespace Speedygeek.ZendeskAPI.Models.Support.Tickets.Responses
+namespace Speedygeek.ZendeskAPI.Models.Support
 {
     /// <summary>
-    /// Upload Response
+    /// Paged list of Tickets
     /// </summary>
-    public class UploadResponse
+    public class TicketListResponse : ListResponseBase
     {
         /// <summary>
-        /// the items uploaded
+        /// Requested Tickets
         /// </summary>
-        public Upload Upload { get; set; }
+        public IList<Ticket> Tickets { get; }
     }
 }

@@ -8,7 +8,7 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests
 {
     public class BaseTests
     {
-        protected IZendeskClient _client;
+        protected IZendeskClient Client { get; set; }
 
         [OneTimeSetUp]
         public void Setup()
@@ -16,7 +16,7 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests
             var collection = new ServiceCollection();
             collection.AddZendeskClient(Settings.SubDomain, Settings.AdminUserName, Settings.AdminPassword);
             var serviceProvider = collection.BuildServiceProvider();
-            _client = serviceProvider.GetService<IZendeskClient>();
+            Client = serviceProvider.GetService<IZendeskClient>();
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,32 +27,73 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         }
 
         /// <inheritdoc />
-        public Task<TicketResponse> GetTicket(long id, TicketSideload sideload = TicketSideload.None, CancellationToken cancellationToken = default)
+        public Task<TicketResponse> Create(Ticket ticket, CancellationToken cancellationToken = default)
+        {
+            if (ticket is null)
+            {
+                throw new ArgumentNullException(nameof(ticket));
+            }
+
+            return SendAync<TicketResponse>(HttpMethod.Post, "tickets.json", new { ticket }, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task<TicketResponse> Get(long id, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam($"tickets/{id}.json", sideload);
             return SendAync<TicketResponse>(HttpMethod.Get, requestUri, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<TicketResponse> Create(Ticket ticket, CancellationToken cancellationToken = default)
+        public Task<TicketResponse> Update(Ticket ticket, CancellationToken cancellationToken = default)
         {
-            return SendAync<TicketResponse>(HttpMethod.Post, "tickets.json", new { ticket }, cancellationToken);
+            if (ticket is null)
+            {
+                throw new ArgumentNullException(nameof(ticket));
+            }
+
+            return SendAync<TicketResponse>(HttpMethod.Post, $"tickets/{ticket.Id}.json", new { ticket }, cancellationToken);
         }
 
-        private string GetSideLoadParam(string requestUri, TicketSideload options)
+        /// <inheritdoc />
+        public Task<bool> Delete(long id, CancellationToken cancellationToken = default)
         {
-            if (options != TicketSideload.None)
+            return SendAync(
+                HttpMethod.Delete,
+                $"tickets/{id}.json",
+                (HttpResponseMessage resp) => { return Task.FromResult(resp.StatusCode == HttpStatusCode.NoContent || resp.StatusCode == HttpStatusCode.OK); },
+                cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task<TicketListResponse> GetAll(TicketSideloads sideload = TicketSideloads.None, TicketPageParams pageParameters = default, CancellationToken cancellationToken = default)
+        {
+            var requestUri = GetSideLoadParam($"tickets.json", sideload, pageParameters);
+            return SendAync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+        }
+
+        private static string GetSideLoadParam(string requestSuffix, TicketSideloads options, TicketPageParams pageParameters = default)
+        {
+            var queryParams = new Dictionary<string, string>();
+
+            if (options != TicketSideloads.None)
             {
-                if (options.HasFlag(TicketSideload.None))
+                if (options.HasFlag(TicketSideloads.None))
                 {
-                    options &= ~TicketSideload.None;
+                    options &= ~TicketSideloads.None;
                 }
 
                 var sideLoads = options.ToString().ToLowerInvariant();
-                requestUri.BuildQueryString(new Dictionary<string, string> { { "include", sideLoads } });
+
+                queryParams.Add("include", sideLoads);
             }
 
-            return requestUri;
+            if (pageParameters != null)
+            {
+                queryParams.Merge(pageParameters.ToParameters());
+            }
+
+            return requestSuffix.BuildQueryString(queryParams);
         }
     }
 }

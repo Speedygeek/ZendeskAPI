@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Speedygeek.ZendeskAPI.IntegrationTests
 {
-    public class Settings
+    public static class Settings
     {
         public const string SubDomain = "csharpapi";
         public const string AdminUserName = "csharpzendeskapi1234@gmail.com";

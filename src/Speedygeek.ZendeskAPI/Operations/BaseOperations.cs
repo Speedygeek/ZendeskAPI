@@ -2,6 +2,8 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -36,14 +38,13 @@ namespace Speedygeek.ZendeskAPI
         /// </summary>
         /// <typeparam name="TResponse">response type</typeparam>
         /// <param name="httpMethod">HTTP method for the HTTP call</param>
-        /// <param name="requestUri">relative URL for the resource </param>
+        /// <param name="requestSuffix">relative URL for the resource </param>
         /// <param name="body">data to be sent to zendesk</param>
-        /// <param name="timeout">timeout</param>
         /// <param name="cancellationToken">cancellation to support async</param>
         /// <returns> <typeparamref name="TResponse"/></returns>
-        protected async Task<TResponse> SendAync<TResponse>(HttpMethod httpMethod, string requestUri, object body = null, CancellationToken cancellationToken = default, TimeSpan timeout = default)
+        protected async Task<TResponse> SendAync<TResponse>(HttpMethod httpMethod, string requestSuffix, object body = null, CancellationToken cancellationToken = default)
         {
-            using (var httpRequestMessage = new HttpRequestMessage(httpMethod, requestUri))
+            using (var httpRequestMessage = new HttpRequestMessage(httpMethod, requestSuffix))
             {
                 if (body is ZenFile zenFile)
                 {
@@ -57,11 +58,6 @@ namespace Speedygeek.ZendeskAPI
                     httpRequestMessage.Content = new StringContent(_restClient.Serializer.Serialize(body), Encoding.UTF8, JSON_TYPE);
                 }
 
-                if (timeout != TimeSpan.Zero)
-                {
-                    _restClient.Client.Timeout = timeout;
-                }
-
                 cancellationToken.ThrowIfCancellationRequested();
                 using (var response = await _restClient.Client.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                 {
@@ -69,7 +65,7 @@ namespace Speedygeek.ZendeskAPI
                     if (response.IsSuccessStatusCode)
                     {
                         cancellationToken.ThrowIfCancellationRequested();
-                        using (var stream = await response.Content.ReadAsStreamAsync())
+                        using (var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(true))
                         {
                             result = _restClient.Serializer.Deserialize<TResponse>(stream);
                         }
@@ -82,7 +78,7 @@ namespace Speedygeek.ZendeskAPI
                     }
                     else if (!response.IsSuccessStatusCode)
                     {
-                        var bodyString = await response.Content.ReadAsStringAsync();
+                        var bodyString = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
                         var message = $"Error {response.StatusCode} details: HEADERS: {response.Headers} BODY: {bodyString}";
 
                         throw new HttpRequestException(message);
@@ -93,22 +89,26 @@ namespace Speedygeek.ZendeskAPI
             }
         }
 
-        protected async Task<TResult> SendAync<TResult>(HttpMethod httpMethod, string requestUri, Func<HttpResponseMessage, Task<TResult>> callBack, CancellationToken cancellationToken = default, TimeSpan timeout = default)
+        /// <summary>
+        /// Send Method with Callback
+        /// </summary>
+        /// <typeparam name="TResult">response type</typeparam>
+        /// <param name="httpMethod">HTTP method for the HTTP call</param>
+        /// <param name="requestSuffix">relative URL for the resource </param>
+        /// <param name="callBack"> work to be done with the request</param>
+        /// <param name="cancellationToken">cancellation to support async</param>
+        /// <returns> <typeparamref name="TResult"/></returns>
+        protected async Task<TResult> SendAync<TResult>(HttpMethod httpMethod, string requestSuffix, Func<HttpResponseMessage, Task<TResult>> callBack, CancellationToken cancellationToken = default)
         {
-            using (var httpRequestMessage = new HttpRequestMessage(httpMethod, requestUri))
+            using (var httpRequestMessage = new HttpRequestMessage(httpMethod, requestSuffix))
             {
-                if (timeout != TimeSpan.Zero)
-                {
-                    _restClient.Client.Timeout = timeout;
-                }
-
                 cancellationToken.ThrowIfCancellationRequested();
                 using (var response = await _restClient.Client.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
                 {
                     TResult result = default;
                     if (response.IsSuccessStatusCode)
                     {
-                        result = await callBack?.Invoke(response);
+                        result = await (callBack?.Invoke(response)).ConfigureAwait(true);
                     }
                     else if (response.StatusCode == TooManyRequests)
                     {
@@ -118,7 +118,7 @@ namespace Speedygeek.ZendeskAPI
                     }
                     else if (!response.IsSuccessStatusCode)
                     {
-                        var bodyString = await response.Content.ReadAsStringAsync();
+                        var bodyString = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
                         var message = $"Error {response.StatusCode} details: HEADERS: {response.Headers} BODY: {bodyString}";
 
                         throw new HttpRequestException(message);

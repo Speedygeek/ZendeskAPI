@@ -2,8 +2,6 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Speedygeek.ZendeskAPI.Models
 {
@@ -30,6 +28,6 @@ namespace Speedygeek.ZendeskAPI.Models
         /// <summary>
         /// The API URL of this entity
         /// </summary>
-        public string URL { get; }
+        public Uri URL { get; }
     }
 }

@@ -1,10 +1,14 @@
 ﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
 using System.Collections.Generic;
 
 namespace Speedygeek.ZendeskAPI.Models.Support
 {
+    /// <summary>
+    /// Zendesk Attachment
+    /// </summary>
     public class Attachment : ZenEntity
     {
         /// <summary>
@@ -15,7 +19,7 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// <summary>
         /// A full URL where the attachment file can be downloaded
         /// </summary>
-        public string ContentUrl { get; set; }
+        public Uri ContentUrl { get; set; }
 
         /// <summary>
         /// The content type of the file. Example value: image/png
@@ -39,6 +43,5 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// Default is false
         /// </summary>
         public bool Inline { get; set; }
-
     }
 }

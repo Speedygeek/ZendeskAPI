@@ -10,7 +10,7 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests.Support
     public class AttachmentTests : BaseTests
     {
         [Test]
-        public async Task Attachment_Create_Download_Delete()
+        public async Task AttachmentCreateDownloadDelete()
         {
             var file = new FileInfo(Path.Combine(TestContext.CurrentContext.TestDirectory,
                 "..", "..", "..", "testupload.txt"));
@@ -21,7 +21,7 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests.Support
             {
                 using (var zenFile = new ZenFile { ContentType = "text/plain", FileName = "testupload.txt", FileData = stream })
                 {
-                    var resp = await _client.Support.Attachments.UploadAttachment(zenFile);
+                    var resp = await Client.Support.Attachments.Upload(zenFile).ConfigureAwait(false);
 
                     token = resp.Upload.Token;
                     Assert.That(resp.Upload.Token, Is.Not.Null);
@@ -30,7 +30,7 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests.Support
                 }
             }
 
-            using (var zenFile = await _client.Support.Attachments.DownloadAttachment(attachment))
+            using (var zenFile = await Client.Support.Attachments.Download(attachment).ConfigureAwait(false))
             {
                 Assert.That(zenFile.FileData, Is.Not.Null);
                 using (var reader = new StreamReader(zenFile.FileData))
@@ -40,12 +40,12 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests.Support
                 }
             }
 
-            var result = await _client.Support.Attachments.DeleteUpload(token);
+            var result = await Client.Support.Attachments.Delete(token).ConfigureAwait(false);
             Assert.That(result, Is.True);
         }
 
         [Test]
-        public async Task Attachments_Create_Delete()
+        public async Task AttachmentsCreateDelete()
         {
             var file = new FileInfo(Path.Combine(TestContext.CurrentContext.TestDirectory,
                 "..", "..", "..", "testupload.txt"));
@@ -54,20 +54,20 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests.Support
             {
                 var stream1 = new MemoryStream();
                 var stream2 = new MemoryStream();
-                await stream.CopyToAsync(stream1);
+                await stream.CopyToAsync(stream1).ConfigureAwait(false);
                 stream.Position = 0;
-                await stream.CopyToAsync(stream2);
+                await stream.CopyToAsync(stream2).ConfigureAwait(false);
 
                 var files = new List<ZenFile> {
                     new ZenFile { ContentType = "text/plain", FileName = "testupload1.txt", FileData = stream1 },
                     new ZenFile { ContentType = "text/plain", FileName = "testupload2.txt", FileData = stream2 } };
 
-                var resp = await _client.Support.Attachments.UploadAttachments(files);
+                var resp = await Client.Support.Attachments.Upload(files).ConfigureAwait(false);
 
                var token = resp.Upload.Token;
                 Assert.That(resp.Upload.Token, Is.Not.Null);
 
-                var result = await _client.Support.Attachments.DeleteUpload(token);
+                var result = await Client.Support.Attachments.Delete(token).ConfigureAwait(false);
                 Assert.That(result, Is.True);
 
                 files.ForEach(z => z.Dispose());

@@ -1,15 +1,18 @@
-﻿using System;
+﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Speedygeek.ZendeskAPI.Models;
 using Speedygeek.ZendeskAPI.Models.Support;
-using System.Net.Http;
-using System.Threading;
-using Speedygeek.ZendeskAPI.Utilities;
-using System.Linq;
-using System.Net;
-using System.IO;
 using Speedygeek.ZendeskAPI.Models.Support.Tickets.Responses;
+using Speedygeek.ZendeskAPI.Utilities;
 
 namespace Speedygeek.ZendeskAPI.Operations.Support
 {
@@ -22,13 +25,19 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// Initializes a new instance of the <see cref="AttachmentOperations"/> class.
         /// </summary>
         /// <param name="restClient">client used to make HTTP calls with</param>
-        public AttachmentOperations(IRESTClient restClient) : base(restClient)
+        public AttachmentOperations(IRESTClient restClient)
+            : base(restClient)
         {
         }
 
         /// <inheritdoc />
-        public Task<UploadResponse> UploadAttachment(ZenFile file, string token = default, TimeSpan timeOut = default, CancellationToken cancellationToken = default)
+        public Task<UploadResponse> Upload(ZenFile file, string token = default, CancellationToken cancellationToken = default)
         {
+            if (file is null)
+            {
+                throw new ArgumentNullException(nameof(file));
+            }
+
             var queryString = new Dictionary<string, string> { { "filename", file.FileName } };
 
             if (!string.IsNullOrWhiteSpace(token))
@@ -36,21 +45,21 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
                 queryString.Add(nameof(token), token);
             }
 
-            if(file.FileData.Position != 0)
+            if (file.FileData.Position != 0)
             {
                 file.FileData.Position = 0;
             }
 
-            return SendAync<UploadResponse>(HttpMethod.Post, BASEREQUESTURI.BuildQueryString(queryString), file, cancellationToken, timeOut);
+            return SendAync<UploadResponse>(HttpMethod.Post, BASEREQUESTURI.BuildQueryString(queryString), file, cancellationToken);
         }
 
         /// <inheritdoc />
-        public async Task<UploadResponse> UploadAttachments(IEnumerable<ZenFile> files, string token = default, TimeSpan timeOut = default, CancellationToken cancellationToken = default)
+        public async Task<UploadResponse> Upload(IEnumerable<ZenFile> files, string token = default, CancellationToken cancellationToken = default)
         {
             var first = files.First();
             if (first != null)
             {
-                var resp = await UploadAttachment(first, token, timeOut, cancellationToken).ConfigureAwait(false);
+                var resp = await Upload(first, token, cancellationToken).ConfigureAwait(false);
 
                 var respToken = resp.Upload.Token;
 
@@ -58,7 +67,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
                 var otherFiles = files.Skip(1);
                 foreach (var file in otherFiles)
                 {
-                    task.Add(UploadAttachment(file, respToken, timeOut, cancellationToken));
+                    task.Add(Upload(file, respToken, cancellationToken));
                 }
 
                 await Task.WhenAll(task).ConfigureAwait(false);
@@ -70,19 +79,27 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         }
 
         /// <inheritdoc />
-        public async Task<ZenFile> DownloadAttachment(Attachment attachment, CancellationToken cancellationToken = default)
+        public async Task<ZenFile> Download(Attachment attachment, CancellationToken cancellationToken = default)
         {
+            if (attachment is null)
+            {
+                throw new ArgumentNullException(nameof(attachment));
+            }
+
             var file = new ZenFile { FileName = attachment.FileName, ContentType = attachment.ContentType };
 
-            var fileContent = await SendAync<Stream>(HttpMethod.Get, attachment.ContentUrl,
-                   async (HttpResponseMessage response) =>
+            var fileContent = await SendAync<Stream>(
+                HttpMethod.Get,
+                attachment.ContentUrl.ToString(),
+                async (HttpResponseMessage response) =>
                    {
                        var stream = new MemoryStream();
                        var fileStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
                        await fileStream.CopyToAsync(stream).ConfigureAwait(false);
                        stream.Position = 0;
                        return stream;
-                   }, cancellationToken).ConfigureAwait(false);
+                   },
+                cancellationToken).ConfigureAwait(false);
 
             file.FileData = fileContent;
 
@@ -90,7 +107,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         }
 
         /// <inheritdoc />
-        public Task<bool> DeleteUpload(string token, CancellationToken cancellationToken = default)
+        public Task<bool> Delete(string token, CancellationToken cancellationToken = default)
         {
             return SendAync(HttpMethod.Delete, $"uploads/{token}.json", (HttpResponseMessage resp) => { return Task.FromResult(resp.StatusCode == HttpStatusCode.NoContent || resp.StatusCode == HttpStatusCode.OK); }, cancellationToken);
         }

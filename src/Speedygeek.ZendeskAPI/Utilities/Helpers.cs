@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace Speedygeek.ZendeskAPI.Utilities
 {
@@ -35,12 +36,7 @@ namespace Speedygeek.ZendeskAPI.Utilities
         /// <returns>query string</returns>
         public static string BuildQueryString(this string requestUri, Dictionary<string, string> queryStringParams)
         {
-            var queryString = string.Join("&", queryStringParams.Where(q => !string.IsNullOrWhiteSpace(q.Value))
-                .Select(q => $"{Uri.EscapeDataString(q.Key)}={Uri.EscapeDataString(q.Value)}").ToArray());
-
-            requestUri += requestUri.Contains("?") ? $"&{queryString}" : $"?{queryString}";
-
-            return requestUri;
+            return QueryHelpers.AddQueryString(requestUri, queryStringParams);
         }
     }
 }

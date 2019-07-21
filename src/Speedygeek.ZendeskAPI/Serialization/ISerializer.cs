@@ -13,9 +13,9 @@ namespace Speedygeek.ZendeskAPI.Serialization
         /// <summary>
         /// Serializes an object to a string representation.
         /// </summary>
-        /// <param name="obj">object to be serialized</param>
+        /// <param name="data">object to be serialized</param>
         /// <returns> a json <see cref="string"/> representation of the original object</returns>
-        string Serialize(object obj);
+        string Serialize(object data);
 
         /// <summary>
         /// Deserializes an object from a string representation.
