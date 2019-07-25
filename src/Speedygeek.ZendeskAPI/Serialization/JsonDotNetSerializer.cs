@@ -4,7 +4,7 @@
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Speedygeek.ZendeskAPI.Contract;
+using Speedygeek.ZendeskAPI.Serialization.Converters;
 
 namespace Speedygeek.ZendeskAPI.Serialization
 {
@@ -14,12 +14,13 @@ namespace Speedygeek.ZendeskAPI.Serialization
     public class JsonDotNetSerializer : ISerializer
     {
         private readonly JsonSerializerSettings _serializerSettings;
+        private readonly JsonSerializer _serializer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonDotNetSerializer"/> class.
         /// </summary>
         /// <param name="settings">The settings.</param>
-        public JsonDotNetSerializer(JsonSerializerSettings settings)
+        public JsonDotNetSerializer(JsonSerializerSettings settings = null)
         {
             _serializerSettings = settings ?? new JsonSerializerSettings
             {
@@ -31,6 +32,7 @@ namespace Speedygeek.ZendeskAPI.Serialization
             };
 
             _serializerSettings.Converters.Add(new StringEnumConverter());
+            _serializerSettings.Converters.Add(new CollaboratorConverter());
 
 #if DEBUG
             _serializerSettings.Formatting = Formatting.Indented;
@@ -38,12 +40,8 @@ namespace Speedygeek.ZendeskAPI.Serialization
 
             // needed so that we don't need to add attributes to every property in every model class.
             _serializerSettings.ContractResolver = ZendeskContractResolver.Instance;
-        }
 
-        /// <inheritdoc/>
-        public T Deserialize<T>(string s)
-        {
-            return JsonConvert.DeserializeObject<T>(s, _serializerSettings);
+            _serializer = JsonSerializer.CreateDefault(_serializerSettings);
         }
 
         /// <inheritdoc/>
@@ -53,7 +51,7 @@ namespace Speedygeek.ZendeskAPI.Serialization
             {
                 using (var jr = new JsonTextReader(sr))
                 {
-                    return JsonSerializer.Create(_serializerSettings).Deserialize<T>(jr);
+                    return _serializer.Deserialize<T>(jr);
                 }
             }
         }

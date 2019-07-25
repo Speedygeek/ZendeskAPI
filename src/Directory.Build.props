@@ -2,14 +2,15 @@
   <PropertyGroup>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
-    <LangVersion>7.2</LangVersion>
+    <LangVersion>latest</LangVersion>
     <Features>strict</Features>
     <Deterministic>true</Deterministic>
     <Features>pdb-path-determinism</Features>
+    <ExcludeByAttribute>GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Net.Compilers" Version="2.11.0-beta1-final" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Net.Compilers" Version="3.1.1" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup Condition="$(IsTestProject) != 'true'">
@@ -26,7 +27,8 @@
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <!--
       Make sure any documentation comments which are included in code get checked for syntax during the build, but do
       not report warnings for missing comments.
@@ -38,10 +40,13 @@
       SA1202: An element within a C# code file is out of order within regard to access level
       SA1204: Static members should appear before non-static members
       SA1629: Documentation text should end with a period
+      SA1623: The property's documentation summary text should begin with: 'Gets'
+      SA1310: A field name in C# contains an underscore.
       VSTHRD200: Use "Async" suffix in names of methods that return an awaitable type.
+      CA2227: Collection properties should be read only
     -->
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <NoWarn>$(NoWarn),1573,1591,1712,SA1309,SA1101,SA1202,SA1204,SA1629,VSTHRD200</NoWarn>
+    <NoWarn>$(NoWarn),1573,1591,1712,SA1309,SA1101,SA1202,SA1204,SA1629,SA1623,SA1310,VSTHRD200, CA2227</NoWarn>
   </PropertyGroup>
 
 </Project>
