@@ -1,8 +1,11 @@
 ﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace Speedygeek.ZendeskAPI.Utilities
 {
@@ -24,6 +27,28 @@ namespace Speedygeek.ZendeskAPI.Utilities
             {
                 d1.Add(kv);
             }
+        }
+
+        /// <summary>
+        ///  Build Query String
+        /// </summary>
+        /// <param name="requestUri">base URI</param>
+        /// <param name="queryStringParams">parameters to add</param>
+        /// <returns>query string</returns>
+        public static string BuildQueryString(this string requestUri, Dictionary<string, string> queryStringParams)
+        {
+            return QueryHelpers.AddQueryString(requestUri, queryStringParams);
+        }
+
+        public static string ToInvariantString(this int value)
+        {
+            return value.ToString(CultureInfo.InvariantCulture);
+        }
+
+        public static string ToLowerInvariantString<TEnum>(this TEnum value)
+            where TEnum : Enum
+        {
+            return value.ToString().ToLowerInvariant();
         }
     }
 }
