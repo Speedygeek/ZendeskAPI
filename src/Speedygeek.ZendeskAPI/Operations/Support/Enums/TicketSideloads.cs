@@ -34,12 +34,12 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <summary>
         /// Last Audits
         /// </summary>
-        LastAudits = 16,
+        Last_Audits = 16,
 
         /// <summary>
         /// Metric Sets
         /// </summary>
-        MetricSets = 32,
+        Metric_Sets = 32,
 
         /// <summary>
         /// Dates
@@ -49,27 +49,27 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <summary>
         /// Sharing Agreements
         /// </summary>
-        SharingAgreements = 128,
+        Sharing_Agreements = 128,
 
         /// <summary>
         /// Incidents Counts
         /// </summary>
-        IncidentCounts = 256,
+        Incident_Counts = 256,
 
         /// <summary>
         /// Ticket Forms
         /// </summary>
-        TicketForms = 512,
+        Ticket_Forms = 512,
 
         /// <summary>
         /// Comment Count
         /// </summary>
-        CommentCount = 1024,
+        Comment_Count = 1024,
 
         /// <summary>
         /// Metric Events
         /// </summary>
-        MetricEvents = 2048,
+        Metric_Events = 2048,
 
         /// <summary>
         /// SLAS

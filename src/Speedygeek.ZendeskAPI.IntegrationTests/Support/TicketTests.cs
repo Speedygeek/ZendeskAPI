@@ -1,8 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
-using Speedygeek.ZendeskAPI;
-using Speedygeek.ZendeskAPI.IntegrationTests;
 using Speedygeek.ZendeskAPI.Models.Support;
 
 namespace Speedygeek.ZendeskAPI.IntegrationTests.Support
@@ -19,13 +16,21 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests.Support
                 Priority = TicketPriority.Urgent,
             };
 
-            var resp1 =  await Client.Support.Tickets.Create(newTicket).ConfigureAwait(false);
+            var resp1 = await Client.Support.Tickets.Create(newTicket).ConfigureAwait(false);
 
             long id = resp1.Ticket.Id;
             var resp = await Client.Support.Tickets.Get(id).ConfigureAwait(false);
 
             Assert.That(resp, Is.Not.Null);
             Assert.That(resp.Ticket.Id, Is.EqualTo(id));
+        }
+
+        [Test]
+        public async Task TicketsByOrgId()
+        {
+            var resp = await Client.Support.Tickets.GetByOrganization(22560572).ConfigureAwait(false);
+
+            Assert.That(resp.Tickets.Count, Is.EqualTo(100));
         }
     }
 }

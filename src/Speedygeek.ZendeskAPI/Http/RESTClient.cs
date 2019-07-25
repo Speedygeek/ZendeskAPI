@@ -1,9 +1,7 @@
 ﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using System;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Speedygeek.ZendeskAPI.Serialization;
 

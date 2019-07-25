@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.WebUtilities;
 
@@ -37,6 +38,17 @@ namespace Speedygeek.ZendeskAPI.Utilities
         public static string BuildQueryString(this string requestUri, Dictionary<string, string> queryStringParams)
         {
             return QueryHelpers.AddQueryString(requestUri, queryStringParams);
+        }
+
+        public static string ToInvariantString(this int value)
+        {
+            return value.ToString(CultureInfo.InvariantCulture);
+        }
+
+        public static string ToLowerInvariantString<TEnum>(this TEnum value)
+            where TEnum : Enum
+        {
+            return value.ToString().ToLowerInvariant();
         }
     }
 }

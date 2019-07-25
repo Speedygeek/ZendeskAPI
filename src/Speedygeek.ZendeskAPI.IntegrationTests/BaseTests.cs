@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
 namespace Speedygeek.ZendeskAPI.IntegrationTests
@@ -15,6 +12,7 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests
         {
             var collection = new ServiceCollection();
             collection.AddZendeskClient(Settings.SubDomain, Settings.AdminUserName, Settings.AdminPassword);
+
             var serviceProvider = collection.BuildServiceProvider();
             Client = serviceProvider.GetService<IZendeskClient>();
         }

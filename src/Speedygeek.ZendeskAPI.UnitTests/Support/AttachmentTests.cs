@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Speedygeek.ZendeskAPI.IntegrationTests.Base;
 using Speedygeek.ZendeskAPI.Models;
 using Speedygeek.ZendeskAPI.Models.Support;
+using Speedygeek.ZendeskAPI.UnitTests.Base;
 
-namespace Speedygeek.ZendeskAPI.IntegrationTests.Support
+namespace Speedygeek.ZendeskAPI.UnitTests.Support
 {
-    public class AttachmentTests : BaseTests
+    public class AttachmentTests : TestBase
     {
         [Test]
         public async Task AttachmentCreateDownloadDelete()
@@ -17,6 +21,8 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests.Support
 
             string token = string.Empty;
             Attachment attachment = null;
+
+            BuildResponse("/api/v2/uploads.json?filename=testupload.txt", "uploadTestFile.json", HttpMethod.Post, HttpStatusCode.Created);
             using (var stream = file.Open(FileMode.Open))
             {
                 using (var zenFile = new ZenFile { ContentType = "text/plain", FileName = "testupload.txt", FileData = stream })
@@ -25,10 +31,11 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests.Support
 
                     token = resp.Upload.Token;
                     Assert.That(resp.Upload.Token, Is.Not.Null);
-
                     attachment = resp.Upload.Attachments[0];
                 }
             }
+
+            BuildResponse(attachment.ContentUrl.PathAndQuery, "testupload.txt", HttpMethod.Get, HttpStatusCode.OK);
 
             using (var zenFile = await Client.Support.Attachments.Download(attachment).ConfigureAwait(false))
             {
@@ -40,37 +47,10 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests.Support
                 }
             }
 
+            BuildResponse($"/api/v2/uploads/{token}.json", string.Empty, HttpMethod.Delete, HttpStatusCode.NoContent);
+
             var result = await Client.Support.Attachments.Delete(token).ConfigureAwait(false);
             Assert.That(result, Is.True);
-        }
-
-        [Test]
-        public async Task AttachmentsCreateDelete()
-        {
-            var file = new FileInfo(Path.Combine(TestContext.CurrentContext.GetDataDirectoryPath(), "testupload.txt"));
-
-            using (var stream = file.Open(FileMode.Open))
-            {
-                var stream1 = new MemoryStream();
-                var stream2 = new MemoryStream();
-                await stream.CopyToAsync(stream1).ConfigureAwait(false);
-                stream.Position = 0;
-                await stream.CopyToAsync(stream2).ConfigureAwait(false);
-
-                var files = new List<ZenFile> {
-                    new ZenFile { ContentType = "text/plain", FileName = "testupload1.txt", FileData = stream1 },
-                    new ZenFile { ContentType = "text/plain", FileName = "testupload2.txt", FileData = stream2 } };
-
-                var resp = await Client.Support.Attachments.Upload(files).ConfigureAwait(false);
-
-                var token = resp.Upload.Token;
-                Assert.That(resp.Upload.Token, Is.Not.Null);
-
-                var result = await Client.Support.Attachments.Delete(token).ConfigureAwait(false);
-                Assert.That(result, Is.True);
-
-                files.ForEach(z => z.Dispose());
-            }
         }
     }
 }

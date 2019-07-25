@@ -2,8 +2,7 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System;
-using System.Collections.Generic;
-using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -67,6 +66,7 @@ namespace Speedygeek.ZendeskAPI
                         cancellationToken.ThrowIfCancellationRequested();
                         using (var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(true))
                         {
+                            stream.Seek(0, SeekOrigin.Begin);
                             result = _restClient.Serializer.Deserialize<TResponse>(stream);
                         }
                     }

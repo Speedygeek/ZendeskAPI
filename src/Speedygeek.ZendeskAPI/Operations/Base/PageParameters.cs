@@ -2,7 +2,6 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System.Collections.Generic;
-using System.Globalization;
 using Speedygeek.ZendeskAPI.Operations.Support;
 using Speedygeek.ZendeskAPI.Utilities;
 
@@ -38,13 +37,13 @@ namespace Speedygeek.ZendeskAPI.Operations.Base
         {
             var parameters = new Dictionary<string, string>
             {
-                { Constants.Page, PageNumber > 0 ? PageNumber.ToString(CultureInfo.InvariantCulture) : Constants.DefaultPage },
-                { Constants.PerPage, PerPage > 0 ? PerPage.ToString(CultureInfo.InvariantCulture) : Constants.DefaultPageSize },
+                { Constants.Page, PageNumber > 0 ? PageNumber.ToInvariantString() : Constants.DefaultPage },
+                { Constants.PerPage, PerPage > 0 ? PerPage.ToInvariantString() : Constants.DefaultPageSize },
             };
 
             if (SortOrder != SortOrder.None)
             {
-                parameters.Add(Constants.SortOrder, SortOrder.ToString().ToLowerInvariant());
+                parameters.Add(Constants.SortOrder, SortOrder.ToLowerInvariantString());
             }
 
             return parameters;

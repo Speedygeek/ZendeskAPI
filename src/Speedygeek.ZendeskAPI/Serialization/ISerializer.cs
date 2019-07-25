@@ -18,14 +18,6 @@ namespace Speedygeek.ZendeskAPI.Serialization
         string Serialize(object data);
 
         /// <summary>
-        /// Deserializes an object from a string representation.
-        /// </summary>
-        /// <typeparam name="T">the type of the object to deserializes as</typeparam>
-        /// <param name="s"> Json string to deserialize</param>
-        /// <returns> HTTP content used for request </returns>
-        T Deserialize<T>(string s);
-
-        /// <summary>
         /// Deserializes an object from a stream representation.
         /// </summary>
         /// <typeparam name="T">the type of the object to deserializes as</typeparam>

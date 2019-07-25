@@ -1,4 +1,4 @@
-﻿namespace Speedygeek.ZendeskAPI.IntegrationTests
+﻿namespace Speedygeek.ZendeskAPI.UnitTests
 {
     public static class Settings
     {

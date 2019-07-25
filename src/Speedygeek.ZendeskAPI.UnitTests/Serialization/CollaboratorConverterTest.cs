@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using Speedygeek.ZendeskAPI.Models.Support;
@@ -9,6 +8,7 @@ using Speedygeek.ZendeskAPI.Serialization;
 
 namespace Speedygeek.ZendeskAPI.UnitTests
 {
+    [TestFixture]
     public class CollaboratorConverterTest
     {
         private ISerializer _serializer;

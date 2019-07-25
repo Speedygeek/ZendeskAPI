@@ -17,12 +17,10 @@ namespace Speedygeek.ZendeskAPI.Models.Base
         private int _perPage = 100;
         private bool _updatedValues = false;
 
-#pragma warning disable CA1721 // Property names should not match get methods
         /// <summary>
         /// URL of the next page
         /// </summary>
         public Uri NextPage { get; } = null;
-#pragma warning restore CA1721 // Property names should not match get methods
 
         /// <summary>
         /// URl of the Previous page
@@ -86,8 +84,16 @@ namespace Speedygeek.ZendeskAPI.Models.Base
             }
 
             var queryString = QueryHelpers.ParseQuery(url.Query);
-            _page = int.Parse(queryString[Constants.Page], CultureInfo.InvariantCulture);
-            _perPage = int.Parse(queryString[Constants.PerPage], CultureInfo.InvariantCulture);
+
+            if (queryString.ContainsKey(Constants.Page))
+            {
+                _page = int.Parse(queryString[Constants.Page], CultureInfo.InvariantCulture);
+            }
+
+            if (queryString.ContainsKey(Constants.PerPage))
+            {
+                _perPage = int.Parse(queryString[Constants.PerPage], CultureInfo.InvariantCulture);
+            }
 
             _updatedValues = true;
         }

@@ -68,8 +68,26 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <inheritdoc />
         public Task<TicketListResponse> GetAll(TicketSideloads sideload = TicketSideloads.None, TicketPageParams pageParameters = default, CancellationToken cancellationToken = default)
         {
-            var requestUri = GetSideLoadParam($"tickets.json", sideload, pageParameters);
+            var requestUri = GetSideLoadParam("tickets.json", sideload, pageParameters);
             return SendAync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task<TicketListResponse> GetByOrganization(long orgId, TicketSideloads sideload = TicketSideloads.None, TicketPageParams pageParameters = default, CancellationToken cancellationToken = default)
+        {
+            var requestUri = GetSideLoadParam($"organizations/{orgId}/tickets.json", sideload, pageParameters);
+            return SendAync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task<TicketListResponse> GetNextPage(Uri nextPage, CancellationToken cancellationToken = default)
+        {
+            if (nextPage is null)
+            {
+                throw new ArgumentNullException(nameof(nextPage));
+            }
+
+            return SendAync<TicketListResponse>(HttpMethod.Get, nextPage.PathAndQuery, cancellationToken);
         }
 
         private static string GetSideLoadParam(string requestSuffix, TicketSideloads options, TicketPageParams pageParameters = default)
@@ -83,9 +101,9 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
                     options &= ~TicketSideloads.None;
                 }
 
-                var sideLoads = options.ToString().ToLowerInvariant();
+                var sideLoads = options.ToLowerInvariantString();
 
-                queryParams.Add("include", sideLoads);
+                queryParams.Add("include", sideLoads.Replace(" ", string.Empty));
             }
 
             if (pageParameters != null)

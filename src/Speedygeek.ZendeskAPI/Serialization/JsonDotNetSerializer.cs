@@ -2,10 +2,8 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System.IO;
-using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
 using Speedygeek.ZendeskAPI.Serialization.Converters;
 
 namespace Speedygeek.ZendeskAPI.Serialization
@@ -44,12 +42,6 @@ namespace Speedygeek.ZendeskAPI.Serialization
             _serializerSettings.ContractResolver = ZendeskContractResolver.Instance;
 
             _serializer = JsonSerializer.CreateDefault(_serializerSettings);
-        }
-
-        /// <inheritdoc/>
-        public T Deserialize<T>(string s)
-        {
-            return JsonConvert.DeserializeObject<T>(s, _serializerSettings);
         }
 
         /// <inheritdoc/>
