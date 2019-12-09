@@ -47,13 +47,9 @@ namespace Speedygeek.ZendeskAPI.Serialization
         /// <inheritdoc/>
         public T Deserialize<T>(Stream stream)
         {
-            using (var sr = new StreamReader(stream))
-            {
-                using (var jr = new JsonTextReader(sr))
-                {
-                    return _serializer.Deserialize<T>(jr);
-                }
-            }
+            using var sr = new StreamReader(stream);
+            using var jr = new JsonTextReader(sr);
+            return _serializer.Deserialize<T>(jr);
         }
 
         /// <inheritdoc/>

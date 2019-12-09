@@ -31,7 +31,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Support
 
             BuildResponse("/api/v2/tickets/24116.json", "createTicket.json");
 
-            long id = createResp.Ticket.Id;
+            var id = createResp.Ticket.Id;
             var getResp = await Client.Support.Tickets.Get(id).ConfigureAwait(false);
 
             Assert.That(getResp, Is.Not.Null);

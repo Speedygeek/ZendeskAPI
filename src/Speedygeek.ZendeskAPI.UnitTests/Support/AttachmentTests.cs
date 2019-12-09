@@ -19,20 +19,18 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Support
         {
             var file = new FileInfo(Path.Combine(TestContext.CurrentContext.GetDataDirectoryPath(), "testupload.txt"));
 
-            string token = string.Empty;
+            var token = string.Empty;
             Attachment attachment = null;
 
             BuildResponse("/api/v2/uploads.json?filename=testupload.txt", "uploadTestFile.json", HttpMethod.Post, HttpStatusCode.Created);
             using (var stream = file.Open(FileMode.Open))
             {
-                using (var zenFile = new ZenFile { ContentType = "text/plain", FileName = "testupload.txt", FileData = stream })
-                {
-                    var resp = await Client.Support.Attachments.Upload(zenFile).ConfigureAwait(false);
+                using var zenFile = new ZenFile { ContentType = "text/plain", FileName = "testupload.txt", FileData = stream };
+                var resp = await Client.Support.Attachments.Upload(zenFile).ConfigureAwait(false);
 
-                    token = resp.Upload.Token;
-                    Assert.That(resp.Upload.Token, Is.Not.Null);
-                    attachment = resp.Upload.Attachments[0];
-                }
+                token = resp.Upload.Token;
+                Assert.That(resp.Upload.Token, Is.Not.Null);
+                attachment = resp.Upload.Attachments[0];
             }
 
             BuildResponse(attachment.ContentUrl.PathAndQuery, "testupload.txt", HttpMethod.Get, HttpStatusCode.OK);
@@ -40,11 +38,9 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Support
             using (var zenFile = await Client.Support.Attachments.Download(attachment).ConfigureAwait(false))
             {
                 Assert.That(zenFile.FileData, Is.Not.Null);
-                using (var reader = new StreamReader(zenFile.FileData))
-                {
-                    var content = reader.ReadToEnd();
-                    Assert.That(content, Is.EqualTo("Just a sample file."));
-                }
+                using var reader = new StreamReader(zenFile.FileData);
+                var content = reader.ReadToEnd();
+                Assert.That(content, Is.EqualTo("Just a sample file."));
             }
 
             BuildResponse($"/api/v2/uploads/{token}.json", string.Empty, HttpMethod.Delete, HttpStatusCode.NoContent);

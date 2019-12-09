@@ -35,7 +35,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Base
 
         protected void BuildResponse(string pathAndQuery, string fileName, HttpMethod httpMethod = null, HttpStatusCode statusCode = HttpStatusCode.OK)
         {
-            httpMethod = httpMethod ?? HttpMethod.Get;
+            httpMethod ??= HttpMethod.Get;
 
             Builder.MockHandler.Protected().Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
                .ReturnsAsync((HttpRequestMessage requestMessage, CancellationToken token) =>
