@@ -50,5 +50,10 @@ namespace Speedygeek.ZendeskAPI.Utilities
         {
             return value.ToString().ToLowerInvariant();
         }
+
+        public static string ToCsv(this IEnumerable<long> ids)
+        {
+            return string.Join(",", ids.Select(x => x.ToString(CultureInfo.InvariantCulture)).ToArray());
+        }
     }
 }

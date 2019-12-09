@@ -137,6 +137,18 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         public IList<string> Tags { get; set; }
 
         /// <summary>
+        /// Use to add tags in bulk updates
+        /// <see href="https://developer.zendesk.com/rest_api/docs/support/tickets#updating-tag-lists"/>
+        /// </summary>
+        public IList<string> AdditionalTags { get; set; }
+
+        /// <summary>
+        /// Use to Remove tags in bulk updates
+        /// <see href="https://developer.zendesk.com/rest_api/docs/support/tickets#updating-tag-lists"/>
+        /// </summary>
+        public IList<string> RemoveTags { get; set; }
+
+        /// <summary>
         /// This object explains how the ticket was created
         /// </summary>
         public Via Via { get; set; }

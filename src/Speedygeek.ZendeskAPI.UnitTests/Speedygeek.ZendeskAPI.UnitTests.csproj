@@ -25,7 +25,4 @@
     <ProjectReference Include="..\Speedygeek.ZendeskAPI\Speedygeek.ZendeskAPI.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Update="Microsoft.Net.Compilers" Version="3.4.0" />
-  </ItemGroup>
 </Project>

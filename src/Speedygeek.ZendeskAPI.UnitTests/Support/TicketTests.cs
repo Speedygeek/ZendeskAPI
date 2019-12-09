@@ -57,7 +57,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Support
         {
             BuildResponse("/api/v2/organizations/22560572/tickets.json?page=1&per_page=50", "organization_22560572_tickets.json");
 
-            var resp = await Client.Support.Tickets.GetByOrganization(22560572, TicketSideloads.None, new TicketPageParams { PerPage = 50 }).ConfigureAwait(false);
+            var resp = await Client.Support.Tickets.GetByOrganization(22560572, new TicketPageParams { PerPage = 50 }, TicketSideloads.None).ConfigureAwait(false);
 
             Assert.That(resp.Tickets.Count, Is.EqualTo(50));
             Assert.That(resp.NextPage, Is.Not.Null);
@@ -80,7 +80,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Support
         {
             BuildResponse("/api/v2/tickets.json?include=users,comment_count", "ticketsWithSideload.json");
 
-            var resp = await Client.Support.Tickets.GetAll(TicketSideloads.Users | TicketSideloads.Comment_Count).ConfigureAwait(false);
+            var resp = await Client.Support.Tickets.GetAll(sideload: TicketSideloads.Users | TicketSideloads.Comment_Count).ConfigureAwait(false);
 
             Assert.That(resp.Tickets.Count, Is.EqualTo(100));
             Assert.That(resp.Tickets.Any(t => t.CommentCount > 0));
