@@ -26,7 +26,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Base
             var collection = new ServiceCollection();
             collection.AddZendeskClient(Settings.SubDomain, Settings.AdminUserName, Settings.AdminPassword);
 
-            collection.Replace(new ServiceDescriptor(typeof(HttpMessageHandlerBuilder), new FakeHttpMessageHandlerBuilder { SaveRespose = true }));
+            collection.Replace(new ServiceDescriptor(typeof(HttpMessageHandlerBuilder), new FakeHttpMessageHandlerBuilder { SaveRespose = false }));
 
             var serviceProvider = collection.BuildServiceProvider();
             Client = serviceProvider.GetService<IZendeskClient>();
