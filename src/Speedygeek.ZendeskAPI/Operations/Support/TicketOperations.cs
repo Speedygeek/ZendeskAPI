@@ -17,7 +17,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
     /// </summary>
     public class TicketOperations : BaseOperations, ITicketOperations
     {
-        private const string MaxListSizeMessage = @"API will not accept a list over 100 tickets long";
+        private const string MaxListSizeMessage = @"API will not accept a list over 100 items long";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TicketOperations"/> class.
@@ -123,18 +123,14 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         }
 
         /// <inheritdoc />
-        public Task<bool> DeleteBulk(IList<long> ids, CancellationToken cancellationToken = default)
+        public Task<JobStatusResponse> DeleteBulk(IList<long> ids, CancellationToken cancellationToken = default)
         {
             if (ids.Count > 100)
             {
                 throw new ArgumentException(MaxListSizeMessage, nameof(ids));
             }
 
-            return SendAync(
-                HttpMethod.Delete,
-                $"tickets/destroy_many.json?ids={ids.ToCsv()}",
-                (HttpResponseMessage resp) => { return Task.FromResult(resp.StatusCode == HttpStatusCode.OK); },
-                cancellationToken);
+            return SendAync<JobStatusResponse>(HttpMethod.Delete, $"tickets/destroy_many.json?ids={ids.ToCsv()}", cancellationToken);
         }
 
         /// <inheritdoc />

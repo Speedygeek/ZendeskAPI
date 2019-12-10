@@ -91,7 +91,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// </summary>
         /// <param name="ids"> list of ticket Ids to delete</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
-        /// <returns> Returns a true if the Delete is successful </returns>
+        /// <returns> Returns a <see cref="JobStatusResponse"/> </returns>
         Task<JobStatusResponse> DeletePermanentlyBulk(IList<long> ids, CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -99,8 +99,8 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// </summary>
         /// <param name="ids"> list of ticket Ids to delete</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
-        /// <returns> Returns a true if the Delete is successful </returns>
-        Task<bool> DeleteBulk(IList<long> ids, CancellationToken cancellationToken = default);
+        /// <returns> Returns a <see cref="JobStatusResponse"/> </returns>
+        Task<JobStatusResponse> DeleteBulk(IList<long> ids, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of all deleted (and not yet archived) tickets

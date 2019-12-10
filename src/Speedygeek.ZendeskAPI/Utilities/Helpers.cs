@@ -12,7 +12,7 @@ namespace Speedygeek.ZendeskAPI.Utilities
     /// <summary>
     /// basic helpers
     /// </summary>
-    internal static class Helpers
+    public static class Helpers
     {
         /// <summary>
         /// Merges the key/value pairs from d2 into d1, without overwriting those already set in d1.
@@ -40,20 +40,36 @@ namespace Speedygeek.ZendeskAPI.Utilities
             return QueryHelpers.AddQueryString(requestUri, queryStringParams);
         }
 
+        /// <summary>
+        /// converts in to string safely
+        /// </summary>
+        /// <param name="value">number to convert</param>
+        /// <returns>string</returns>
         public static string ToInvariantString(this int value)
         {
             return value.ToString(CultureInfo.InvariantCulture);
         }
 
+        /// <summary>
+        /// Converts to a lowered string
+        /// </summary>
+        /// <typeparam name="TEnum">type of enum to convert </typeparam>
+        /// <param name="value">enum option</param>
+        /// <returns>value as string</returns>
         public static string ToLowerInvariantString<TEnum>(this TEnum value)
             where TEnum : Enum
         {
             return value.ToString().ToLowerInvariant();
         }
 
-        public static string ToCsv(this IEnumerable<long> ids)
+        /// <summary>
+        /// Converts to a comma separated list
+        /// </summary>
+        /// <param name="values"> list of </param>
+        /// <returns>comma separated string</returns>
+        public static string ToCsv(this IEnumerable<long> values)
         {
-            return string.Join(",", ids.Select(x => x.ToString(CultureInfo.InvariantCulture)).ToArray());
+            return string.Join(",", values.Select(x => x.ToString(CultureInfo.InvariantCulture)).ToArray());
         }
     }
 }

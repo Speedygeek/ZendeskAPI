@@ -22,7 +22,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Support
             var token = string.Empty;
             Attachment attachment = null;
 
-            BuildResponse("/api/v2/uploads.json?filename=testupload.txt", "uploadTestFile.json", HttpMethod.Post, HttpStatusCode.Created);
+            BuildResponse("uploads.json?filename=testupload.txt", "uploadTestFile.json", HttpMethod.Post, HttpStatusCode.Created);
             using (var stream = file.Open(FileMode.Open))
             {
                 using var zenFile = new ZenFile { ContentType = "text/plain", FileName = "testupload.txt", FileData = stream };
@@ -43,7 +43,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Support
                 Assert.That(content, Is.EqualTo("Just a sample file."));
             }
 
-            BuildResponse($"/api/v2/uploads/{token}.json", string.Empty, HttpMethod.Delete, HttpStatusCode.NoContent);
+            BuildResponse($"uploads/{token}.json", string.Empty, HttpMethod.Delete, HttpStatusCode.NoContent);
 
             var result = await Client.Support.Attachments.Delete(token).ConfigureAwait(false);
             Assert.That(result, Is.True);

@@ -26,7 +26,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Base
             var collection = new ServiceCollection();
             collection.AddZendeskClient(Settings.SubDomain, Settings.AdminUserName, Settings.AdminPassword);
 
-            collection.Replace(new ServiceDescriptor(typeof(HttpMessageHandlerBuilder), new FakeHttpMessageHandlerBuilder { SaveRespose = false }));
+            collection.Replace(new ServiceDescriptor(typeof(HttpMessageHandlerBuilder), new FakeHttpMessageHandlerBuilder { SaveRespose = true }));
 
             var serviceProvider = collection.BuildServiceProvider();
             Client = serviceProvider.GetService<IZendeskClient>();
@@ -42,7 +42,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Base
                {
                    var result = new HttpResponseMessage();
 
-                   if (requestMessage.RequestUri.PathAndQuery == pathAndQuery && requestMessage.Method == httpMethod)
+                   if (requestMessage.RequestUri.PathAndQuery.Replace("/api/v2/", "") == pathAndQuery && requestMessage.Method == httpMethod)
                    {
                        HttpContent content = null;
                        if (!string.IsNullOrWhiteSpace(fileName))

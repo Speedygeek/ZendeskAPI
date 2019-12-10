@@ -16,6 +16,6 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// <summary>
         /// Requested JobStatus
         /// </summary>
-        public JobResult JobStatus { get; set; }
+        public JobStatus JobStatus { get; set; }
     }
 }
