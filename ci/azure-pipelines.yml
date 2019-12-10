@@ -29,10 +29,11 @@ pool:
   vmImage: 'windows-2019'
 
 steps:
-  - task: DotNetCoreInstaller@0
-    displayName: 'Use .NET Core sdk 2.2.300'
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core SDK'
     inputs:
-      version: 2.2.300
+      packageType: sdk
+      useGlobalJson: true
 
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build'
