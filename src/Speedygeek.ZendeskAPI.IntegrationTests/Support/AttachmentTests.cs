@@ -58,8 +58,8 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests.Support
 
             var resp = await Client.Support.Attachments.Upload(files).ConfigureAwait(false);
 
-            var token = resp.Upload.Token;
-            Assert.That(resp.Upload.Token, Is.Not.Null);
+            var token = resp[0].Upload.Token;
+            Assert.That(token, Is.Not.Null);
 
             var result = await Client.Support.Attachments.Delete(token).ConfigureAwait(false);
             Assert.That(result, Is.True);
