@@ -29,7 +29,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
 
             if (SortBy != TicketSortBy.None)
             {
-                paramerters.Add(Constants.SortBy, SortBy.GetDisplayName().ToLowerInvariant());
+                paramerters.Add(Constants.SortBy, SortBy.GetDisplayName());
             }
 
             return paramerters;

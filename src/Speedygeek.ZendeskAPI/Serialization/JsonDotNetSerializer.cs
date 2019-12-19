@@ -4,6 +4,7 @@
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using Speedygeek.ZendeskAPI.Serialization.Converters;
 
 namespace Speedygeek.ZendeskAPI.Serialization
@@ -31,7 +32,7 @@ namespace Speedygeek.ZendeskAPI.Serialization
                 ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
             };
 
-            _serializerSettings.Converters.Add(new StringEnumConverter());
+            _serializerSettings.Converters.Add(new StringEnumConverter(new SnakeCaseNamingStrategy()));
             _serializerSettings.Converters.Add(new CollaboratorConverter());
 
 #if DEBUG

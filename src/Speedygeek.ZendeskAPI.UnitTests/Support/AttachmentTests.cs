@@ -17,6 +17,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Support
         [Test]
         public async Task AttachmentCreateDownloadDelete()
         {
+           // SaveResponse();
             var file = new FileInfo(Path.Combine(TestContext.CurrentContext.GetDataDirectoryPath(), "testupload.txt"));
 
             var token = string.Empty;
@@ -47,6 +48,13 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Support
 
             var result = await Client.Support.Attachments.Delete(token).ConfigureAwait(false);
             Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void AttachmentDownloadNull()
+        {
+            Assert.That(async () => { var resp = await Client.Support.Attachments.Download(null).ConfigureAwait(false); },
+                Throws.ArgumentNullException);
         }
     }
 }

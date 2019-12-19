@@ -43,7 +43,7 @@ namespace Speedygeek.ZendeskAPI.Serialization
 
             if (!property.Writable)
             {
-                var fi = GetBackingField(member?.DeclaringType, property.UnderlyingName);
+                var fi = GetBackingField(member.DeclaringType, property.UnderlyingName);
                 if (fi != null)
                 {
                     property.Writable = true;

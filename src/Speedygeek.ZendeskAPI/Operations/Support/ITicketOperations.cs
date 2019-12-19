@@ -109,7 +109,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="pageParameters">Options about paging</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="TicketListResponse"/> </returns>
-        Task<TicketListResponse> GetDeleted(TicketPageParams pageParameters = default, CancellationToken cancellationToken = default);
+        Task<DeletedTicketListResponse> GetDeleted(TicketPageParams pageParameters = default, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Restore a previously deleted ticket

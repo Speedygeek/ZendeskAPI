@@ -1,0 +1,4055 @@
+{
+  "tickets": [
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25706.json",
+      "id": 25706,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T11:00:59Z",
+      "updated_at": "2019-12-16T20:34:41Z",
+      "type": null,
+      "subject": "Batch Update Ticket 1",
+      "raw_subject": "Batch Update Ticket 1",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25707.json",
+      "id": 25707,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T11:01:00Z",
+      "updated_at": "2019-12-16T20:34:41Z",
+      "type": null,
+      "subject": "Batch Update Ticket 2",
+      "raw_subject": "Batch Update Ticket 2",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25708.json",
+      "id": 25708,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T11:01:06Z",
+      "updated_at": "2019-12-16T20:34:41Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25709.json",
+      "id": 25709,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T11:01:08Z",
+      "updated_at": "2019-12-16T20:34:41Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25741.json",
+      "id": 25741,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T12:18:14Z",
+      "updated_at": "2019-12-16T20:34:45Z",
+      "type": null,
+      "subject": "Batch Update Ticket 1",
+      "raw_subject": "Batch Update Ticket 1",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25742.json",
+      "id": 25742,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T12:18:15Z",
+      "updated_at": "2019-12-16T20:34:46Z",
+      "type": null,
+      "subject": "Batch Update Ticket 2",
+      "raw_subject": "Batch Update Ticket 2",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25743.json",
+      "id": 25743,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T12:18:18Z",
+      "updated_at": "2019-12-16T20:34:46Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25744.json",
+      "id": 25744,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T12:18:20Z",
+      "updated_at": "2019-12-16T20:34:46Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25776.json",
+      "id": 25776,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T12:31:13Z",
+      "updated_at": "2019-12-16T20:34:50Z",
+      "type": null,
+      "subject": "Batch Update Ticket 1",
+      "raw_subject": "Batch Update Ticket 1",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25777.json",
+      "id": 25777,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T12:31:14Z",
+      "updated_at": "2019-12-16T20:34:51Z",
+      "type": null,
+      "subject": "Batch Update Ticket 2",
+      "raw_subject": "Batch Update Ticket 2",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25778.json",
+      "id": 25778,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T12:31:19Z",
+      "updated_at": "2019-12-16T20:34:51Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25779.json",
+      "id": 25779,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T12:31:21Z",
+      "updated_at": "2019-12-16T20:34:51Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25811.json",
+      "id": 25811,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T12:46:38Z",
+      "updated_at": "2019-12-16T21:25:40Z",
+      "type": null,
+      "subject": "Batch Update Ticket 1",
+      "raw_subject": "Batch Update Ticket 1",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25812.json",
+      "id": 25812,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T12:46:39Z",
+      "updated_at": "2019-12-16T21:25:40Z",
+      "type": null,
+      "subject": "Batch Update Ticket 2",
+      "raw_subject": "Batch Update Ticket 2",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25813.json",
+      "id": 25813,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T12:46:42Z",
+      "updated_at": "2019-12-16T21:25:41Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25814.json",
+      "id": 25814,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T12:46:44Z",
+      "updated_at": "2019-12-16T21:25:41Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25846.json",
+      "id": 25846,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T14:56:20Z",
+      "updated_at": "2019-12-16T21:25:46Z",
+      "type": null,
+      "subject": "Batch Update Ticket 1",
+      "raw_subject": "Batch Update Ticket 1",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25847.json",
+      "id": 25847,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T14:56:21Z",
+      "updated_at": "2019-12-16T21:25:47Z",
+      "type": null,
+      "subject": "Batch Update Ticket 2",
+      "raw_subject": "Batch Update Ticket 2",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25848.json",
+      "id": 25848,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T14:56:27Z",
+      "updated_at": "2019-12-16T21:25:47Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25849.json",
+      "id": 25849,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T14:56:29Z",
+      "updated_at": "2019-12-16T21:25:47Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25914.json",
+      "id": 25914,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T17:25:10Z",
+      "updated_at": "2019-12-16T21:25:53Z",
+      "type": null,
+      "subject": "Batch Update Ticket 1",
+      "raw_subject": "Batch Update Ticket 1",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25915.json",
+      "id": 25915,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T17:25:11Z",
+      "updated_at": "2019-12-16T21:25:54Z",
+      "type": null,
+      "subject": "Batch Update Ticket 2",
+      "raw_subject": "Batch Update Ticket 2",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25918.json",
+      "id": 25918,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T17:25:19Z",
+      "updated_at": "2019-12-16T21:25:54Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25919.json",
+      "id": 25919,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-19T17:25:21Z",
+      "updated_at": "2019-12-16T21:25:54Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25951.json",
+      "id": 25951,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-20T16:49:57Z",
+      "updated_at": "2019-12-16T21:26:00Z",
+      "type": null,
+      "subject": "Batch Update Ticket 1",
+      "raw_subject": "Batch Update Ticket 1",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25952.json",
+      "id": 25952,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-20T16:49:58Z",
+      "updated_at": "2019-12-16T21:26:00Z",
+      "type": null,
+      "subject": "Batch Update Ticket 2",
+      "raw_subject": "Batch Update Ticket 2",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25955.json",
+      "id": 25955,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-20T16:50:07Z",
+      "updated_at": "2019-12-16T21:31:09Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25956.json",
+      "id": 25956,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-11-20T16:50:09Z",
+      "updated_at": "2019-12-16T21:31:09Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25988.json",
+      "id": 25988,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-06T07:55:36Z",
+      "updated_at": "2019-12-16T21:31:16Z",
+      "type": null,
+      "subject": "Batch Update Ticket 1",
+      "raw_subject": "Batch Update Ticket 1",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25989.json",
+      "id": 25989,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-06T07:55:36Z",
+      "updated_at": "2019-12-16T21:31:16Z",
+      "type": null,
+      "subject": "Batch Update Ticket 2",
+      "raw_subject": "Batch Update Ticket 2",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25992.json",
+      "id": 25992,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-06T07:55:44Z",
+      "updated_at": "2019-12-16T21:31:17Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/25993.json",
+      "id": 25993,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-06T07:55:46Z",
+      "updated_at": "2019-12-16T21:31:17Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/26025.json",
+      "id": 26025,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-09T00:48:17Z",
+      "updated_at": "2019-12-16T21:31:23Z",
+      "type": null,
+      "subject": "Batch Update Ticket 1",
+      "raw_subject": "Batch Update Ticket 1",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/26026.json",
+      "id": 26026,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-09T00:48:18Z",
+      "updated_at": "2019-12-16T21:31:24Z",
+      "type": null,
+      "subject": "Batch Update Ticket 2",
+      "raw_subject": "Batch Update Ticket 2",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/26029.json",
+      "id": 26029,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-09T00:48:27Z",
+      "updated_at": "2019-12-16T21:31:24Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/26030.json",
+      "id": 26030,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-09T00:48:28Z",
+      "updated_at": "2019-12-16T21:31:24Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/26062.json",
+      "id": 26062,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-09T00:58:46Z",
+      "updated_at": "2019-12-16T21:32:46Z",
+      "type": null,
+      "subject": "Batch Update Ticket 1",
+      "raw_subject": "Batch Update Ticket 1",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/26063.json",
+      "id": 26063,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-09T00:58:47Z",
+      "updated_at": "2019-12-16T21:32:46Z",
+      "type": null,
+      "subject": "Batch Update Ticket 2",
+      "raw_subject": "Batch Update Ticket 2",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/26066.json",
+      "id": 26066,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-09T00:58:56Z",
+      "updated_at": "2019-12-16T21:32:47Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/26067.json",
+      "id": 26067,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-09T00:58:58Z",
+      "updated_at": "2019-12-16T21:32:47Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/26099.json",
+      "id": 26099,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-09T01:08:23Z",
+      "updated_at": "2019-12-16T21:32:52Z",
+      "type": null,
+      "subject": "Batch Update Ticket 1",
+      "raw_subject": "Batch Update Ticket 1",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/26100.json",
+      "id": 26100,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-09T01:08:24Z",
+      "updated_at": "2019-12-16T21:32:52Z",
+      "type": null,
+      "subject": "Batch Update Ticket 2",
+      "raw_subject": "Batch Update Ticket 2",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "pending",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": false
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/26103.json",
+      "id": 26103,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-09T01:08:32Z",
+      "updated_at": "2019-12-16T21:32:53Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    },
+    {
+      "url": "https://csharpapi.zendesk.com/api/v2/tickets/26104.json",
+      "id": 26104,
+      "external_id": "this is a test",
+      "via": {
+        "channel": "api",
+        "source": {
+          "from": {
+          },
+          "to": {
+          },
+          "rel": null
+        }
+      },
+      "created_at": "2019-12-09T01:08:34Z",
+      "updated_at": "2019-12-16T21:32:53Z",
+      "type": null,
+      "subject": "my printer is on fire",
+      "raw_subject": "my printer is on fire",
+      "description": "HELP",
+      "priority": "urgent",
+      "status": "new",
+      "recipient": null,
+      "requester_id": 281513402,
+      "submitter_id": 281513402,
+      "assignee_id": null,
+      "organization_id": 22560572,
+      "group_id": null,
+      "collaborator_ids": [
+      ],
+      "follower_ids": [
+      ],
+      "email_cc_ids": [
+      ],
+      "forum_topic_id": null,
+      "problem_id": null,
+      "has_incidents": false,
+      "is_public": true,
+      "due_at": null,
+      "tags": [
+        "mm",
+        "new"
+      ],
+      "custom_fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "satisfaction_rating": {
+        "score": "unoffered"
+      },
+      "sharing_agreement_ids": [
+      ],
+      "fields": [
+        {
+          "id": 22117646,
+          "value": null
+        },
+        {
+          "id": 23812686,
+          "value": null
+        },
+        {
+          "id": 23999346,
+          "value": null
+        },
+        {
+          "id": 360023145351,
+          "value": null
+        }
+      ],
+      "followup_ids": [
+      ],
+      "ticket_form_id": 22916,
+      "brand_id": 1229456,
+      "satisfaction_probability": null,
+      "allow_channelback": false,
+      "allow_attachments": true
+    }
+  ],
+  "next_page": null,
+  "previous_page": null,
+  "count": 44
+}

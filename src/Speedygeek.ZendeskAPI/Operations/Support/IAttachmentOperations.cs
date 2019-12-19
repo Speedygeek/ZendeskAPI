@@ -31,7 +31,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="token">tracking token</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>The <see cref="UploadResponse"/></returns>
-        Task<UploadResponse> Upload(IEnumerable<ZenFile> files, string token = null, CancellationToken cancellationToken = default);
+        Task<UploadResponse[]> Upload(IEnumerable<ZenFile> files, string token = null, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Downloads a given <see cref="Attachment"/>

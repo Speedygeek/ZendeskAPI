@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Speedygeek.ZendeskAPI.Operations.Support
 {
     /// <summary>
@@ -16,11 +18,13 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <summary>
         /// Ascending
         /// </summary>
-        Asc = 2,
+        [Display(Name ="asc")]
+        Ascending = 2,
 
         /// <summary>
         /// Descending
         /// </summary>
-        Desc = 4,
+        [Display(Name ="desc")]
+        Descending = 4,
     }
 }

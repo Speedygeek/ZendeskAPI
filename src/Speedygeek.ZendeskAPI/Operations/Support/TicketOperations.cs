@@ -76,7 +76,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
                 throw new ArgumentException(MaxListSizeMessage, nameof(tickets));
             }
 
-            return SendAync<JobStatusResponse>(HttpMethod.Post, "tickets/update_many.json", new { tickets }, cancellationToken);
+            return SendAync<JobStatusResponse>(HttpMethod.Put, "tickets/update_many.json", new { tickets }, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -92,7 +92,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
                 throw new ArgumentException(MaxListSizeMessage, nameof(ids));
             }
 
-            return SendAync<JobStatusResponse>(HttpMethod.Post, $"tickets/update_many.json?ids={ids.ToCsv()}", new { ticket }, cancellationToken);
+            return SendAync<JobStatusResponse>(HttpMethod.Put, $"tickets/update_many.json?ids={ids.ToCsv()}", new { ticket }, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -134,10 +134,10 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         }
 
         /// <inheritdoc />
-        public Task<TicketListResponse> GetDeleted(TicketPageParams pageParameters = default, CancellationToken cancellationToken = default)
+        public Task<DeletedTicketListResponse> GetDeleted(TicketPageParams pageParameters = default, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam("deleted_tickets.json", TicketSideloads.None, pageParameters);
-            return SendAync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAync<DeletedTicketListResponse>(HttpMethod.Get, requestUri, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -159,7 +159,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
             }
 
             return SendAync(
-                HttpMethod.Delete,
+                HttpMethod.Put,
                 $"deleted_tickets/restore_many.json?ids={ids.ToCsv()}",
                 (HttpResponseMessage resp) => { return Task.FromResult(resp.StatusCode == HttpStatusCode.OK); },
                 cancellationToken);
@@ -244,7 +244,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
                 throw new ArgumentException(MaxListSizeMessage, nameof(ids));
             }
 
-            return SendAync<JobStatusResponse>(HttpMethod.Put, $"tickets/mark_as_spam.json?ids={ids.ToCsv()}", cancellationToken);
+            return SendAync<JobStatusResponse>(HttpMethod.Put, $"tickets/mark_many_as_spam.json?ids={ids.ToCsv()}", cancellationToken);
         }
 
         /// <inheritdoc />

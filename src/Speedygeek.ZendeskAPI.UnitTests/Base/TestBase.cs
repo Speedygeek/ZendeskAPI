@@ -1,10 +1,12 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Http;
@@ -18,20 +20,32 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Base
     public class TestBase
     {
         protected IZendeskClient Client { get; set; }
+        private ServiceCollection _collection;
         protected FakeHttpMessageHandlerBuilder Builder { get; set; }
 
         [OneTimeSetUp]
         public void Setup()
         {
-            var collection = new ServiceCollection();
-            collection.AddZendeskClient(Settings.SubDomain, Settings.AdminUserName, Settings.AdminPassword);
+            _collection = new ServiceCollection();
+            _collection.AddZendeskClient(Settings.SubDomain, Settings.AdminUserName, Settings.AdminPassword);
 
-            collection.Replace(new ServiceDescriptor(typeof(HttpMessageHandlerBuilder), new FakeHttpMessageHandlerBuilder { SaveRespose = false }));
+            _collection.Replace(new ServiceDescriptor(typeof(HttpMessageHandlerBuilder), new FakeHttpMessageHandlerBuilder { SaveRespose = false }));
 
-            var serviceProvider = collection.BuildServiceProvider();
+            var serviceProvider = _collection.BuildServiceProvider();
             Client = serviceProvider.GetService<IZendeskClient>();
             Builder = serviceProvider.GetService<HttpMessageHandlerBuilder>() as FakeHttpMessageHandlerBuilder;
         }
+
+        public void SaveResponse()
+        {
+#if DEBUG
+            _collection.Replace(new ServiceDescriptor(typeof(HttpMessageHandlerBuilder), new FakeHttpMessageHandlerBuilder { SaveRespose = true }));
+            var serviceProvider = _collection.BuildServiceProvider();
+            Client = serviceProvider.GetService<IZendeskClient>();
+            Builder = serviceProvider.GetService<HttpMessageHandlerBuilder>() as FakeHttpMessageHandlerBuilder;
+#endif
+        }
+
 
         protected void BuildResponse(string pathAndQuery, string fileName, HttpMethod httpMethod = null, HttpStatusCode statusCode = HttpStatusCode.OK)
         {
@@ -42,7 +56,15 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Base
                {
                    var result = new HttpResponseMessage();
 
-                   if (requestMessage.RequestUri.PathAndQuery.Replace("/api/v2/", "") == pathAndQuery && requestMessage.Method == httpMethod)
+                   var prefix = "/";
+                   if (requestMessage.RequestUri.PathAndQuery.Contains("/api/v2/"))
+                   {
+                       prefix = "/api/v2/";
+                   }
+
+                   var encodedURL = new Uri($"{requestMessage.RequestUri.Scheme}://{requestMessage.RequestUri.Host}{prefix}{pathAndQuery.TrimStart('/')}");
+
+                   if (requestMessage.RequestUri.PathAndQuery == encodedURL.PathAndQuery && requestMessage.Method == httpMethod)
                    {
                        HttpContent content = null;
                        if (!string.IsNullOrWhiteSpace(fileName))
