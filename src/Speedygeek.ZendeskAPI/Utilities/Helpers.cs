@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace Speedygeek.ZendeskAPI.Utilities
@@ -70,6 +71,16 @@ namespace Speedygeek.ZendeskAPI.Utilities
         public static string ToCsv(this IEnumerable<long> values)
         {
             return string.Join(",", values.Select(x => x.ToString(CultureInfo.InvariantCulture)).ToArray());
+        }
+
+        /// <summary>
+        /// Removes the whitespace
+        /// </summary>
+        /// <param name="original">the original string</param>
+        /// <returns>string with no whitespace</returns>
+        public static string RemoveWhitespace(this string original)
+        {
+            return Regex.Replace(original, @"\s+", string.Empty);
         }
     }
 }

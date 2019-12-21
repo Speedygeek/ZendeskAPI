@@ -1,13 +1,9 @@
 ﻿using NUnit.Framework;
 using Speedygeek.ZendeskAPI.Models.Support;
 using Speedygeek.ZendeskAPI.Serialization;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Speedygeek.ZendeskAPI.Utilities;
 
 namespace Speedygeek.ZendeskAPI.UnitTests.Serialization
 {
@@ -41,11 +37,11 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Serialization
         public void WriteSingle()
         {
             var serializer = new JsonDotNetSerializer();
-            var json = "{\r\n  \"value\": \"test_1\"\r\n}";
+            var json = @"{""value"":""test_1""}";
             
             var field = serializer.Serialize(new CustomField { Value = { "test_1" } });
 
-            Assert.That(field, Is.EqualTo(json));
+            Assert.That(field.RemoveWhitespace(), Is.EqualTo(json));
         }
     }
 }
