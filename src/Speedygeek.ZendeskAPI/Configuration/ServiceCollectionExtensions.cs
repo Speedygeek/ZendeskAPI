@@ -22,7 +22,7 @@ namespace Speedygeek.ZendeskAPI
         /// <param name="userName">User name for account</param>
         /// <param name="password">password to authenticate with</param>
         /// <returns>an updated <see cref="IServiceCollection"/></returns>
-        public static IServiceCollection AddZendeskClient(this IServiceCollection services, string subDomain, string userName, string password)
+        public static IServiceCollection AddZendeskClientWithBasicAuth(this IServiceCollection services, string subDomain, string userName, string password)
         {
             if (string.IsNullOrWhiteSpace(subDomain))
             {
@@ -47,11 +47,44 @@ namespace Speedygeek.ZendeskAPI
         }
 
         /// <summary>
+        /// Add <see cref="ZendeskClient"/> and configure it to use user name and password.
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/> to update</param>
+        /// <param name="subDomain"> SubDomain for your Zendesk account. example: https://{subDomain}.zendesk.com</param>
+        /// <param name="userName">User name for account</param>
+        /// <param name="apiToken">password to authenticate with</param>
+        /// <returns>an updated <see cref="IServiceCollection"/></returns>
+        public static IServiceCollection AddZendeskClientWithApiTokenAuth(this IServiceCollection services, string subDomain, string userName, string apiToken)
+        {
+            if (string.IsNullOrWhiteSpace(subDomain))
+            {
+                throw new ArgumentNullException(nameof(subDomain));
+            }
+
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                throw new ArgumentNullException(nameof(userName));
+            }
+
+            if (string.IsNullOrWhiteSpace(apiToken))
+            {
+                throw new ArgumentNullException(nameof(apiToken));
+            }
+
+            return services.AddZendeskClient(options =>
+            {
+                options.SubDomain = subDomain;
+                options.Credentials = new APITokenCredentials(userName, apiToken);
+            });
+        }
+
+        /// <summary>
         /// Add <see cref="ZendeskClient"/> and configure it
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/> to update</param>
         /// <param name="configureOptions"> action that configures the <see cref="ZenOptions"/></param>
         /// <returns>an updated <see cref="IServiceCollection"/></returns>
+        /// <remarks><para>For more info <see href="https://developer.zendesk.com/rest_api/docs/support/introduction#api-token"/></para></remarks>
         public static IServiceCollection AddZendeskClient(this IServiceCollection services, Action<ZenOptions> configureOptions)
         {
             services.Configure<ZenOptions>(configureOptions);

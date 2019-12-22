@@ -11,7 +11,7 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests
         public void Setup()
         {
             var collection = new ServiceCollection();
-            collection.AddZendeskClient(Settings.SubDomain, Settings.AdminUserName, Settings.AdminPassword);
+            collection.AddZendeskClientWithBasicAuth(Settings.SubDomain, Settings.AdminUserName, Settings.AdminPassword);
 
             var serviceProvider = collection.BuildServiceProvider();
             Client = serviceProvider.GetService<IZendeskClient>();
