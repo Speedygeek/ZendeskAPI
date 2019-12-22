@@ -18,7 +18,7 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests.Support
 
             var resp1 = await Client.Support.Tickets.Create(newTicket).ConfigureAwait(false);
 
-            long id = resp1.Ticket.Id;
+            var id = resp1.Ticket.Id;
             var resp = await Client.Support.Tickets.Get(id).ConfigureAwait(false);
 
             Assert.That(resp, Is.Not.Null);

@@ -17,8 +17,6 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Base
 
             var content = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-
-
             var path = Path.Combine(TestContext.CurrentContext.GetDataDirectoryPath(), "originalData.json");
 
             content = Regex.Replace(content, @"\s+", " ");

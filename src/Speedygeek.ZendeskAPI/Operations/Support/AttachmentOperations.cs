@@ -54,7 +54,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         }
 
         /// <inheritdoc />
-        public async Task<UploadResponse> Upload(IEnumerable<ZenFile> files, string token = default, CancellationToken cancellationToken = default)
+        public async Task<UploadResponse[]> Upload(IEnumerable<ZenFile> files, string token = default, CancellationToken cancellationToken = default)
         {
             var first = files.First();
             if (first != null)
@@ -70,9 +70,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
                     task.Add(Upload(file, respToken, cancellationToken));
                 }
 
-                await Task.WhenAll(task).ConfigureAwait(false);
-
-                return await task.LastOrDefault().ConfigureAwait(false);
+                return await Task.WhenAll(task).ConfigureAwait(false);
             }
 
             return null;

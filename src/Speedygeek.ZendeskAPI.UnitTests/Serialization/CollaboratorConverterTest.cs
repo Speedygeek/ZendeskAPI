@@ -17,7 +17,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests
         public void SetUp()
         {
             var collection = new ServiceCollection();
-            collection.AddZendeskClient("thisIsAtest", "test@gmail.com", "asdfjasdklf");
+            collection.AddZendeskClient("thisIsAtest", "test@gmail.com", "Mock_Password");
             var serviceProvider = collection.BuildServiceProvider();
             _serializer = serviceProvider.GetRequiredService<ISerializer>();
         }

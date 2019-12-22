@@ -43,7 +43,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Base
 
             if (SortOrder != SortOrder.None)
             {
-                parameters.Add(Constants.SortOrder, SortOrder.ToLowerInvariantString());
+                parameters.Add(Constants.SortOrder, SortOrder.GetDisplayName());
             }
 
             return parameters;

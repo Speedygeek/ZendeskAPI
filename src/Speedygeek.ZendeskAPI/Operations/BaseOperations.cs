@@ -43,50 +43,44 @@ namespace Speedygeek.ZendeskAPI
         /// <returns> <typeparamref name="TResponse"/></returns>
         protected async Task<TResponse> SendAync<TResponse>(HttpMethod httpMethod, string requestSuffix, object body = null, CancellationToken cancellationToken = default)
         {
-            using (var httpRequestMessage = new HttpRequestMessage(httpMethod, requestSuffix))
+            using var httpRequestMessage = new HttpRequestMessage(httpMethod, requestSuffix);
+            if (body is ZenFile zenFile)
             {
-                if (body is ZenFile zenFile)
-                {
-                    cancellationToken.ThrowIfCancellationRequested();
-                    httpRequestMessage.Content = new StreamContent(zenFile.FileData);
-                    httpRequestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse(zenFile.ContentType);
-                }
-                else if (body != null)
-                {
-                    cancellationToken.ThrowIfCancellationRequested();
-                    httpRequestMessage.Content = new StringContent(_restClient.Serializer.Serialize(body), Encoding.UTF8, JSON_TYPE);
-                }
-
                 cancellationToken.ThrowIfCancellationRequested();
-                using (var response = await _restClient.Client.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
-                {
-                    TResponse result = default;
-                    if (response.IsSuccessStatusCode)
-                    {
-                        cancellationToken.ThrowIfCancellationRequested();
-                        using (var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(true))
-                        {
-                            stream.Seek(0, SeekOrigin.Begin);
-                            result = _restClient.Serializer.Deserialize<TResponse>(stream);
-                        }
-                    }
-                    else if (response.StatusCode == TooManyRequests)
-                    {
-                        var retryAfter = response.Headers.GetValues("Retry-After").FirstOrDefault();
-
-                        throw new HttpRequestException($"HTTP status 429 To Many Requests; you may retry after {retryAfter}");
-                    }
-                    else if (!response.IsSuccessStatusCode)
-                    {
-                        var bodyString = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
-                        var message = $"Error {response.StatusCode} details: HEADERS: {response.Headers} BODY: {bodyString}";
-
-                        throw new HttpRequestException(message);
-                    }
-
-                    return result;
-                }
+                httpRequestMessage.Content = new StreamContent(zenFile.FileData);
+                httpRequestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse(zenFile.ContentType);
             }
+            else if (body != null)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                httpRequestMessage.Content = new StringContent(_restClient.Serializer.Serialize(body), Encoding.UTF8, JSON_TYPE);
+            }
+
+            cancellationToken.ThrowIfCancellationRequested();
+            using var response = await _restClient.Client.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false);
+            TResponse result = default;
+            if (response.IsSuccessStatusCode)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                using var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(true);
+                stream.Seek(0, SeekOrigin.Begin);
+                result = _restClient.Serializer.Deserialize<TResponse>(stream);
+            }
+            else if (response.StatusCode == TooManyRequests)
+            {
+                var retryAfter = response.Headers.GetValues("Retry-After").FirstOrDefault();
+
+                throw new HttpRequestException($"HTTP status 429 To Many Requests; you may retry after {retryAfter}");
+            }
+            else if (!response.IsSuccessStatusCode)
+            {
+                var bodyString = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+                var message = $"Error {response.StatusCode} details: HEADERS: {response.Headers} BODY: {bodyString}";
+
+                throw new HttpRequestException(message);
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -100,33 +94,29 @@ namespace Speedygeek.ZendeskAPI
         /// <returns> <typeparamref name="TResult"/></returns>
         protected async Task<TResult> SendAync<TResult>(HttpMethod httpMethod, string requestSuffix, Func<HttpResponseMessage, Task<TResult>> callBack, CancellationToken cancellationToken = default)
         {
-            using (var httpRequestMessage = new HttpRequestMessage(httpMethod, requestSuffix))
+            using var httpRequestMessage = new HttpRequestMessage(httpMethod, requestSuffix);
+            cancellationToken.ThrowIfCancellationRequested();
+            using var response = await _restClient.Client.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false);
+            TResult result = default;
+            if (response.IsSuccessStatusCode)
             {
-                cancellationToken.ThrowIfCancellationRequested();
-                using (var response = await _restClient.Client.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
-                {
-                    TResult result = default;
-                    if (response.IsSuccessStatusCode)
-                    {
-                        result = await (callBack?.Invoke(response)).ConfigureAwait(true);
-                    }
-                    else if (response.StatusCode == TooManyRequests)
-                    {
-                        var retryAfter = response.Headers.GetValues("Retry-After").FirstOrDefault();
-
-                        throw new HttpRequestException($"HTTP status 429 To Many Requests; you may retry after {retryAfter}");
-                    }
-                    else if (!response.IsSuccessStatusCode)
-                    {
-                        var bodyString = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
-                        var message = $"Error {response.StatusCode} details: HEADERS: {response.Headers} BODY: {bodyString}";
-
-                        throw new HttpRequestException(message);
-                    }
-
-                    return result;
-                }
+                result = await (callBack?.Invoke(response)).ConfigureAwait(true);
             }
+            else if (response.StatusCode == TooManyRequests)
+            {
+                var retryAfter = response.Headers.GetValues("Retry-After").FirstOrDefault();
+
+                throw new HttpRequestException($"HTTP status 429 To Many Requests; you may retry after {retryAfter}");
+            }
+            else if (!response.IsSuccessStatusCode)
+            {
+                var bodyString = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+                var message = $"Error {response.StatusCode} details: HEADERS: {response.Headers} BODY: {bodyString}";
+
+                throw new HttpRequestException(message);
+            }
+
+            return result;
         }
     }
 }

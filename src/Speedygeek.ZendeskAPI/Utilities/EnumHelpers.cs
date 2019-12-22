@@ -19,12 +19,7 @@ namespace Speedygeek.ZendeskAPI.Utilities
         /// <returns>string</returns>
         public static string GetDisplayName(this Enum value)
         {
-            if (value is null)
-            {
-                return string.Empty;
-            }
-
-            var att = value.GetType().GetCustomAttribute<DisplayAttribute>();
+            var att = value.GetType().GetMember(value.ToString())[0].GetCustomAttribute<DisplayAttribute>();
             if (att != null)
             {
                 return att.Name.ToLowerInvariant();

@@ -23,7 +23,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Serialization
         [Test]
         public void PageParametersWithSortOrder()
         {
-            var ticketParams = new TicketPageParams { SortBy = TicketSortBy.Id, SortOrder = SortOrder.Desc };
+            var ticketParams = new TicketPageParams { SortBy = TicketSortBy.Id, SortOrder = SortOrder.Descending };
 
             var parameters = ticketParams.ToParameters();
 

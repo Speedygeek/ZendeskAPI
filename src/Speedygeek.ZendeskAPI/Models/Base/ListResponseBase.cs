@@ -73,21 +73,19 @@ namespace Speedygeek.ZendeskAPI.Models.Base
         {
             var url = NextPage ?? PreviousPage;
 
+            var queryString = QueryHelpers.ParseQuery(url.Query);
+
             if (PreviousPage == null)
             {
                 _page = 1;
             }
-
-            if (NextPage == null)
+            else if (NextPage == null)
             {
                 _page = TotalPages;
             }
-
-            var queryString = QueryHelpers.ParseQuery(url.Query);
-
-            if (queryString.ContainsKey(Constants.Page))
+            else if (queryString.ContainsKey(Constants.Page))
             {
-                _page = int.Parse(queryString[Constants.Page], CultureInfo.InvariantCulture);
+                _page = int.Parse(queryString[Constants.Page], CultureInfo.InvariantCulture) - 1;
             }
 
             if (queryString.ContainsKey(Constants.PerPage))
