@@ -41,14 +41,14 @@ jobs:
     - task: UseDotNet@2
       displayName: 'Use .NET Core Current SDK'
       inputs:
-        packageType: sdk
+        packageType: 'sdk'
         useGlobalJson: true
 
     - task: UseDotNet@2
-      displayName: Install .NET Core 2.1.607 SDK
+      displayName: Install .NET Core 2.1.14
       inputs:
-        packageType: 'sdk'
-        version: '2.1.607'
+        packageType: 'runtime'
+        version: '2.1.14'
         
     - task: DotNetCoreCLI@2
       displayName: 'dotnet build'

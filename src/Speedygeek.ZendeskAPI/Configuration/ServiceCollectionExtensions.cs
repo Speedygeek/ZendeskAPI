@@ -52,7 +52,7 @@ namespace Speedygeek.ZendeskAPI
         /// <param name="services"><see cref="IServiceCollection"/> to update</param>
         /// <param name="subDomain"> SubDomain for your Zendesk account. example: https://{subDomain}.zendesk.com</param>
         /// <param name="userName">User name for account</param>
-        /// <param name="apiToken">password to authenticate with</param>
+        /// <param name="apiToken">API token to authenticate with</param>
         /// <returns>an updated <see cref="IServiceCollection"/></returns>
         public static IServiceCollection AddZendeskClientWithApiTokenAuth(this IServiceCollection services, string subDomain, string userName, string apiToken)
         {
@@ -79,6 +79,32 @@ namespace Speedygeek.ZendeskAPI
         }
 
         /// <summary>
+        /// Add <see cref="ZendeskClient"/> and configure it to use user name and password.
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/> to update</param>
+        /// <param name="subDomain"> SubDomain for your Zendesk account. example: https://{subDomain}.zendesk.com</param>
+        /// <param name="accessToken">OAuth access Token</param>
+        /// <returns>an updated <see cref="IServiceCollection"/></returns>
+        public static IServiceCollection AddZendeskClientWithOAuthTokenAuth(this IServiceCollection services, string subDomain, string accessToken)
+        {
+            if (string.IsNullOrWhiteSpace(subDomain))
+            {
+                throw new ArgumentNullException(nameof(subDomain));
+            }
+
+            if (string.IsNullOrWhiteSpace(accessToken))
+            {
+                throw new ArgumentNullException(nameof(accessToken));
+            }
+
+            return services.AddZendeskClient(options =>
+            {
+                options.SubDomain = subDomain;
+                options.Credentials = new OAuthAccessTokenCredentials(accessToken);
+            });
+        }
+
+        /// <summary>
         /// Add <see cref="ZendeskClient"/> and configure it
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/> to update</param>
@@ -92,11 +118,11 @@ namespace Speedygeek.ZendeskAPI
             services.AddScoped<IZendeskClient, ZendeskClient>();
             services.AddScoped<ISerializer, JsonDotNetSerializer>();
 
-            services.AddHttpClient<IRESTClient, RESTClient>((sp, client) =>
+            services.AddHttpClient<IRESTClient, RESTClient>(async (sp, client) =>
             {
                 var options = sp.GetRequiredService<IOptions<ZenOptions>>().Value;
                 client.BaseAddress = new Uri($"https://{options.SubDomain}.zendesk.com/api/v2/");
-                options.Credentials.ConfigureHttpClient(client).ConfigureAwait(true).GetAwaiter().GetResult();
+                await options.Credentials.ConfigureHttpClient(client).ConfigureAwait(false);
 
                 if (options.TimeOut != TimeSpan.Zero)
                 {

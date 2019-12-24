@@ -47,10 +47,17 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Configuration
         }
 
         [Test]
-        public void BasicAuthNullClient()
+        public void OAuthTokenAuthNullClient()
         {
-            Assert.That(() => { new BasicCredentials(Settings.AdminUserName, Settings.AdminPassword).ConfigureHttpClient(null).ConfigureAwait(false); },
+            Assert.That(() => { new OAuthAccessTokenCredentials(Settings.AdminOAuthToken).ConfigureHttpClient(null).ConfigureAwait(false); },
                 Throws.ArgumentNullException);
+        }
+
+        [Test]
+        public void OAuthTokenAuthNullToken()
+        {
+            Assert.That(() => { new OAuthAccessTokenCredentials(null); },
+                Throws.ArgumentException.With.Message.EqualTo("Parameter can not be null, empty or whitespace\r\nParameter name: accessToken"));
         }
 
         [Test]
