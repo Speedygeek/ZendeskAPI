@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,28 +15,28 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Configuration
         [Test]
         public void BasicAuthUsernameNull()
         {
-            Assert.That(() => { new BasicCredentials(null, Settings.AdminPassword); },
+            Assert.That(() => { _ = new BasicCredentials(null, Settings.AdminPassword); },
                 Throws.ArgumentException.With.Message.EqualTo("Parameter can not be null, empty or whitespace\r\nParameter name: userName"));
         }
 
         [Test]
         public void BasicAuthPasswordNull()
         {
-            Assert.That(() => { new BasicCredentials(Settings.AdminUserName, null); },
+            Assert.That(() => { _ = new BasicCredentials(Settings.AdminUserName, null); },
                 Throws.ArgumentException.With.Message.EqualTo("Parameter can not be null, empty or whitespace\r\nParameter name: password"));
         }
 
         [Test]
         public void ApiTokenAuthUsernameNull()
         {
-            Assert.That(() => { new APITokenCredentials(null, Settings.ApiToken); },
+            Assert.That(() => { _ = new APITokenCredentials(null, Settings.ApiToken); },
                 Throws.ArgumentException.With.Message.EqualTo("Parameter can not be null, empty or whitespace\r\nParameter name: userName"));
         }
 
         [Test]
         public void ApiTokenAuthApiTokenNull()
         {
-            Assert.That(() => { new APITokenCredentials(Settings.AdminUserName, null); },
+            Assert.That(() => { _ = new APITokenCredentials(Settings.AdminUserName, null); },
                 Throws.ArgumentException.With.Message.EqualTo("Parameter can not be null, empty or whitespace\r\nParameter name: apiToken"));
         }
 
@@ -54,16 +55,37 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Configuration
         }
 
         [Test]
+        public void BasicAuthNullClient()
+        {
+            Assert.That(() => { new BasicCredentials(Settings.AdminUserName, Settings.AdminPassword).ConfigureHttpClient(null).ConfigureAwait(false); },
+                Throws.ArgumentNullException);
+        }
+
+        [Test]
         public void OAuthTokenAuthNullToken()
         {
-            Assert.That(() => { new OAuthAccessTokenCredentials(null); },
+            Assert.That(() => { _ = new OAuthAccessTokenCredentials(null); },
                 Throws.ArgumentException.With.Message.EqualTo("Parameter can not be null, empty or whitespace\r\nParameter name: accessToken"));
+        }
+
+        [Test]
+        public void OAuthTokenAuthNullToken2()
+        {
+            Assert.That(() => { _ = new OAuthAccessTokenCredentials(null, "endUser@test.com"); },
+                Throws.ArgumentException.With.Message.EqualTo("Parameter can not be null, empty or whitespace\r\nParameter name: accessToken"));
+        }
+
+        [Test]
+        public void OAuthTokenAuthNullEndUserId()
+        {
+            Assert.That(() => { _ = new OAuthAccessTokenCredentials(Settings.AdminOAuthToken, null); },
+                Throws.ArgumentException.With.Message.EqualTo("Parameter can not be null, empty or whitespace\r\nParameter name: endUserId"));
         }
 
         [Test]
         public async Task ApiTokenAuthBuildHeader()
         {
-            var client = new HttpClient();
+            using var client = new HttpClient();
             var cred = new APITokenCredentials(Settings.AdminUserName, Settings.ApiToken);
 
             await cred.ConfigureHttpClient(client).ConfigureAwait(false);
@@ -78,7 +100,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Configuration
         [Test]
         public async Task BasicAuthBuildHeader()
         {
-            var client = new HttpClient();
+            using var client = new HttpClient();
             var cred = new BasicCredentials(Settings.AdminUserName, Settings.AdminPassword);
 
             await cred.ConfigureHttpClient(client).ConfigureAwait(false);
@@ -88,6 +110,20 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Configuration
 
             Assert.That(headerScheme, Is.EqualTo("Basic"));
             Assert.That(headerParameter, Is.EqualTo("Y3NoYXJwemVuZGVza2FwaTEyMzRAZ21haWwuY29tOiZIM24hMHFeM09qRExkbQ=="));
+        }
+
+        [Test]
+        public async Task OAuthOnBehalfOfAuthBuildHeader()
+        {
+            using var client = new HttpClient();
+            var endUserId = "enduser@test.com";
+            var cred = new OAuthAccessTokenCredentials(Settings.AdminOAuthToken, endUserId);
+
+            await cred.ConfigureHttpClient(client).ConfigureAwait(false);
+
+            var headerValue = client.DefaultRequestHeaders.GetValues("X-On-Behalf-Of").FirstOrDefault();
+
+            Assert.That(headerValue, Is.EqualTo(endUserId));
         }
     }
 }

@@ -16,6 +16,30 @@ namespace Speedygeek.ZendeskAPI.Configuration
         private const string Message = "Parameter can not be null, empty or whitespace";
         private const string Scheme = "Bearer";
         private readonly string _accessToken;
+        private readonly string _endUserId;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OAuthAccessTokenCredentials"/> class.
+        /// </summary>
+        /// <param name="accessToken">OAuth access token</param>
+        /// <param name="endUserId">end users Id number or email address</param>
+        /// <exception cref="System.ArgumentException">Thrown when accessToekn or endUserId is null, empty or whitespace</exception>
+        /// <see href="https://develop.zendesk.com/hc/en-us/articles/360001068647-Making-API-requests-on-behalf-of-end-users-Zendesk-Support"/>
+        public OAuthAccessTokenCredentials(string accessToken, string endUserId)
+        {
+            if (string.IsNullOrWhiteSpace(accessToken))
+            {
+                throw new ArgumentException(Message, nameof(accessToken));
+            }
+
+            if (string.IsNullOrWhiteSpace(endUserId))
+            {
+                throw new ArgumentException(Message, nameof(endUserId));
+            }
+
+            _accessToken = accessToken;
+            _endUserId = endUserId;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OAuthAccessTokenCredentials"/> class.
@@ -41,6 +65,11 @@ namespace Speedygeek.ZendeskAPI.Configuration
             }
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Scheme, _accessToken);
+            if (!string.IsNullOrWhiteSpace(_endUserId))
+            {
+                client.DefaultRequestHeaders.Add("X-On-Behalf-Of", _endUserId);
+            }
+
             return Task.CompletedTask;
         }
     }

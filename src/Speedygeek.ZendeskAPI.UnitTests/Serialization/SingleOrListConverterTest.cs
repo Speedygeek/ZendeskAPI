@@ -15,19 +15,19 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Serialization
         {
             var serializer = new JsonDotNetSerializer();
             var json = @"{""value"": [ ""test_1"",""test_2""] }";
-
-            var field = serializer.Deserialize<CustomField>(new MemoryStream(Encoding.UTF8.GetBytes(json)));
+            using var memStream = new MemoryStream(Encoding.UTF8.GetBytes(json));
+            var field = serializer.Deserialize<CustomField>(memStream);
 
             Assert.That(field.Value.Count, Is.EqualTo(2));
         }
 
         [Test]
-        public void Single()
+        public void SingleItem()
         {
             var serializer = new JsonDotNetSerializer();
             var json = @"{""value"": ""test_1"" }";
-
-            var field = serializer.Deserialize<CustomField>(new MemoryStream(Encoding.UTF8.GetBytes(json)));
+            using var memStream = new MemoryStream(Encoding.UTF8.GetBytes(json));
+            var field = serializer.Deserialize<CustomField>(memStream);
 
             Assert.That(field.Value.Count, Is.EqualTo(1));
             Assert.That(field.Value[0], Is.EqualTo("test_1"));

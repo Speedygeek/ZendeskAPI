@@ -57,7 +57,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Base
                    var result = new HttpResponseMessage();
 
                    var prefix = "/";
-                   if (requestMessage.RequestUri.PathAndQuery.Contains("/api/v2/"))
+                   if (requestMessage.RequestUri.PathAndQuery.Contains("/api/v2/",StringComparison.InvariantCulture))
                    {
                        prefix = "/api/v2/";
                    }
