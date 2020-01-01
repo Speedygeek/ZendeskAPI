@@ -30,5 +30,10 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
 
         /// <inheritdoc />
         public IAttachmentOperations Attachments => AttachmentLazy.Value;
+
+        private Lazy<IUserOperations> UserLazy => new Lazy<IUserOperations>(() => new UserOperations(_restClient));
+
+        /// <inheritdoc />
+        public IUserOperations Users => UserLazy.Value;
     }
 }

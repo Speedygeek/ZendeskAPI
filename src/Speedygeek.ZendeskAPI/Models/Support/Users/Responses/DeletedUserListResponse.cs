@@ -7,18 +7,13 @@ using Speedygeek.ZendeskAPI.Models.Base;
 namespace Speedygeek.ZendeskAPI.Models.Support
 {
     /// <summary>
-    /// Paged list of Tickets
+    /// List of Deleted users
     /// </summary>
-    public class TicketListResponse : ListResponseBase
+    public class DeletedUserListResponse : ListResponseBase
     {
         /// <summary>
-        /// Requested Tickets
+        /// Lists deleted users, including permanently deleted users.
         /// </summary>
-        public IList<Ticket> Tickets { get; }
-
-        /// <summary>
-        /// Users related to requested tickets
-        /// </summary>
-        public IList<User> Users { get; }
+        public IList<User> DeletedUsers { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace Speedygeek.ZendeskAPI.Operations.Support
 {
@@ -23,13 +23,12 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <summary>
         /// Assignee Name
         /// </summary>
-        [Display(Name = "assignee.name")]
+        [EnumMember(Value = "assignee.name")]
         AssigneeName = 2,
 
         /// <summary>
         /// Created At Date
         /// </summary>
-        [Display(Name = "created_at")]
         CreatedAt = 3,
 
         /// <summary>
@@ -55,7 +54,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <summary>
         /// Requester Name
         /// </summary>
-        [Display(Name = "requester.name")]
+        [EnumMember(Value = "requester.name")]
         RequesterName = 8,
 
         /// <summary>
@@ -71,7 +70,6 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <summary>
         /// Updated At
         /// </summary>
-        [Display(Name = "updated_at")]
         UpdateAt = 11,
     }
 }

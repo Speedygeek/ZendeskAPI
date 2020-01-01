@@ -38,7 +38,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Serialization
         {
             var serializer = new JsonDotNetSerializer();
             var json = @"{""value"":""test_1""}";
-            
+
             var field = serializer.Serialize(new CustomField { Value = { "test_1" } });
 
             Assert.That(field.RemoveWhitespace(), Is.EqualTo(json));

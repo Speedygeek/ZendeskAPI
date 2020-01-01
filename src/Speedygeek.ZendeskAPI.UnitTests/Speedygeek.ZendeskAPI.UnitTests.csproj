@@ -8,6 +8,9 @@
 
   <PropertyGroup>
     <CodeAnalysisRuleSet />
+    <SignAssembly>true</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>StrongNameKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>

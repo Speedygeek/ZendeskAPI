@@ -24,6 +24,14 @@ dotnet_diagnostic.CA1062.severity = none
 # CA1717: Only FlagsAttribute enums should have plural names
 dotnet_diagnostic.CA1717.severity = none
 
+# DOC900: Render documentation as Markdown (Refactoring)
+dotnet_diagnostic.DOC900.severity = none
+
+# CA1714: Flags enums should have plural names
+dotnet_diagnostic.CA1714.severity = none
+
+# CA1056: Uri properties should not be strings
+dotnet_diagnostic.CA1056.severity = none
 
 ###############################
 # .NET Coding Conventions     #
@@ -45,8 +53,8 @@ dotnet_style_parentheses_in_relational_binary_operators           = always_for_c
 dotnet_style_parentheses_in_other_binary_operators                = always_for_clarity : silent
 dotnet_style_parentheses_in_other_operators                       = never_if_unnecessary : silent
 # Modifier preferences
-dotnet_style_require_accessibility_modifiers                      = for_non_interface_members : silent
-dotnet_style_readonly_field                                       = true : suggestion
+dotnet_style_require_accessibility_modifiers                      = always : error
+dotnet_style_readonly_field                                       = true : error
 # Expression-level preferences
 dotnet_style_object_initializer                                   = true : error
 dotnet_style_collection_initializer                               = true : error

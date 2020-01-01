@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.WebUtilities;
+using Newtonsoft.Json.Serialization;
 
 namespace Speedygeek.ZendeskAPI.Utilities
 {
@@ -38,6 +38,11 @@ namespace Speedygeek.ZendeskAPI.Utilities
         /// <returns>query string</returns>
         public static string BuildQueryString(this string requestUri, Dictionary<string, string> queryStringParams)
         {
+            if (queryStringParams == null)
+            {
+                return requestUri;
+            }
+
             return QueryHelpers.AddQueryString(requestUri, queryStringParams);
         }
 
@@ -52,15 +57,15 @@ namespace Speedygeek.ZendeskAPI.Utilities
         }
 
         /// <summary>
-        /// Converts to a lowered string
+        /// converts string to lower Snake Case
         /// </summary>
-        /// <typeparam name="TEnum">type of enum to convert </typeparam>
-        /// <param name="value">enum option</param>
-        /// <returns>value as string</returns>
-        public static string ToLowerInvariantString<TEnum>(this TEnum value)
-            where TEnum : Enum
+        /// <param name="value"> string to convert</param>
+        /// <returns>string in snake case</returns>
+        public static string ToSnakeCase(this string value)
         {
-            return value.ToString().ToLowerInvariant();
+            var strategy = new SnakeCaseNamingStrategy();
+
+            return strategy.GetPropertyName(value, false);
         }
 
         /// <summary>
@@ -69,6 +74,16 @@ namespace Speedygeek.ZendeskAPI.Utilities
         /// <param name="values"> list of </param>
         /// <returns>comma separated string</returns>
         public static string ToCsv(this IEnumerable<long> values)
+        {
+            return string.Join(",", values.Select(x => x.ToString(CultureInfo.InvariantCulture)).ToArray());
+        }
+
+        /// <summary>
+        /// Converts to a comma separated list
+        /// </summary>
+        /// <param name="values"> list of </param>
+        /// <returns>comma separated string</returns>
+        public static string ToCsv(this IEnumerable<string> values)
         {
             return string.Join(",", values.Select(x => x.ToString(CultureInfo.InvariantCulture)).ToArray());
         }
