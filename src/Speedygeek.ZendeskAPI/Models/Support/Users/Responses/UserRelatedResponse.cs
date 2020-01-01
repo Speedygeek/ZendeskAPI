@@ -1,23 +1,16 @@
 ﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using System.Collections.Generic;
-
 namespace Speedygeek.ZendeskAPI.Models.Support
 {
     /// <summary>
-    /// response Ticket
+    /// User Related Response
     /// </summary>
-    public class TicketResponse
+    public class UserRelatedResponse
     {
         /// <summary>
-        /// Requested Ticket
+        /// Info Related to the requested user
         /// </summary>
-        public Ticket Ticket { get; }
-
-        /// <summary>
-        /// Users related to requested tickets
-        /// </summary>
-        public IList<User> Users { get; }
+        public UserRelated UserRelated { get; }
     }
 }

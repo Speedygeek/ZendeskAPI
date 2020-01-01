@@ -7,18 +7,18 @@ using Speedygeek.ZendeskAPI.Models.Base;
 namespace Speedygeek.ZendeskAPI.Models.Support
 {
     /// <summary>
-    /// Paged list of Tickets
+    /// Paged list of <see cref="User"/>
     /// </summary>
-    public class TicketListResponse : ListResponseBase
+    public class UserListResponse : ListResponseBase
     {
         /// <summary>
-        /// Requested Tickets
-        /// </summary>
-        public IList<Ticket> Tickets { get; }
-
-        /// <summary>
-        /// Users related to requested tickets
+        /// Requested <see cref="User"/>
         /// </summary>
         public IList<User> Users { get; }
+
+        /// <summary>
+        /// Total number of open tickets assigned to the user.
+        /// </summary>
+        public dynamic OpenTicketCount { get; set; }
     }
 }

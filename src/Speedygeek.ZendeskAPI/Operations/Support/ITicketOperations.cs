@@ -237,6 +237,30 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         Task<JobStatusResponse> Merge(long targetId, IList<long> sourceIds, string targetComment = "", string sourceComment = "", CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Collaborators for a Ticket
+        /// </summary>
+        /// <param name="id">Id for ticket to load</param>
+        /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        /// <returns>Returns a <see cref="UserListResponse"/></returns>
+        Task<UserListResponse> GetCollaborators(long id, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Followers for a Ticket
+        /// </summary>
+        /// <param name="id">Id for ticket to load</param>
+        /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        /// <returns>Returns a <see cref="UserListResponse"/></returns>
+        Task<UserListResponse> Getfollowers(long id, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Email CCs for a Ticket
+        /// </summary>
+        /// <param name="id">Id for ticket to load</param>
+        /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        /// <returns>Returns a <see cref="UserListResponse"/></returns>
+        Task<UserListResponse> GetEmailCCs(long id, CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Listing Ticket Incidents
         /// </summary>
         /// <param name="id">id of ticket to get incidents for</param>

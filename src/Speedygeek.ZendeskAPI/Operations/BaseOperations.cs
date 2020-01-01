@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -11,6 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Speedygeek.ZendeskAPI.Models;
+using Speedygeek.ZendeskAPI.Utilities;
 
 namespace Speedygeek.ZendeskAPI
 {
@@ -44,15 +46,18 @@ namespace Speedygeek.ZendeskAPI
         protected async Task<TResponse> SendAync<TResponse>(HttpMethod httpMethod, string requestSuffix, object body = null, CancellationToken cancellationToken = default)
         {
             using var httpRequestMessage = new HttpRequestMessage(httpMethod, requestSuffix);
+            cancellationToken.ThrowIfCancellationRequested();
             if (body is ZenFile zenFile)
             {
-                cancellationToken.ThrowIfCancellationRequested();
                 httpRequestMessage.Content = new StreamContent(zenFile.FileData);
                 httpRequestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse(zenFile.ContentType);
             }
+            else if (body is Dictionary<string, object> formData)
+            {
+                httpRequestMessage.Content = BuildFormContent(formData);
+            }
             else if (body != null)
             {
-                cancellationToken.ThrowIfCancellationRequested();
                 httpRequestMessage.Content = new StringContent(_restClient.Serializer.Serialize(body), Encoding.UTF8, JSON_TYPE);
             }
 
@@ -81,6 +86,28 @@ namespace Speedygeek.ZendeskAPI
             }
 
             return result;
+        }
+
+        private static HttpContent BuildFormContent(Dictionary<string, object> formData)
+        {
+            using var fromContent = new MultipartFormDataContent(Constants.FormBoundary);
+
+            foreach (var item in formData)
+            {
+                if (item.Value is ZenFile zenFile)
+                {
+                    using var streamContent = new StreamContent(zenFile.FileData);
+                    streamContent.Headers.ContentType = MediaTypeHeaderValue.Parse(zenFile.ContentType);
+                    fromContent.Add(streamContent, item.Key, zenFile.FileName);
+                }
+                else
+                {
+                    using var content = new StringContent(item.Value.ToString());
+                    fromContent.Add(content, item.Key);
+                }
+            }
+
+            return fromContent;
         }
 
         /// <summary>

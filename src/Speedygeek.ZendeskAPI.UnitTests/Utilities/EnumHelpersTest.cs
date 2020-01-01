@@ -1,11 +1,5 @@
 ﻿using NUnit.Framework;
 using Speedygeek.ZendeskAPI.Operations.Support;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Speedygeek.ZendeskAPI.Utilities;
 
 namespace Speedygeek.ZendeskAPI.UnitTests.Utilities
@@ -16,11 +10,11 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Utilities
         [Test]
         public void GetDisplayNameTest()
         {
-            var name = SortOrder.Ascending.GetDisplayName();
+            var name = SortOrder.Ascending.GetEnumMemberValue();
 
             Assert.That(name, Is.EqualTo("asc"));
 
-            name = SortOrder.None.GetDisplayName();
+            name = SortOrder.None.GetEnumMemberValue();
 
             Assert.That(name, Is.EqualTo("none"));
         }

@@ -102,7 +102,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Support
         {
             BuildResponse("tickets.json?include=users,comment_count", "ticketsWithSideload.json");
 
-            var resp = await Client.Support.Tickets.GetAll(sideload: TicketSideloads.Users | TicketSideloads.Comment_Count).ConfigureAwait(false);
+            var resp = await Client.Support.Tickets.GetAll(sideload: TicketSideloads.Users | TicketSideloads.CommentCount).ConfigureAwait(false);
 
             Assert.That(resp.Tickets.Count, Is.EqualTo(100));
             Assert.That(resp.Tickets.Any(t => t.CommentCount > 0));

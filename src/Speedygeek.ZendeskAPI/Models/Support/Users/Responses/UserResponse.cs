@@ -1,24 +1,21 @@
 ﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using System.Diagnostics;
-
 namespace Speedygeek.ZendeskAPI.Models.Support
 {
     /// <summary>
-    /// Model of user that deleted a Ticket
+    /// <see cref="User"/>
     /// </summary>
-    [DebuggerDisplay("Name: {Name}, Id: {Id}")]
-    public class Actor
+    public class UserResponse
     {
         /// <summary>
-        /// Automatically assigned when the entity is created
+        /// Requested <see cref="User"/>
         /// </summary>
-        public long Id { get; }
+        public User User { get; }
 
         /// <summary>
-        /// User name
+        /// Total number of open tickets assigned to the user.
         /// </summary>
-        public string Name { get; set; }
+        public dynamic OpenTicketCount { get; set; }
     }
 }

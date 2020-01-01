@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using Speedygeek.ZendeskAPI.Operations.Support;
 using Speedygeek.ZendeskAPI.Utilities;
 
-namespace Speedygeek.ZendeskAPI.Operations.Base
+namespace Speedygeek.ZendeskAPI.Operations
 {
     /// <summary>
     /// pagination parameters
     /// </summary>
-    public abstract class PageParameters
+    public class PageParameters
     {
         /// <summary>
         /// Number of the page to load
@@ -33,7 +33,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Base
         /// Build Query string Parameters
         /// </summary>
         /// <returns> a Dictionary of Parameters</returns>
-        public virtual Dictionary<string, string> ToParameters()
+        internal virtual Dictionary<string, string> ToParameters()
         {
             var parameters = new Dictionary<string, string>
             {
@@ -43,7 +43,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Base
 
             if (SortOrder != SortOrder.None)
             {
-                parameters.Add(Constants.SortOrder, SortOrder.GetDisplayName());
+                parameters.Add(Constants.SortOrder, SortOrder.GetEnumMemberValue());
             }
 
             return parameters;

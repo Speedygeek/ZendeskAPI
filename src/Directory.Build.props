@@ -45,11 +45,9 @@
       SA1629: Documentation text should end with a period
       SA1623: The property's documentation summary text should begin with: 'Gets'
       SA1310: A field name in C# contains an underscore.
-      VSTHRD200: Use "Async" suffix in names of methods that return an awaitable type.
-      CA2227: Collection properties should be read only
     -->
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <NoWarn>$(NoWarn),1573,1591,1712,SA1309,SA1101,SA1202,SA1204,SA1629,SA1623,SA1310,VSTHRD200, CA2227</NoWarn>
+    <NoWarn>$(NoWarn),1573,1591,1712,SA1309,SA1101,SA1202,SA1204,SA1629,SA1623,SA1310</NoWarn>
   </PropertyGroup>
 
 </Project>

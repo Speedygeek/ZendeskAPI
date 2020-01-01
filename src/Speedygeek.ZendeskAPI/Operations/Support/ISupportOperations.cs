@@ -17,5 +17,10 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// Attachment Operations
         /// </summary>
         IAttachmentOperations Attachments { get; }
+
+        /// <summary>
+        /// User Operations
+        /// </summary>
+        IUserOperations Users { get; }
     }
 }

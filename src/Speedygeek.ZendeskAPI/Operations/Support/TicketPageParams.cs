@@ -2,7 +2,6 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System.Collections.Generic;
-using Speedygeek.ZendeskAPI.Operations.Base;
 using Speedygeek.ZendeskAPI.Utilities;
 
 namespace Speedygeek.ZendeskAPI.Operations.Support
@@ -23,13 +22,13 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <returns>
         /// <see cref="Dictionary{TKey, TValue}"/>
         /// </returns>
-        public override Dictionary<string, string> ToParameters()
+        internal override Dictionary<string, string> ToParameters()
         {
             var paramerters = base.ToParameters();
 
             if (SortBy != TicketSortBy.None)
             {
-                paramerters.Add(Constants.SortBy, SortBy.GetDisplayName());
+                paramerters.Add(Constants.SortBy, SortBy.GetEnumMemberValue());
             }
 
             return paramerters;

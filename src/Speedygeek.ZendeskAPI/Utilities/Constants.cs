@@ -16,5 +16,9 @@ namespace Speedygeek.ZendeskAPI.Utilities
         public const string DefaultPageSize = "100";
 
         public const string DefaultPage = "1";
+
+        public const string MaxListSizeMessage = @"API will not accept a list over 100 items long";
+
+        public const string FormBoundary = "FEF3F395A90B452BB8BFDC878DDBD152";
     }
 }

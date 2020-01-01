@@ -17,8 +17,6 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
     /// </summary>
     public class TicketOperations : BaseOperations, ITicketOperations
     {
-        private const string MaxListSizeMessage = @"API will not accept a list over 100 items long";
-
         /// <summary>
         /// Initializes a new instance of the <see cref="TicketOperations"/> class.
         /// </summary>
@@ -73,7 +71,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
 
             if (tickets.Count > 100)
             {
-                throw new ArgumentException(MaxListSizeMessage, nameof(tickets));
+                throw new ArgumentException(Constants.MaxListSizeMessage, nameof(tickets));
             }
 
             return SendAync<JobStatusResponse>(HttpMethod.Put, "tickets/update_many.json", new { tickets }, cancellationToken);
@@ -89,7 +87,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
 
             if (ids.Count > 100)
             {
-                throw new ArgumentException(MaxListSizeMessage, nameof(ids));
+                throw new ArgumentException(Constants.MaxListSizeMessage, nameof(ids));
             }
 
             return SendAync<JobStatusResponse>(HttpMethod.Put, $"tickets/update_many.json?ids={ids.ToCsv()}", new { ticket }, cancellationToken);
@@ -116,7 +114,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         {
             if (ids.Count > 100)
             {
-                throw new ArgumentException(MaxListSizeMessage, nameof(ids));
+                throw new ArgumentException(Constants.MaxListSizeMessage, nameof(ids));
             }
 
             return SendAync<JobStatusResponse>(HttpMethod.Delete, $"deleted_tickets/destroy_many.json?ids={ids.ToCsv()}", cancellationToken);
@@ -127,7 +125,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         {
             if (ids.Count > 100)
             {
-                throw new ArgumentException(MaxListSizeMessage, nameof(ids));
+                throw new ArgumentException(Constants.MaxListSizeMessage, nameof(ids));
             }
 
             return SendAync<JobStatusResponse>(HttpMethod.Delete, $"tickets/destroy_many.json?ids={ids.ToCsv()}", cancellationToken);
@@ -155,7 +153,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         {
             if (ids.Count > 100)
             {
-                throw new ArgumentException(MaxListSizeMessage, nameof(ids));
+                throw new ArgumentException(Constants.MaxListSizeMessage, nameof(ids));
             }
 
             return SendAync(
@@ -177,7 +175,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         {
             if (ids.Count > 100)
             {
-                throw new ArgumentException(MaxListSizeMessage, nameof(ids));
+                throw new ArgumentException(Constants.MaxListSizeMessage, nameof(ids));
             }
 
             var requestUri = GetSideLoadParam($"tickets/show_many.json?ids={ids.ToCsv()}", sideload, pageParameters);
@@ -241,7 +239,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         {
             if (ids.Count > 100)
             {
-                throw new ArgumentException(MaxListSizeMessage, nameof(ids));
+                throw new ArgumentException(Constants.MaxListSizeMessage, nameof(ids));
             }
 
             return SendAync<JobStatusResponse>(HttpMethod.Put, $"tickets/mark_many_as_spam.json?ids={ids.ToCsv()}", cancellationToken);
@@ -253,10 +251,23 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
             return SendAync<JobStatusResponse>(HttpMethod.Post, $"tickets/{targetId}/merge.json", new { ids = sourceIds, targetComment, sourceComment }, cancellationToken);
         }
 
-        // TODO: add https://developer.zendesk.com/rest_api/docs/support/tickets#list-collaborators-for-a-ticket
-        // TODO: add https://developer.zendesk.com/rest_api/docs/support/tickets#list-followers-for-a-ticket
-        // TODO: add https://developer.zendesk.com/rest_api/docs/support/tickets#list-email-ccs-for-a-ticket
-        // above need user object before they can be completed.
+        /// <inheritdoc />
+        public Task<UserListResponse> GetCollaborators(long id, CancellationToken cancellationToken = default)
+        {
+            return SendAync<UserListResponse>(HttpMethod.Get, $"tickets/{id}/collaborators.json", cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task<UserListResponse> Getfollowers(long id, CancellationToken cancellationToken = default)
+        {
+            return SendAync<UserListResponse>(HttpMethod.Get, $"tickets/{id}/followers.json", cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task<UserListResponse> GetEmailCCs(long id, CancellationToken cancellationToken = default)
+        {
+            return SendAync<UserListResponse>(HttpMethod.Get, $"tickets/{id}/email_ccs.json", cancellationToken);
+        }
 
         /// <inheritdoc />
         public Task<TicketListResponse> GetIncidents(long id, CancellationToken cancellationToken = default)
@@ -288,7 +299,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
 
                 var sideLoads = options.ToLowerInvariantString();
 
-                queryParams.Add("include", sideLoads.Replace(" ", string.Empty));
+                queryParams.Add("include", sideLoads);
             }
 
             if (pageParameters != null)

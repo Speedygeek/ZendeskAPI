@@ -1,30 +1,36 @@
 ﻿// Copyright (c) Elizabeth Schneider. All Rights Reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
 using System.Runtime.Serialization;
 
-namespace Speedygeek.ZendeskAPI.Operations.Support
+namespace Speedygeek.ZendeskAPI.Models.Support
 {
     /// <summary>
-    /// Sort Order for paginated list
+    /// Roles that a user can have
     /// </summary>
-    public enum SortOrder
+    [Flags]
+    public enum UserRoles
     {
         /// <summary>
-        /// None
+        /// Default value (invalid)
         /// </summary>
         None = 0,
 
         /// <summary>
-        /// Ascending
+        /// End User
         /// </summary>
-        [EnumMember(Value = "asc")]
-        Ascending = 2,
+        [EnumMember(Value = "end-user")]
+        EndUser = 1,
 
         /// <summary>
-        /// Descending
+        /// Agent
         /// </summary>
-        [EnumMember(Value = "desc")]
-        Descending = 4,
+        Agent = 2,
+
+        /// <summary>
+        /// Administrator
+        /// </summary>
+        Admin = 4,
     }
 }
