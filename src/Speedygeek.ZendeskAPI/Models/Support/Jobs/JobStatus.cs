@@ -3,9 +3,8 @@
 
 using System;
 using System.Collections.Generic;
-using Speedygeek.ZendeskAPI.Models.Support.Enums;
 
-namespace Speedygeek.ZendeskAPI.Models.Support.Jobs
+namespace Speedygeek.ZendeskAPI.Models.Support
 {
     /// <summary>
     /// A status record is created when somebody kicks off a job such as updating multiple tickets.

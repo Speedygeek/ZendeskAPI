@@ -12,17 +12,10 @@ namespace Speedygeek.ZendeskAPI.Models.Support
     public class User : ZenEntity
     {
         /// <summary>
-        /// The user's primary email address.
-        /// Writable on create only. On update, a secondary email is added.
-        /// To change the primary email address <see href="https://developer.zendesk.com/rest_api/docs/support/user_identities#make-identity-primary"/>
+        /// Abilities can be side-loaded
+        /// ReadOnly
         /// </summary>
-        ///
-        public string Email { get; set; }
-
-        /// <summary>
-        /// The user's name
-        /// </summary>
-        public string Name { get; set; }
+        public Abilities Abilities { get; }
 
         /// <summary>
         /// <see langword="false"/> if the user has been deleted
@@ -37,7 +30,7 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// <summary>
         /// Whether or not the user is a chat-only agent
         /// </summary>
-        public bool ChatOnly { get; set; }
+        public bool ChatOnly { get; }
 
         /// <summary>
         /// A custom role if the user is an agent on the Enterprise plan
@@ -45,14 +38,23 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         public long CustomRoleId { get; set; }
 
         /// <summary>
-        /// The user's role id. 0 for custom agents, 1 for light agent and 2 for chat agent
+        /// The id of the user's default group.
+        /// Can only be set on create, not on update
         /// </summary>
-        public long RoleType { get; set; }
+        public long DefaultGroupId { get; set; }
 
         /// <summary>
         /// Any details you want to store about the user, such as an address
         /// </summary>
         public string Details { get; set; }
+
+        /// <summary>
+        /// The user's primary email address.
+        /// Writable on create only. On update, a secondary email is added.
+        /// To change the primary email address <see href="https://developer.zendesk.com/rest_api/docs/support/user_identities#make-identity-primary"/>
+        /// </summary>
+        ///
+        public string Email { get; set; }
 
         /// <summary>
         /// A unique identifier from another system. The API treats the id as case insensitive.
@@ -81,6 +83,11 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         public bool Moderator { get; set; }
 
         /// <summary>
+        /// The user's name
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// Any notes you want to store about the user
         /// </summary>
         public string Notes { get; set; }
@@ -96,36 +103,44 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         public long OrganizationId { get; set; }
 
         /// <summary>
-        /// The id of the user's default group.
-        /// Can only be set on create, not on update
-        /// </summary>
-        public long DefaultGroupId { get; set; }
-
-        /// <summary>
         /// The user's primary phone number.
         /// </summary>
         public string Phone { get; set; }
 
         /// <summary>
-        /// Whether the phone number is shared or not.
-        /// </summary>
-        public bool SharedPhoneNumber { get; }
-
-        /// <summary>
         /// The user's profile picture represented as an <see cref="Attachment"/> object
         /// </summary>
-        public Attachment Photo { get; set; }
+        public Attachment Photo { get; }
+
+        /// <summary>
+        /// You can update a user's profile image by referring to an image hosted on a different website.
+        /// This may take a few minutes to process.
+        /// Update only
+        /// </summary>
+        public string RemotePhotoUrl { get; set; }
+
+        /// <summary>
+        /// Whether or not the user can access the CSV report
+        /// on the Search tab of the Reporting page in the
+        /// Support admin interface.
+        /// </summary>
+        public bool ReportCsv { get; }
 
         /// <summary>
         /// If the agent has any restrictions; <see langword="false"/> for administrators
         /// and unrestricted agents, <see langword="true"/> for other agents
         /// </summary>
-        public bool RestrictedAgent { get; set; }
+        public bool RestrictedAgent { get; }
 
         /// <summary>
         /// The user's role.
         /// </summary>
         public UserRoles Role { get; set; }
+
+        /// <summary>
+        /// The user's role id. 0 for custom agents, 1 for light agent and 2 for chat agent
+        /// </summary>
+        public long RoleType { get; set; }
 
         /// <summary>
         /// If the user is shared from a different Zendesk Support instance.
@@ -137,7 +152,12 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// If the user is shared from a different Zendesk Support instance.
         /// Ticket sharing accounts only
         /// </summary>
-        public bool SharedAgent { get; set; }
+        public bool SharedAgent { get; }
+
+        /// <summary>
+        /// Whether the phone number is shared or not.
+        /// </summary>
+        public bool SharedPhoneNumber { get; }
 
         /// <summary>
         /// The user's tags.
@@ -169,19 +189,5 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// The user's primary identity is verified or not.
         /// </summary>
         public bool Verified { get; set; }
-
-        /// <summary>
-        /// Whether or not the user can access the CSV report
-        /// on the Search tab of the Reporting page in the
-        /// Support admin interface.
-        /// </summary>
-        public bool ReportCsv { get; }
-
-        /// <summary>
-        /// You can update a user's profile image by referring to an image hosted on a different website.
-        /// This may take a few minutes to process.
-        /// Update only
-        /// </summary>
-        public string RemotePhotoUrl { get; set; }
     }
 }

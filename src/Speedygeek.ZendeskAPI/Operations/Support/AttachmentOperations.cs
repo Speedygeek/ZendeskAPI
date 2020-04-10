@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,7 +30,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         }
 
         /// <inheritdoc />
-        public Task<UploadResponse> Upload(ZenFile file, string token = default, CancellationToken cancellationToken = default)
+        public Task<UploadResponse> UploadAsync(ZenFile file, string token = default, CancellationToken cancellationToken = default)
         {
             if (file is null)
             {
@@ -45,21 +44,16 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
                 queryString.Add(nameof(token), token);
             }
 
-            if (file.FileData.Position != 0)
-            {
-                file.FileData.Position = 0;
-            }
-
-            return SendAync<UploadResponse>(HttpMethod.Post, BASEREQUESTURI.BuildQueryString(queryString), file, cancellationToken);
+            return SendAsync<UploadResponse>(HttpMethod.Post, BASEREQUESTURI.BuildQueryString(queryString), file, cancellationToken);
         }
 
         /// <inheritdoc />
-        public async Task<UploadResponse[]> Upload(IEnumerable<ZenFile> files, string token = default, CancellationToken cancellationToken = default)
+        public async Task<UploadResponse[]> UploadAsync(IEnumerable<ZenFile> files, string token = default, CancellationToken cancellationToken = default)
         {
             var first = files.First();
             if (first != null)
             {
-                var resp = await Upload(first, token, cancellationToken).ConfigureAwait(false);
+                var resp = await UploadAsync(first, token, cancellationToken).ConfigureAwait(false);
 
                 var respToken = resp.Upload.Token;
 
@@ -67,7 +61,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
                 var otherFiles = files.Skip(1);
                 foreach (var file in otherFiles)
                 {
-                    task.Add(Upload(file, respToken, cancellationToken));
+                    task.Add(UploadAsync(file, respToken, cancellationToken));
                 }
 
                 return await Task.WhenAll(task).ConfigureAwait(false);
@@ -77,7 +71,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         }
 
         /// <inheritdoc />
-        public async Task<ZenFile> Download(Attachment attachment, CancellationToken cancellationToken = default)
+        public async Task<ZenFile> DownloadAsync(Attachment attachment, CancellationToken cancellationToken = default)
         {
             if (attachment is null)
             {
@@ -86,7 +80,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
 
             var file = new ZenFile { FileName = attachment.FileName, ContentType = attachment.ContentType };
 
-            var fileContent = await SendAync<Stream>(
+            var fileContent = await SendAyncAsync<Stream>(
                 HttpMethod.Get,
                 attachment.ContentUrl.ToString(),
                 async (HttpResponseMessage response) =>
@@ -105,9 +99,9 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         }
 
         /// <inheritdoc />
-        public Task<bool> Delete(string token, CancellationToken cancellationToken = default)
+        public Task<bool> DeleteAsync(string token, CancellationToken cancellationToken = default)
         {
-            return SendAync(HttpMethod.Delete, $"uploads/{token}.json", (HttpResponseMessage resp) => { return Task.FromResult(resp.StatusCode == HttpStatusCode.NoContent || resp.StatusCode == HttpStatusCode.OK); }, cancellationToken);
+            return SendAyncAsync(HttpMethod.Delete, $"uploads/{token}.json", IsStatus204NoContentOr200OK, cancellationToken);
         }
     }
 }

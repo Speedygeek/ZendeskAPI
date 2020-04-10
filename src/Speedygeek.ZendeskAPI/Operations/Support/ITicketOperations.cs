@@ -21,7 +21,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="sideload"> side-load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a number of <see cref="Ticket"/> properties though not the ticket comments.</returns>
-        Task<TicketResponse> Get(long id, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
+        Task<TicketResponse> GetAsync(long id, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         ///  Create a new Ticket
@@ -29,7 +29,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="ticket"> <see cref="Ticket"/> to save</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>created <see cref="Ticket"/></returns>
-        Task<TicketResponse> Create(Ticket ticket, CancellationToken cancellationToken = default);
+        Task<TicketResponse> CreateAsync(Ticket ticket, CancellationToken cancellationToken = default);
 
         /// <summary>
         ///  Create a new Tickets
@@ -37,7 +37,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="tickets">Tickets to save</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>created <see cref="Ticket"/></returns>
-        Task<JobStatusResponse> CreateMany(IEnumerable<Ticket> tickets, CancellationToken cancellationToken = default);
+        Task<JobStatusResponse> CreateManyAsync(IEnumerable<Ticket> tickets, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Updates <see cref="Ticket" />
@@ -45,7 +45,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="ticket">the ticket to update</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="TicketResponse"/></returns>
-        Task<TicketResponse> Update(Ticket ticket, CancellationToken cancellationToken = default);
+        Task<TicketResponse> UpdateAsync(Ticket ticket, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Updates a list of tickets
@@ -54,7 +54,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="tickets">list of ticket to update</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="JobStatusResponse"/></returns>
-        Task<JobStatusResponse> UpdateBatch(IList<Ticket> tickets, CancellationToken cancellationToken = default);
+        Task<JobStatusResponse> UpdateBatchAsync(IList<Ticket> tickets, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Updates a list of tickets
@@ -64,7 +64,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="ids">list of ticket ids to update</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="JobStatusResponse"/></returns>
-        Task<JobStatusResponse> UpdateBulk(Ticket ticket, IList<long> ids, CancellationToken cancellationToken = default);
+        Task<JobStatusResponse> UpdateBulkAsync(Ticket ticket, IList<long> ids, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes the given Id (soft)
@@ -72,27 +72,27 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="id"> Id of the <see cref="Ticket"/></param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a true if the Delete is successful </returns>
-        Task<bool> Delete(long id, CancellationToken cancellationToken = default);
+        Task<bool> DeleteAsync(long id, CancellationToken cancellationToken = default);
 
         /// <summary>
         ///  Permanently Deletes the given Id
-        ///  Must first soft delete ticket <see cref="Delete(long, CancellationToken)"/>
+        ///  Must first soft delete ticket <see cref="DeleteAsync(long, CancellationToken)"/>
         ///  This operation can't be undone.
         /// </summary>
         /// <param name="id"> Id of the <see cref="Ticket"/></param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="JobStatusResponse"/> </returns>
-        Task<JobStatusResponse> DeletePermanently(long id, CancellationToken cancellationToken = default);
+        Task<JobStatusResponse> DeletePermanentlyAsync(long id, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Permanently Deletes the given list of Ids
-        /// Must first soft delete tickets <see cref="DeleteBulk(IList{long}, CancellationToken)"/>
+        /// Must first soft delete tickets <see cref="DeleteBulkAsync(IList{long}, CancellationToken)"/>
         /// This operation can't be undone.
         /// </summary>
         /// <param name="ids"> list of ticket Ids to delete</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="JobStatusResponse"/> </returns>
-        Task<JobStatusResponse> DeletePermanentlyBulk(IList<long> ids, CancellationToken cancellationToken = default);
+        Task<JobStatusResponse> DeletePermanentlyBulkAsync(IList<long> ids, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes the given list of Ids (soft)
@@ -100,7 +100,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="ids"> list of ticket Ids to delete</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="JobStatusResponse"/> </returns>
-        Task<JobStatusResponse> DeleteBulk(IList<long> ids, CancellationToken cancellationToken = default);
+        Task<JobStatusResponse> DeleteBulkAsync(IList<long> ids, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of all deleted (and not yet archived) tickets
@@ -109,7 +109,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="pageParameters">Options about paging</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="TicketListResponse"/> </returns>
-        Task<DeletedTicketListResponse> GetDeleted(TicketPageParams pageParameters = default, CancellationToken cancellationToken = default);
+        Task<DeletedTicketListResponse> GetDeletedAsync(TicketPageParams pageParameters = default, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Restore a previously deleted ticket
@@ -117,7 +117,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="id"> Id of the <see cref="Ticket"/></param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a true if the Restore is successful </returns>
-        Task<bool> Restore(long id, CancellationToken cancellationToken = default);
+        Task<bool> RestoreAsync(long id, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Restore previously deleted tickets in bulk
@@ -125,7 +125,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="ids">List of Ids to restore</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a true if the Restore is successful </returns>
-        Task<bool> RestoreBulk(IList<long> ids, CancellationToken cancellationToken = default);
+        Task<bool> RestoreBulkAsync(IList<long> ids, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of all <see cref="Ticket"/>
@@ -134,7 +134,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="sideload"> side-load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="TicketListResponse"/> </returns>
-        Task<TicketListResponse> GetAll(TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
+        Task<TicketListResponse> GetAllAsync(TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of <see cref="Ticket"/> given ids
@@ -144,7 +144,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="sideload"> side-load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="TicketListResponse"/> </returns>
-        Task<TicketListResponse> GetMany(IList<long> ids, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
+        Task<TicketListResponse> GetManyAsync(IList<long> ids, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of Recent <see cref="Ticket"/>
@@ -155,7 +155,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="sideload"> side-load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="TicketListResponse"/> </returns>
-        Task<TicketListResponse> GetRecent(TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
+        Task<TicketListResponse> GetRecentAsync(TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve tickets for a given organization
@@ -165,7 +165,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name = "sideload" >side - load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="TicketListResponse"/> </returns>
-        Task<TicketListResponse> GetByOrganization(long orgId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
+        Task<TicketListResponse> GetByOrganizationAsync(long orgId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve tickets for a given requesting user
@@ -175,7 +175,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name = "sideload" >side - load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="TicketListResponse"/> </returns>
-        Task<TicketListResponse> GetByRequestedUser(long userId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
+        Task<TicketListResponse> GetByRequestedUserAsync(long userId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve tickets for a given assigned user
@@ -185,7 +185,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name = "sideload" >side - load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="TicketListResponse"/> </returns>
-        Task<TicketListResponse> GetByAssignedUser(long userId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
+        Task<TicketListResponse> GetByAssignedUserAsync(long userId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve tickets for a given carbon copied user
@@ -195,7 +195,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name = "sideload" >side - load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="TicketListResponse"/> </returns>
-        Task<TicketListResponse> GetByCarbonCopiedUser(long userId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
+        Task<TicketListResponse> GetByCarbonCopiedUserAsync(long userId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve tickets for a given external Id
@@ -207,7 +207,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name = "sideload" >side - load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="TicketListResponse"/> </returns>
-        Task<TicketListResponse> GetByExternalId(string externalId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
+        Task<TicketListResponse> GetByExternalIdAsync(string externalId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Marks the given Id as spam
@@ -215,7 +215,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="id"> Id of the <see cref="Ticket"/></param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a true if mark as spam is successful </returns>
-        Task<bool> MarkAsSpam(long id, CancellationToken cancellationToken = default);
+        Task<bool> MarkAsSpamAsync(long id, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Marks the given list of Ids as spam
@@ -223,7 +223,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="ids"> List of Ids to mark as spam</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="JobStatusResponse"/> </returns>
-        Task<JobStatusResponse> MarkAsSpam(IList<long> ids, CancellationToken cancellationToken = default);
+        Task<JobStatusResponse> MarkAsSpamAsync(IList<long> ids, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Merge Tickets in to Target
@@ -234,7 +234,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="sourceComment">Private comment to add to the source tickets</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="JobStatusResponse"/> </returns>
-        Task<JobStatusResponse> Merge(long targetId, IList<long> sourceIds, string targetComment = "", string sourceComment = "", CancellationToken cancellationToken = default);
+        Task<JobStatusResponse> MergeAsync(long targetId, IList<long> sourceIds, string targetComment = "", string sourceComment = "", CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Collaborators for a Ticket
@@ -242,7 +242,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="id">Id for ticket to load</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>Returns a <see cref="UserListResponse"/></returns>
-        Task<UserListResponse> GetCollaborators(long id, CancellationToken cancellationToken = default);
+        Task<UserListResponse> GetCollaboratorsAsync(long id, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Followers for a Ticket
@@ -250,7 +250,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="id">Id for ticket to load</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>Returns a <see cref="UserListResponse"/></returns>
-        Task<UserListResponse> Getfollowers(long id, CancellationToken cancellationToken = default);
+        Task<UserListResponse> GetFollowersAsync(long id, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Email CCs for a Ticket
@@ -258,7 +258,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="id">Id for ticket to load</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>Returns a <see cref="UserListResponse"/></returns>
-        Task<UserListResponse> GetEmailCCs(long id, CancellationToken cancellationToken = default);
+        Task<UserListResponse> GetEmailCCsAsync(long id, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Listing Ticket Incidents
@@ -266,7 +266,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="id">id of ticket to get incidents for</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="TicketListResponse"/> </returns>
-        Task<TicketListResponse> GetIncidents(long id, CancellationToken cancellationToken = default);
+        Task<TicketListResponse> GetIncidentsAsync(long id, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// will load the next page for a list of <see cref="Ticket"/>
@@ -274,6 +274,6 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="nextPage">URL of the next page</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="TicketListResponse"/> </returns>
-        Task<TicketListResponse> GetNextPage(Uri nextPage, CancellationToken cancellationToken = default);
+        Task<TicketListResponse> GetNextPageAsync(Uri nextPage, CancellationToken cancellationToken = default);
     }
 }

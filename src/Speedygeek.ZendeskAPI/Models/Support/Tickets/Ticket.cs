@@ -99,6 +99,13 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         public IList<Collaborator> Collaborators { get; set; }
 
         /// <summary>
+        /// An array of numeric IDs, emails, or objects containing name and email properties.
+        /// An email notification is sent to them when the ticket is updated
+        /// </summary>
+        [JsonConverter(typeof(CollaboratorConverter))]
+        public IList<Collaborator> AdditionalCollaborators { get; set; }
+
+        /// <summary>
         /// The ids of agents or end users currently CC'ed on the ticket.
         /// See <see href="https://support.zendesk.com/hc/en-us/articles/360020585233"/>
         /// </summary>
@@ -108,7 +115,19 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// The ids of agents currently following the ticket.
         /// See <see href="https://support.zendesk.com/hc/en-us/articles/360020585233"/>
         /// </summary>
-        public List<long> FollowerIds { get; set; }
+        public IList<long> FollowerIds { get; set; }
+
+        /// <summary>
+        /// The list of Agnets currently following the ticket.
+        /// See <see href="https://developer.zendesk.com/rest_api/docs/support/tickets#setting-followers"/>
+        /// </summary>
+        public IList<Follower> Followers { get; set; }
+
+        /// <summary>
+        /// The list of Users currently CCed for the ticket.
+        /// See <see href="https://developer.zendesk.com/rest_api/docs/support/tickets#setting-email-ccs"/>
+        /// </summary>
+        public IList<Follower> EmailCcs { get; set; }
 
         /// <summary>
         /// The topic this ticket originated from, if any

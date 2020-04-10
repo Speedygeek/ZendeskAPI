@@ -9,4 +9,4 @@ $testProject = [IO.Path]::GetFullPath("$($PSScriptRoot)/../src/Speedygeek.Zendes
 dotnet test $testProject -c Debug  /p:CollectCoverage=true /p:CoverletOutputFormat=Cobertura /p:CoverletOutput=$resultsDir /p:ExcludeByAttribute="Obsolete%2cGeneratedCodeAttribute%2cCompilerGeneratedAttribute"
 reportgenerator -reports:$resultFile -targetdir:$reportTargetDir -reporttypes:"HtmlInline_AzurePipelines_Dark;"
 
-Start-Process "$reportTargetDir/index.htm"
+#Start-Process "$reportTargetDir/index.htm"

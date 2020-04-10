@@ -57,7 +57,7 @@ namespace Speedygeek.ZendeskAPI.Configuration
         }
 
         /// <inheritdoc />
-        public Task ConfigureHttpClient(HttpClient client)
+        public Task ConfigureHttpClientAsync(HttpClient client)
         {
             if (client is null)
             {

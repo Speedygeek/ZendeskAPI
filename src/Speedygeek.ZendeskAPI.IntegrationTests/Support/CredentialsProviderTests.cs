@@ -15,7 +15,7 @@ namespace Speedygeek.ZendeskAPI.IntegrationTests.Support
             var serviceProvider = collection.BuildServiceProvider();
 
             Client = serviceProvider.GetService<IZendeskClient>();
-            var resp = await Client.Support.Tickets.GetAll().ConfigureAwait(false);
+            var resp = await Client.Support.Tickets.GetAllAsync().ConfigureAwait(false);
 
             Assert.That(resp.Tickets.Count, Is.EqualTo(100));
         }

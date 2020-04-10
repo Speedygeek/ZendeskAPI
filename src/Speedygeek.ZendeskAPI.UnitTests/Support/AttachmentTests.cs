@@ -14,7 +14,6 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Support
         [Test]
         public async Task AttachmentCreateDownloadDelete()
         {
-           // SaveResponse();
             var file = new FileInfo(Path.Combine(TestContext.CurrentContext.GetDataDirectoryPath(), "testupload.txt"));
 
             var token = string.Empty;
@@ -24,7 +23,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Support
             using (var stream = file.Open(FileMode.Open))
             {
                 using var zenFile = new ZenFile { ContentType = "text/plain", FileName = "testupload.txt", FileData = stream };
-                var resp = await Client.Support.Attachments.Upload(zenFile).ConfigureAwait(false);
+                var resp = await Client.Support.Attachments.UploadAsync(zenFile).ConfigureAwait(false);
 
                 token = resp.Upload.Token;
                 Assert.That(resp.Upload.Token, Is.Not.Null);
@@ -33,7 +32,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Support
 
             BuildResponse(attachment.ContentUrl.PathAndQuery, "testupload.txt", HttpMethod.Get, HttpStatusCode.OK);
 
-            using (var zenFile = await Client.Support.Attachments.Download(attachment).ConfigureAwait(false))
+            using (var zenFile = await Client.Support.Attachments.DownloadAsync(attachment).ConfigureAwait(false))
             {
                 Assert.That(zenFile.FileData, Is.Not.Null);
                 using var reader = new StreamReader(zenFile.FileData);
@@ -43,14 +42,14 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Support
 
             BuildResponse($"uploads/{token}.json", string.Empty, HttpMethod.Delete, HttpStatusCode.NoContent);
 
-            var result = await Client.Support.Attachments.Delete(token).ConfigureAwait(false);
+            var result = await Client.Support.Attachments.DeleteAsync(token).ConfigureAwait(false);
             Assert.That(result, Is.True);
         }
 
         [Test]
         public void AttachmentDownloadNull()
         {
-            Assert.That(async () => { var resp = await Client.Support.Attachments.Download(null).ConfigureAwait(false); },
+            Assert.That(async () => { var resp = await Client.Support.Attachments.DownloadAsync(null).ConfigureAwait(false); },
                 Throws.ArgumentNullException);
         }
     }

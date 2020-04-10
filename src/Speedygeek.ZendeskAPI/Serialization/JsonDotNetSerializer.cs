@@ -48,6 +48,11 @@ namespace Speedygeek.ZendeskAPI.Serialization
         /// <inheritdoc/>
         public T Deserialize<T>(Stream stream)
         {
+            if (stream.Position != 0)
+            {
+                stream.Position = 0;
+            }
+
             using var sr = new StreamReader(stream);
             using var jr = new JsonTextReader(sr);
             return _serializer.Deserialize<T>(jr);

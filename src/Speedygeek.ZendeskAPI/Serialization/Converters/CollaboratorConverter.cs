@@ -14,7 +14,7 @@ namespace Speedygeek.ZendeskAPI.Serialization.Converters
     /// </summary>
     internal class CollaboratorConverter : JsonConverter
     {
-        public override bool CanWrite { get => false; }
+        public override bool CanWrite { get => true; }
 
         public override bool CanConvert(Type objectType)
         {
@@ -49,7 +49,27 @@ namespace Speedygeek.ZendeskAPI.Serialization.Converters
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            if (value is List<Collaborator> collaborators && collaborators?.Count > 0)
+            {
+                writer.WriteStartArray();
+                foreach (var collaborator in collaborators)
+                {
+                    if (collaborator.Id != 0)
+                    {
+                        serializer.Serialize(writer, collaborator.Id);
+                    }
+                    else if (!string.IsNullOrWhiteSpace(collaborator.Name) && !string.IsNullOrWhiteSpace(collaborator.Email))
+                    {
+                        serializer.Serialize(writer, collaborator);
+                    }
+                    else if (!string.IsNullOrWhiteSpace(collaborator.Email))
+                    {
+                        serializer.Serialize(writer, collaborator.Email);
+                    }
+                }
+
+                writer.WriteEndArray();
+            }
         }
     }
 }

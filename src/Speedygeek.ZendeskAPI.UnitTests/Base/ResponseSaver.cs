@@ -10,19 +10,23 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Base
 {
     public class ResponseSaver : DelegatingHandler
     {
+        private const string DEFAULTFILENAME = "originalData.json";
+
+        public string FileName { get; set; }
+
         [ExcludeFromCodeCoverage]
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             var resp = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
 
-            var content = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var filePath = Path.Combine(TestContext.CurrentContext.GetDataDirectoryPath(), FileName);
 
-            var path = Path.Combine(TestContext.CurrentContext.GetDataDirectoryPath(), "originalData.json");
-
-            content = Regex.Replace(content, @"\s+", " ");
-
-            File.WriteAllText(path, content);
-
+            if (!File.Exists(filePath) | FileName == DEFAULTFILENAME)
+            {
+                var content = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
+                content = Regex.Replace(content, @"\s+", " ");
+                await File.WriteAllTextAsync(filePath, content);
+            }
             return resp;
         }
     }

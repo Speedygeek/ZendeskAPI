@@ -48,13 +48,17 @@ namespace Speedygeek.ZendeskAPI.Serialization
                 {
                     property.Writable = true;
                     property.ValueProvider = new ReflectionValueProvider(fi);
+                    property.ShouldSerialize = _ =>
+                    {
+                        return false;
+                    };
                 }
             }
 
             return property;
         }
 
-        private FieldInfo GetBackingField(Type type, string propertyName)
+        private static FieldInfo GetBackingField(Type type, string propertyName)
         {
             return type.GetTypeInfo().GetDeclaredField($"<{propertyName}>k__BackingField");
         }

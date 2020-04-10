@@ -40,21 +40,21 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Configuration
         [Test]
         public void ApiTokenAuthNullClient()
         {
-            Assert.That(() => { new APITokenCredentials(Settings.AdminUserName, Settings.ApiToken).ConfigureHttpClient(null).ConfigureAwait(false); },
+            Assert.That(() => { new APITokenCredentials(Settings.AdminUserName, Settings.ApiToken).ConfigureHttpClientAsync(null).ConfigureAwait(false); },
                 Throws.ArgumentNullException);
         }
 
         [Test]
         public void OAuthTokenAuthNullClient()
         {
-            Assert.That(() => { new OAuthAccessTokenCredentials(Settings.AdminOAuthToken).ConfigureHttpClient(null).ConfigureAwait(false); },
+            Assert.That(() => { new OAuthAccessTokenCredentials(Settings.AdminOAuthToken).ConfigureHttpClientAsync(null).ConfigureAwait(false); },
                 Throws.ArgumentNullException);
         }
 
         [Test]
         public void BasicAuthNullClient()
         {
-            Assert.That(() => { new BasicCredentials(Settings.AdminUserName, Settings.AdminPassword).ConfigureHttpClient(null).ConfigureAwait(false); },
+            Assert.That(() => { new BasicCredentials(Settings.AdminUserName, Settings.AdminPassword).ConfigureHttpClientAsync(null).ConfigureAwait(false); },
                 Throws.ArgumentNullException);
         }
 
@@ -85,7 +85,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Configuration
             using var client = new HttpClient();
             var cred = new APITokenCredentials(Settings.AdminUserName, Settings.ApiToken);
 
-            await cred.ConfigureHttpClient(client).ConfigureAwait(false);
+            await cred.ConfigureHttpClientAsync(client).ConfigureAwait(false);
 
             var headerScheme = client.DefaultRequestHeaders.Authorization.Scheme;
             var headerParameter = client.DefaultRequestHeaders.Authorization.Parameter;
@@ -100,7 +100,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Configuration
             using var client = new HttpClient();
             var cred = new BasicCredentials(Settings.AdminUserName, Settings.AdminPassword);
 
-            await cred.ConfigureHttpClient(client).ConfigureAwait(false);
+            await cred.ConfigureHttpClientAsync(client).ConfigureAwait(false);
 
             var headerScheme = client.DefaultRequestHeaders.Authorization.Scheme;
             var headerParameter = client.DefaultRequestHeaders.Authorization.Parameter;
@@ -116,7 +116,7 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Configuration
             var endUserId = "enduser@test.com";
             var cred = new OAuthAccessTokenCredentials(Settings.AdminOAuthToken, endUserId);
 
-            await cred.ConfigureHttpClient(client).ConfigureAwait(false);
+            await cred.ConfigureHttpClientAsync(client).ConfigureAwait(false);
 
             var headerValue = client.DefaultRequestHeaders.GetValues("X-On-Behalf-Of").FirstOrDefault();
 

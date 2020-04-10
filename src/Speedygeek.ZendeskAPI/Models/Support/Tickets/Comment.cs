@@ -46,7 +46,7 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// <summary>
         /// Update/Create operations only
         /// NOTE: For the upload attachment to succeed when updating a ticket, a comment must be included.
-        /// NOTE 2: Use <see cref="AttachmentOperations.Upload(ZenFile, string, CancellationToken)"/>
+        /// NOTE 2: Use <see cref="AttachmentOperations.UploadAsync(ZenFile, string, CancellationToken)"/>
         /// to get the token first.
         /// </summary>
         public IList<string> Uploads { get; set; }

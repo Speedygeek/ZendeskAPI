@@ -35,10 +35,10 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Base
             Builder = serviceProvider.GetService<HttpMessageHandlerBuilder>() as FakeHttpMessageHandlerBuilder;
         }
 
-        public void SaveResponse()
+        public void SaveResponse(string responseFileName = "originalData.json")
         {
 #if DEBUG
-            _collection.Replace(new ServiceDescriptor(typeof(HttpMessageHandlerBuilder), new FakeHttpMessageHandlerBuilder { SaveRespose = true }));
+            _collection.Replace(new ServiceDescriptor(typeof(HttpMessageHandlerBuilder), new FakeHttpMessageHandlerBuilder { SaveRespose = true, FileName = responseFileName }));
             var serviceProvider = _collection.BuildServiceProvider();
             Client = serviceProvider.GetService<IZendeskClient>();
             Builder = serviceProvider.GetService<HttpMessageHandlerBuilder>() as FakeHttpMessageHandlerBuilder;
