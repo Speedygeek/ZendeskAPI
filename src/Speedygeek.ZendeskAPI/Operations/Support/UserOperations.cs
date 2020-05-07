@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,21 +27,21 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         }
 
         /// <inheritdoc />
-        public Task<UserResponse> Get(long userId, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
+        public Task<UserResponse> GetAsync(long userId, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam($"users/{userId}.json", sideload);
-            return SendAync<UserResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<UserResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserListResponse> GetAll(PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
+        public Task<UserListResponse> GetAllAsync(PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam("users.json", sideload, pageParameters);
-            return SendAync<UserListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<UserListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserListResponse> GetInRoles(UserRoles roles, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
+        public Task<UserListResponse> GetInRolesAsync(UserRoles roles, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
         {
             if (roles.HasFlag(UserRoles.None))
             {
@@ -53,32 +52,32 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
             rolesQuery = roles.IsSingleFlag() ? $"role={rolesQuery}" : $"role[]={rolesQuery.Replace(",", "&role[]=")}";
 
             var requestUri = GetSideLoadParam($"users.json?{rolesQuery}", sideload, pageParameters);
-            return SendAync<UserListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<UserListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserListResponse> GetInCustomRole(long roleId, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
+        public Task<UserListResponse> GetInCustomRoleAsync(long roleId, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam($"users.json?permission_set={roleId}", sideload, pageParameters);
-            return SendAync<UserListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<UserListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserListResponse> GetByGroup(long groupId, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
+        public Task<UserListResponse> GetByGroupAsync(long groupId, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam($"groups/{groupId}/users.json", sideload, pageParameters);
-            return SendAync<UserListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<UserListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserListResponse> GetByOrganization(long organizationId, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
+        public Task<UserListResponse> GetByOrganizationAsync(long organizationId, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam($"organizations/{organizationId}/users.json", sideload, pageParameters);
-            return SendAync<UserListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<UserListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserResponse> GetMany(IList<long> ids, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
+        public Task<UserListResponse> GetManyAsync(IList<long> ids, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
         {
             if (ids.Count > 100)
             {
@@ -86,11 +85,11 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
             }
 
             var requestUri = GetSideLoadParam($"users/show_many.json?ids={ids.ToCsv()}", sideload);
-            return SendAync<UserResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<UserListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserResponse> GetManyByExternalIds(IList<string> externalIds, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
+        public Task<UserListResponse> GetManyByExternalIdsAsync(IList<string> externalIds, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default)
         {
             if (externalIds.Count > 100)
             {
@@ -98,69 +97,69 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
             }
 
             var requestUri = GetSideLoadParam($"users/show_many.json?external_ids={externalIds.ToCsv()}", sideload);
-            return SendAync<UserResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<UserListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserRelatedResponse> GetRelatedInfo(long userId, CancellationToken cancellationToken = default)
+        public Task<UserRelatedResponse> GetRelatedInfoAsync(long userId, CancellationToken cancellationToken = default)
         {
-            return SendAync<UserRelatedResponse>(HttpMethod.Get, $"users/{userId}/related.json", cancellationToken);
+            return SendAsync<UserRelatedResponse>(HttpMethod.Get, $"users/{userId}/related.json", cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserResponse> Create(User user, CancellationToken cancellationToken = default)
+        public Task<UserResponse> CreateAsync(User user, CancellationToken cancellationToken = default)
         {
-            return SendAync<UserResponse>(HttpMethod.Post, $"users.json", new { user }, cancellationToken);
+            return SendAsync<UserResponse>(HttpMethod.Post, $"users.json", new { user }, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<JobStatusResponse> CreateMany(IList<User> users, CancellationToken cancellationToken = default)
+        public Task<JobStatusResponse> CreateManyAsync(IList<User> users, CancellationToken cancellationToken = default)
         {
-            return SendAync<JobStatusResponse>(HttpMethod.Post, $"users/create_many.json", new { users }, cancellationToken);
+            return SendAsync<JobStatusResponse>(HttpMethod.Post, $"users/create_many.json", new { users }, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserResponse> CreateOrUpdate(User user, CancellationToken cancellationToken = default)
+        public Task<UserResponse> CreateOrUpdateAsync(User user, CancellationToken cancellationToken = default)
         {
-            return SendAync<UserResponse>(HttpMethod.Post, $"users/create_or_update.json", new { user }, cancellationToken);
+            return SendAsync<UserResponse>(HttpMethod.Post, $"users/create_or_update.json", new { user }, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<JobStatusResponse> CreateOrUpdateMany(IList<User> users, CancellationToken cancellationToken = default)
-        {
-            if (users.Count > 100)
-            {
-                throw new ArgumentException(Constants.MaxListSizeMessage, nameof(users));
-            }
-
-            return SendAync<JobStatusResponse>(HttpMethod.Post, $"users/create_or_update_many.json", new { users }, cancellationToken);
-        }
-
-        /// <inheritdoc />
-        public Task<UserResponse> Merge(long fromId, long toId, CancellationToken cancellationToken = default)
-        {
-            return SendAync<UserResponse>(HttpMethod.Put, $"users/{fromId}/merge.json", new { user = new { id = toId } }, cancellationToken);
-        }
-
-        /// <inheritdoc />
-        public Task<UserResponse> Update(User user, CancellationToken cancellationToken = default)
-        {
-            return SendAync<UserResponse>(HttpMethod.Put, $"users/{user.Id}.json", new { user }, cancellationToken);
-        }
-
-        /// <inheritdoc />
-        public Task<JobStatusResponse> UpdateBatch(IList<User> users, CancellationToken cancellationToken = default)
+        public Task<JobStatusResponse> CreateOrUpdateManyAsync(IList<User> users, CancellationToken cancellationToken = default)
         {
             if (users.Count > 100)
             {
                 throw new ArgumentException(Constants.MaxListSizeMessage, nameof(users));
             }
 
-            return SendAync<JobStatusResponse>(HttpMethod.Put, $"users/update_many.json", new { users }, cancellationToken);
+            return SendAsync<JobStatusResponse>(HttpMethod.Post, $"users/create_or_update_many.json", new { users }, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<JobStatusResponse> UpdateBulk(User user, IList<long> ids, CancellationToken cancellationToken = default)
+        public Task<UserResponse> MergeAsync(long fromId, long toId, CancellationToken cancellationToken = default)
+        {
+            return SendAsync<UserResponse>(HttpMethod.Put, $"users/{fromId}/merge.json", new { user = new { id = toId } }, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task<UserResponse> UpdateAsync(User user, CancellationToken cancellationToken = default)
+        {
+            return SendAsync<UserResponse>(HttpMethod.Put, $"users/{user.Id}.json", new { user }, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task<JobStatusResponse> UpdateBatchAsync(IList<User> users, CancellationToken cancellationToken = default)
+        {
+            if (users.Count > 100)
+            {
+                throw new ArgumentException(Constants.MaxListSizeMessage, nameof(users));
+            }
+
+            return SendAsync<JobStatusResponse>(HttpMethod.Put, $"users/update_many.json", new { users }, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task<JobStatusResponse> UpdateBulkAsync(User user, IList<long> ids, CancellationToken cancellationToken = default)
         {
             if (user is null)
             {
@@ -172,11 +171,11 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
                 throw new ArgumentException(Constants.MaxListSizeMessage, nameof(ids));
             }
 
-            return SendAync<JobStatusResponse>(HttpMethod.Put, $"users/update_many.json?ids={ids.ToCsv()}", new { user }, cancellationToken);
+            return SendAsync<JobStatusResponse>(HttpMethod.Put, $"users/update_many.json?ids={ids.ToCsv()}", new { user }, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<JobStatusResponse> UpdateBulk(User user, IList<string> externalIds, CancellationToken cancellationToken = default)
+        public Task<JobStatusResponse> UpdateBulkAsync(User user, IList<string> externalIds, CancellationToken cancellationToken = default)
         {
             if (user is null)
             {
@@ -188,77 +187,77 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
                 throw new ArgumentException(Constants.MaxListSizeMessage, nameof(externalIds));
             }
 
-            return SendAync<JobStatusResponse>(HttpMethod.Put, $"users/update_many.json?external_ids={externalIds.ToCsv()}", new { user }, cancellationToken);
+            return SendAsync<JobStatusResponse>(HttpMethod.Put, $"users/update_many.json?external_ids={externalIds.ToCsv()}", new { user }, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<bool> DeleteBulk(IList<long> ids, CancellationToken cancellationToken = default)
+        public Task<bool> DeleteBulkAsync(IList<long> ids, CancellationToken cancellationToken = default)
         {
-            return SendAync(
+            return SendAyncAsync(
                 HttpMethod.Delete,
                 $"users/destroy_many.json?ids={ids.ToCsv()}",
-                (HttpResponseMessage resp) => { return Task.FromResult(resp.StatusCode == HttpStatusCode.OK); },
+                IsStatus200OK,
                 cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<bool> DeleteBulk(IList<string> externalIds, CancellationToken cancellationToken = default)
+        public Task<bool> DeleteBulkAsync(IList<string> externalIds, CancellationToken cancellationToken = default)
         {
-            return SendAync(
+            return SendAyncAsync(
                 HttpMethod.Delete,
                 $"users/destroy_many.json?external_ids={externalIds.ToCsv()}",
-                (HttpResponseMessage resp) => { return Task.FromResult(resp.StatusCode == HttpStatusCode.OK); },
+                IsStatus200OK,
                 cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserResponse> Delete(long id, CancellationToken cancellationToken = default)
+        public Task<UserResponse> DeleteAsync(long id, CancellationToken cancellationToken = default)
         {
-            return SendAync<UserResponse>(HttpMethod.Delete, $"users/{id}.json", cancellationToken);
+            return SendAsync<UserResponse>(HttpMethod.Delete, $"users/{id}.json", cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserListResponse> Search(string query, PageParameters pageParameters = default, CancellationToken cancellationToken = default)
+        public Task<UserListResponse> SearchAsync(string query, PageParameters pageParameters = default, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam($"users/search.json?query={query}", UserSideloads.None, pageParameters);
-            return SendAync<UserListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<UserListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserResponse> SetPhoto(long id, ZenFile photo, CancellationToken cancellationToken = default)
+        public Task<UserResponse> SetPhotoAsync(long id, ZenFile photo, CancellationToken cancellationToken = default)
         {
             var formData = new Dictionary<string, object> { { "user[photo][uploaded_data]", photo } };
-            return SendAync<UserResponse>(HttpMethod.Put, $"users/{id}.json", formData, cancellationToken);
+            return SendAsync<UserResponse>(HttpMethod.Put, $"users/{id}.json", formData, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<DeletedUserListResponse> GetDeleted(PageParameters pageParameters = default, CancellationToken cancellationToken = default)
+        public Task<DeletedUserListResponse> GetDeletedAsync(PageParameters pageParameters = default, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam($"deleted_users.json", UserSideloads.None, pageParameters);
-            return SendAync<DeletedUserListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<DeletedUserListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<DeletedUserResponse> GetDeleted(long id, CancellationToken cancellationToken = default)
+        public Task<DeletedUserResponse> GetDeletedAsync(long id, CancellationToken cancellationToken = default)
         {
-            return SendAync<DeletedUserResponse>(HttpMethod.Get, $"deleted_users/{id}.json", cancellationToken);
+            return SendAsync<DeletedUserResponse>(HttpMethod.Get, $"deleted_users/{id}.json", cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<DeletedUserResponse> PermanentlyDelete(long id, CancellationToken cancellationToken = default)
+        public Task<DeletedUserResponse> PermanentlyDeleteAsync(long id, CancellationToken cancellationToken = default)
         {
-            return SendAync<DeletedUserResponse>(HttpMethod.Delete, $"deleted_users/{id}.json", cancellationToken);
+            return SendAsync<DeletedUserResponse>(HttpMethod.Delete, $"deleted_users/{id}.json", cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserListResponse> GetNextPage(Uri nextPage, CancellationToken cancellationToken = default)
+        public Task<UserListResponse> GetNextPageAsync(Uri nextPage, CancellationToken cancellationToken = default)
         {
             if (nextPage is null)
             {
                 throw new ArgumentNullException(nameof(nextPage));
             }
 
-            return SendAync<UserListResponse>(HttpMethod.Get, nextPage.PathAndQuery, cancellationToken);
+            return SendAsync<UserListResponse>(HttpMethod.Get, nextPage.PathAndQuery, cancellationToken: cancellationToken);
         }
 
         private static string GetSideLoadParam(string requestSuffix, UserSideloads options, PageParameters pageParameters = default)

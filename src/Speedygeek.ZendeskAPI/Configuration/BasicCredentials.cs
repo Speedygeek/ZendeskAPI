@@ -44,7 +44,7 @@ namespace Speedygeek.ZendeskAPI.Configuration
         /// </summary>
         /// <param name="client">to update</param>
         /// <returns><see cref="Task"/> when completed</returns>
-        public Task ConfigureHttpClient(HttpClient client)
+        public Task ConfigureHttpClientAsync(HttpClient client)
         {
             if (client is null)
             {

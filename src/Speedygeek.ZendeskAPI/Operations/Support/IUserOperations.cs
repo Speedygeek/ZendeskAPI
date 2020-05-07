@@ -22,7 +22,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="sideload"> side-load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="UserListResponse"/> </returns>
-        Task<UserResponse> Get(long userId, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
+        Task<UserResponse> GetAsync(long userId, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of all <see cref="User"/>
@@ -31,7 +31,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="sideload"> side-load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="UserListResponse"/> </returns>
-        Task<UserListResponse> GetAll(PageParameters pageParameters = null, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
+        Task<UserListResponse> GetAllAsync(PageParameters pageParameters = null, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of all <see cref="User"/> in one or more roles
@@ -42,7 +42,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="UserListResponse"/> </returns>
         /// <see href="https://developer.zendesk.com/rest_api/docs/support/users#filters"/>
-        Task<UserListResponse> GetInRoles(UserRoles roles, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
+        Task<UserListResponse> GetInRolesAsync(UserRoles roles, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of all <see cref="User"/> in custom role
@@ -55,7 +55,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="UserListResponse"/> </returns>
         /// <see href="https://developer.zendesk.com/rest_api/docs/support/users#filters"/>
-        Task<UserListResponse> GetInCustomRole(long roleId, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
+        Task<UserListResponse> GetInCustomRoleAsync(long roleId, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of all <see cref="User"/> by group
@@ -65,7 +65,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="sideload"> side-load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="UserListResponse"/> </returns>
-        Task<UserListResponse> GetByGroup(long groupId, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
+        Task<UserListResponse> GetByGroupAsync(long groupId, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of all <see cref="User"/> by organization
@@ -75,7 +75,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="sideload"> side-load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="UserListResponse"/> </returns>
-        Task<UserListResponse> GetByOrganization(long organizationId, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
+        Task<UserListResponse> GetByOrganizationAsync(long organizationId, PageParameters pageParameters = default, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of requested <see cref="User"/>
@@ -84,7 +84,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="sideload"> side-load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="UserListResponse"/> </returns>
-        Task<UserResponse> GetMany(IList<long> ids, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
+        Task<UserListResponse> GetManyAsync(IList<long> ids, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of requested <see cref="User"/>
@@ -93,7 +93,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="sideload"> side-load options</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="UserListResponse"/> </returns>
-        Task<UserResponse> GetManyByExternalIds(IList<string> externalIds, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
+        Task<UserListResponse> GetManyByExternalIdsAsync(IList<string> externalIds, UserSideloads sideload = UserSideloads.None, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Gets the <see cref="UserRelatedResponse" />
@@ -101,7 +101,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="userId">User Id</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="UserRelatedResponse"/> </returns>
-        Task<UserRelatedResponse> GetRelatedInfo(long userId, CancellationToken cancellationToken = default);
+        Task<UserRelatedResponse> GetRelatedInfoAsync(long userId, CancellationToken cancellationToken = default);
 
         /// <summary>
         ///  Create a new user
@@ -109,7 +109,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="user"> <see cref="User"/> to save</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="UserResponse"/></returns>
-        Task<UserResponse> Create(User user, CancellationToken cancellationToken = default);
+        Task<UserResponse> CreateAsync(User user, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create new users
@@ -120,7 +120,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="users">list of <see cref="User"/> to create</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="JobStatusResponse"/></returns>
-        Task<JobStatusResponse> CreateMany(IList<User> users, CancellationToken cancellationToken = default);
+        Task<JobStatusResponse> CreateManyAsync(IList<User> users, CancellationToken cancellationToken = default);
 
         /// <summary>
         ///  Create or update user
@@ -128,7 +128,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="user"> <see cref="User"/> to save</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="UserResponse"/></returns>
-        Task<UserResponse> CreateOrUpdate(User user, CancellationToken cancellationToken = default);
+        Task<UserResponse> CreateOrUpdateAsync(User user, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create or update many users
@@ -136,7 +136,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="users">list of users to update</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="JobStatusResponse"/></returns>
-        Task<JobStatusResponse> CreateOrUpdateMany(IList<User> users, CancellationToken cancellationToken = default);
+        Task<JobStatusResponse> CreateOrUpdateManyAsync(IList<User> users, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Can merge two end users
@@ -146,7 +146,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="toId">resulting user</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="UserResponse"/></returns>
-        Task<UserResponse> Merge(long fromId, long toId, CancellationToken cancellationToken = default);
+        Task<UserResponse> MergeAsync(long fromId, long toId, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Updates a user
@@ -154,7 +154,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="user">the user to be updated</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="UserResponse"/></returns>
-        Task<UserResponse> Update(User user, CancellationToken cancellationToken = default);
+        Task<UserResponse> UpdateAsync(User user, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// batch update of users
@@ -162,7 +162,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="users">Users to update</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="JobStatusResponse"/></returns>
-        Task<JobStatusResponse> UpdateBatch(IList<User> users, CancellationToken cancellationToken = default);
+        Task<JobStatusResponse> UpdateBatchAsync(IList<User> users, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Bulk update users by user id
@@ -171,7 +171,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="ids">list of user ids to apply template user</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="JobStatusResponse"/></returns>
-        Task<JobStatusResponse> UpdateBulk(User user, IList<long> ids, CancellationToken cancellationToken = default);
+        Task<JobStatusResponse> UpdateBulkAsync(User user, IList<long> ids, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Bulk update users by external id
@@ -180,7 +180,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="externalIds">list of user external ids</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="JobStatusResponse"/></returns>
-        Task<JobStatusResponse> UpdateBulk(User user, IList<string> externalIds, CancellationToken cancellationToken = default);
+        Task<JobStatusResponse> UpdateBulkAsync(User user, IList<string> externalIds, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes many users by id
@@ -188,7 +188,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="ids">list of ids to delete</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="bool"/></returns>
-        Task<bool> DeleteBulk(IList<long> ids, CancellationToken cancellationToken = default);
+        Task<bool> DeleteBulkAsync(IList<long> ids, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes many users by external ids
@@ -196,7 +196,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="externalIds">list of external ids to delete</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="bool"/></returns>
-        Task<bool> DeleteBulk(IList<string> externalIds, CancellationToken cancellationToken = default);
+        Task<bool> DeleteBulkAsync(IList<string> externalIds, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// deletes a the given user
@@ -204,7 +204,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="id">id of user to delete</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="UserResponse"/></returns>
-        Task<UserResponse> Delete(long id, CancellationToken cancellationToken = default);
+        Task<UserResponse> DeleteAsync(long id, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Search for any user by query
@@ -214,7 +214,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="pageParameters">Options about paging</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="UserListResponse"/> </returns>
-        Task<UserListResponse> Search(string query, PageParameters pageParameters = default, CancellationToken cancellationToken = default);
+        Task<UserListResponse> SearchAsync(string query, PageParameters pageParameters = default, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Sets user photo
@@ -223,7 +223,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="photo">photo to save</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns><see cref="UserResponse"/></returns>
-        Task<UserResponse> SetPhoto(long id, ZenFile photo, CancellationToken cancellationToken = default);
+        Task<UserResponse> SetPhotoAsync(long id, ZenFile photo, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Lists deleted users, including permanently deleted users.
@@ -233,7 +233,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="pageParameters">Options about paging</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>Returns a <see cref="DeletedUserListResponse"/></returns>
-        Task<DeletedUserListResponse> GetDeleted(PageParameters pageParameters = default, CancellationToken cancellationToken = default);
+        Task<DeletedUserListResponse> GetDeletedAsync(PageParameters pageParameters = default, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// These are users that have been deleted but not permanently yet.
@@ -241,7 +241,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="id">id of deleted user</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>Returns a <see cref="DeletedUserResponse"/></returns>
-        Task<DeletedUserResponse> GetDeleted(long id, CancellationToken cancellationToken = default);
+        Task<DeletedUserResponse> GetDeletedAsync(long id, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Permanently Delete User
@@ -252,7 +252,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="id">user id to permanently delete</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>Returns a <see cref="DeletedUserResponse"/></returns>
-        Task<DeletedUserResponse> PermanentlyDelete(long id, CancellationToken cancellationToken = default);
+        Task<DeletedUserResponse> PermanentlyDeleteAsync(long id, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// will load the next page for a list of <see cref="User"/>
@@ -260,6 +260,6 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="nextPage">URL of the next page</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="UserListResponse"/> </returns>
-        Task<UserListResponse> GetNextPage(Uri nextPage, CancellationToken cancellationToken = default);
+        Task<UserListResponse> GetNextPageAsync(Uri nextPage, CancellationToken cancellationToken = default);
     }
 }

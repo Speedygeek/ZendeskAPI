@@ -118,17 +118,19 @@ namespace Speedygeek.ZendeskAPI
             services.AddScoped<IZendeskClient, ZendeskClient>();
             services.AddScoped<ISerializer, JsonDotNetSerializer>();
 
-            services.AddHttpClient<IRESTClient, RESTClient>(async (sp, client) =>
-            {
-                var options = sp.GetRequiredService<IOptions<ZenOptions>>().Value;
-                client.BaseAddress = new Uri($"https://{options.SubDomain}.zendesk.com/api/v2/");
-                await options.Credentials.ConfigureHttpClient(client).ConfigureAwait(false);
+#pragma warning disable VSTHRD101 // Avoid unsupported async delegates
+            _ = services.AddHttpClient<IRESTClient, RESTClient>(async (sp, client) =>
+              {
+                  var options = sp.GetRequiredService<IOptions<ZenOptions>>().Value;
+                  client.BaseAddress = new Uri($"https://{options.SubDomain}.zendesk.com/api/v2/");
+                  await options.Credentials.ConfigureHttpClientAsync(client).ConfigureAwait(false);
 
-                if (options.TimeOut != TimeSpan.Zero)
-                {
-                    client.Timeout = options.TimeOut;
-                }
-            });
+                  if (options.TimeOut != TimeSpan.Zero)
+                  {
+                      client.Timeout = options.TimeOut;
+                  }
+              });
+#pragma warning restore VSTHRD101 // Avoid unsupported async delegates
             return services;
         }
     }

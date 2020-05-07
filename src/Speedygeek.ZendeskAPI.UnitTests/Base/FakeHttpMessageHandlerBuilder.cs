@@ -12,22 +12,26 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Base
         public Mock<HttpMessageHandler> MockHandler { get; set; } = new Mock<HttpMessageHandler>();
 
         public bool SaveRespose { get; set; } = false;
-        public override string Name { get; set; } = "test";
+        public string FileName { get; set; } = "originalData.json";
+        public override string Name { get; set; } = "DataCaptureHandler";
         public override HttpMessageHandler PrimaryHandler { get; set; }
-        public override IList<DelegatingHandler> AdditionalHandlers { get; } = new List<DelegatingHandler> { new ResponseSaver() };
+        public override IList<DelegatingHandler> AdditionalHandlers { get; } = new List<DelegatingHandler>();
 
         public override HttpMessageHandler Build()
         {
             if (!SaveRespose)
             {
                 PrimaryHandler = MockHandler.Object;
-                return MockHandler.Object;
             }
             else
             {
                 PrimaryHandler = new HttpClientHandler();
-                return CreateHandlerPipeline(PrimaryHandler, AdditionalHandlers);
+
+                AdditionalHandlers.Clear();
+                AdditionalHandlers.Add(new ResponseSaver { FileName = FileName });
             }
+
+            return CreateHandlerPipeline(PrimaryHandler, AdditionalHandlers);
         }
     }
 }

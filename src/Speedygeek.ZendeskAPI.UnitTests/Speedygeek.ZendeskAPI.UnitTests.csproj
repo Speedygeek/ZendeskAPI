@@ -11,17 +11,17 @@
     <SignAssembly>true</SignAssembly>
     <DelaySign>false</DelaySign>
     <AssemblyOriginatorKeyFile>StrongNameKey.snk</AssemblyOriginatorKeyFile>
+    <NoWarn>$(TestNoWarn)</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="1.2.1" PrivateAssets="all" />
     <PackageReference Include="Codecov" Version="1.10.0" PrivateAssets="all" />
     <PackageReference Include="coverlet.msbuild" Version="2.8.1" PrivateAssets="all" />
-    <PackageReference Include="Moq" Version="4.13.1" />
+    <PackageReference Include="Moq" Version="4.14.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Speedygeek.ZendeskAPI\Speedygeek.ZendeskAPI.csproj" />
   </ItemGroup>
-
 </Project>

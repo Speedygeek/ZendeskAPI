@@ -8,6 +8,7 @@
 
   <PropertyGroup>
     <CodeAnalysisRuleSet />
+    <NoWarn>$(TestNoWarn)</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

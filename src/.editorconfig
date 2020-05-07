@@ -33,6 +33,30 @@ dotnet_diagnostic.CA1714.severity = none
 # CA1056: Uri properties should not be strings
 dotnet_diagnostic.CA1056.severity = none
 
+# SA1623: Property summary documentation should match accessors
+dotnet_diagnostic.SA1623.severity = none
+
+# SA1629: Documentation text should end with a period
+dotnet_diagnostic.SA1629.severity = none
+
+# SA1309: Field names should not begin with underscore
+dotnet_diagnostic.SA1309.severity = none
+
+# SA1101: Prefix local calls with this
+dotnet_diagnostic.SA1101.severity = none
+
+# SA1202: Elements should be ordered by access
+dotnet_diagnostic.SA1202.severity = none
+
+# CA2227: Collection properties should be read only
+dotnet_diagnostic.CA2227.severity = none
+
+# CA1308: Normalize strings to uppercase
+dotnet_diagnostic.CA1308.severity = none
+
+# CA1303: Do not pass literals as localized parameters
+dotnet_diagnostic.CA1303.severity = none
+
 ###############################
 # .NET Coding Conventions     #
 ###############################
@@ -87,12 +111,12 @@ csharp_style_expression_bodied_accessors                                 = true 
 csharp_style_pattern_matching_over_is_with_cast_check                    = true : suggestion
 csharp_style_pattern_matching_over_as_with_null_check                    = true : suggestion
 # Null-checking preferences
-csharp_style_throw_expression                                            = true : suggestion
-csharp_style_conditional_delegate_call                                   = true : suggestion
+csharp_style_throw_expression                                            = true : error
+csharp_style_conditional_delegate_call                                   = true : error
 # Modifier preferences
 csharp_preferred_modifier_order                                          = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async : suggestion
 # Expression-level preferences
-csharp_prefer_braces                                                     = true : silent
+csharp_prefer_braces                                                     = true : error
 csharp_style_deconstructed_variable_declaration                          = true : suggestion
 csharp_prefer_simple_default_expression                                  = true : suggestion
 csharp_style_pattern_local_over_anonymous_function                       = true : suggestion

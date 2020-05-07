@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,42 +26,42 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         }
 
         /// <inheritdoc />
-        public Task<TicketResponse> Create(Ticket ticket, CancellationToken cancellationToken = default)
+        public Task<TicketResponse> CreateAsync(Ticket ticket, CancellationToken cancellationToken = default)
         {
             if (ticket is null)
             {
                 throw new ArgumentNullException(nameof(ticket));
             }
 
-            return SendAync<TicketResponse>(HttpMethod.Post, "tickets.json", new { ticket }, cancellationToken);
+            return SendAsync<TicketResponse>(HttpMethod.Post, "tickets.json", new { ticket }, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<JobStatusResponse> CreateMany(IEnumerable<Ticket> tickets, CancellationToken cancellationToken = default)
+        public Task<JobStatusResponse> CreateManyAsync(IEnumerable<Ticket> tickets, CancellationToken cancellationToken = default)
         {
-            return SendAync<JobStatusResponse>(HttpMethod.Post, "tickets/create_many.json", new { tickets }, cancellationToken);
+            return SendAsync<JobStatusResponse>(HttpMethod.Post, "tickets/create_many.json", new { tickets }, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<TicketResponse> Get(long id, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
+        public Task<TicketResponse> GetAsync(long id, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam($"tickets/{id}.json", sideload);
-            return SendAync<TicketResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<TicketResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<TicketResponse> Update(Ticket ticket, CancellationToken cancellationToken = default)
+        public Task<TicketResponse> UpdateAsync(Ticket ticket, CancellationToken cancellationToken = default)
         {
             if (ticket is null)
             {
                 throw new ArgumentNullException(nameof(ticket));
             }
 
-            return SendAync<TicketResponse>(HttpMethod.Post, $"tickets/{ticket.Id}.json", new { ticket }, cancellationToken);
+            return SendAsync<TicketResponse>(HttpMethod.Put, $"tickets/{ticket.Id}.json", new { ticket }, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<JobStatusResponse> UpdateBatch(IList<Ticket> tickets, CancellationToken cancellationToken = default)
+        public Task<JobStatusResponse> UpdateBatchAsync(IList<Ticket> tickets, CancellationToken cancellationToken = default)
         {
             if (tickets is null)
             {
@@ -74,11 +73,11 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
                 throw new ArgumentException(Constants.MaxListSizeMessage, nameof(tickets));
             }
 
-            return SendAync<JobStatusResponse>(HttpMethod.Put, "tickets/update_many.json", new { tickets }, cancellationToken);
+            return SendAsync<JobStatusResponse>(HttpMethod.Put, "tickets/update_many.json", new { tickets }, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<JobStatusResponse> UpdateBulk(Ticket ticket, IList<long> ids, CancellationToken cancellationToken = default)
+        public Task<JobStatusResponse> UpdateBulkAsync(Ticket ticket, IList<long> ids, CancellationToken cancellationToken = default)
         {
             if (ticket is null)
             {
@@ -90,88 +89,88 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
                 throw new ArgumentException(Constants.MaxListSizeMessage, nameof(ids));
             }
 
-            return SendAync<JobStatusResponse>(HttpMethod.Put, $"tickets/update_many.json?ids={ids.ToCsv()}", new { ticket }, cancellationToken);
+            return SendAsync<JobStatusResponse>(HttpMethod.Put, $"tickets/update_many.json?ids={ids.ToCsv()}", new { ticket }, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<bool> Delete(long id, CancellationToken cancellationToken = default)
+        public Task<bool> DeleteAsync(long id, CancellationToken cancellationToken = default)
         {
-            return SendAync(
+            return SendAyncAsync(
                 HttpMethod.Delete,
                 $"tickets/{id}.json",
-                (HttpResponseMessage resp) => { return Task.FromResult(resp.StatusCode == HttpStatusCode.NoContent || resp.StatusCode == HttpStatusCode.OK); },
+                IsStatus204NoContentOr200OK,
                 cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<JobStatusResponse> DeletePermanently(long id, CancellationToken cancellationToken = default)
+        public Task<JobStatusResponse> DeletePermanentlyAsync(long id, CancellationToken cancellationToken = default)
         {
-            return SendAync<JobStatusResponse>(HttpMethod.Delete, $"deleted_tickets/{id}.json", cancellationToken);
+            return SendAsync<JobStatusResponse>(HttpMethod.Delete, $"deleted_tickets/{id}.json", cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<JobStatusResponse> DeletePermanentlyBulk(IList<long> ids, CancellationToken cancellationToken = default)
-        {
-            if (ids.Count > 100)
-            {
-                throw new ArgumentException(Constants.MaxListSizeMessage, nameof(ids));
-            }
-
-            return SendAync<JobStatusResponse>(HttpMethod.Delete, $"deleted_tickets/destroy_many.json?ids={ids.ToCsv()}", cancellationToken);
-        }
-
-        /// <inheritdoc />
-        public Task<JobStatusResponse> DeleteBulk(IList<long> ids, CancellationToken cancellationToken = default)
+        public Task<JobStatusResponse> DeletePermanentlyBulkAsync(IList<long> ids, CancellationToken cancellationToken = default)
         {
             if (ids.Count > 100)
             {
                 throw new ArgumentException(Constants.MaxListSizeMessage, nameof(ids));
             }
 
-            return SendAync<JobStatusResponse>(HttpMethod.Delete, $"tickets/destroy_many.json?ids={ids.ToCsv()}", cancellationToken);
+            return SendAsync<JobStatusResponse>(HttpMethod.Delete, $"deleted_tickets/destroy_many.json?ids={ids.ToCsv()}", cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<DeletedTicketListResponse> GetDeleted(TicketPageParams pageParameters = default, CancellationToken cancellationToken = default)
+        public Task<JobStatusResponse> DeleteBulkAsync(IList<long> ids, CancellationToken cancellationToken = default)
+        {
+            if (ids.Count > 100)
+            {
+                throw new ArgumentException(Constants.MaxListSizeMessage, nameof(ids));
+            }
+
+            return SendAsync<JobStatusResponse>(HttpMethod.Delete, $"tickets/destroy_many.json?ids={ids.ToCsv()}", cancellationToken: cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task<DeletedTicketListResponse> GetDeletedAsync(TicketPageParams pageParameters = default, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam("deleted_tickets.json", TicketSideloads.None, pageParameters);
-            return SendAync<DeletedTicketListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<DeletedTicketListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<bool> Restore(long id, CancellationToken cancellationToken = default)
+        public Task<bool> RestoreAsync(long id, CancellationToken cancellationToken = default)
         {
-            return SendAync(
+            return SendAyncAsync(
                 HttpMethod.Put,
                 $"deleted_tickets/{id}/restore.json",
-                (HttpResponseMessage resp) => { return Task.FromResult(resp.StatusCode == HttpStatusCode.OK); },
+                IsStatus200OK,
                 cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<bool> RestoreBulk(IList<long> ids, CancellationToken cancellationToken = default)
+        public Task<bool> RestoreBulkAsync(IList<long> ids, CancellationToken cancellationToken = default)
         {
             if (ids.Count > 100)
             {
                 throw new ArgumentException(Constants.MaxListSizeMessage, nameof(ids));
             }
 
-            return SendAync(
+            return SendAyncAsync(
                 HttpMethod.Put,
                 $"deleted_tickets/restore_many.json?ids={ids.ToCsv()}",
-                (HttpResponseMessage resp) => { return Task.FromResult(resp.StatusCode == HttpStatusCode.OK); },
+                IsStatus200OK,
                 cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<TicketListResponse> GetAll(TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
+        public Task<TicketListResponse> GetAllAsync(TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam("tickets.json", sideload, pageParameters);
-            return SendAync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<TicketListResponse> GetMany(IList<long> ids, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
+        public Task<TicketListResponse> GetManyAsync(IList<long> ids, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
         {
             if (ids.Count > 100)
             {
@@ -179,111 +178,111 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
             }
 
             var requestUri = GetSideLoadParam($"tickets/show_many.json?ids={ids.ToCsv()}", sideload, pageParameters);
-            return SendAync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<TicketListResponse> GetRecent(TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
+        public Task<TicketListResponse> GetRecentAsync(TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam($"tickets/recent.json", sideload, pageParameters);
-            return SendAync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<TicketListResponse> GetByOrganization(long orgId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
+        public Task<TicketListResponse> GetByOrganizationAsync(long orgId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam($"organizations/{orgId}/tickets.json", sideload, pageParameters);
-            return SendAync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<TicketListResponse> GetByRequestedUser(long userId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
+        public Task<TicketListResponse> GetByRequestedUserAsync(long userId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam($"users/{userId}/tickets/requested.json", sideload, pageParameters);
-            return SendAync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<TicketListResponse> GetByAssignedUser(long userId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
+        public Task<TicketListResponse> GetByAssignedUserAsync(long userId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam($"users/{userId}/tickets/assigned.json", sideload, pageParameters);
-            return SendAync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<TicketListResponse> GetByCarbonCopiedUser(long userId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
+        public Task<TicketListResponse> GetByCarbonCopiedUserAsync(long userId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam($"users/{userId}/tickets/ccd.json", sideload, pageParameters);
-            return SendAync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<TicketListResponse> GetByExternalId(string externalId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
+        public Task<TicketListResponse> GetByExternalIdAsync(string externalId, TicketPageParams pageParameters = default, TicketSideloads sideload = TicketSideloads.None, CancellationToken cancellationToken = default)
         {
             var requestUri = GetSideLoadParam($"tickets.json?external_id={externalId}", sideload, pageParameters);
-            return SendAync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken);
+            return SendAsync<TicketListResponse>(HttpMethod.Get, requestUri, cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<bool> MarkAsSpam(long id, CancellationToken cancellationToken = default)
+        public Task<bool> MarkAsSpamAsync(long id, CancellationToken cancellationToken = default)
         {
-            return SendAync(
+            return SendAyncAsync(
                  HttpMethod.Put,
                  $"tickets/{id}/mark_as_spam.json",
-                 (HttpResponseMessage resp) => { return Task.FromResult(resp.StatusCode == HttpStatusCode.OK); },
+                 IsStatus200OK,
                  cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<JobStatusResponse> MarkAsSpam(IList<long> ids, CancellationToken cancellationToken = default)
+        public Task<JobStatusResponse> MarkAsSpamAsync(IList<long> ids, CancellationToken cancellationToken = default)
         {
             if (ids.Count > 100)
             {
                 throw new ArgumentException(Constants.MaxListSizeMessage, nameof(ids));
             }
 
-            return SendAync<JobStatusResponse>(HttpMethod.Put, $"tickets/mark_many_as_spam.json?ids={ids.ToCsv()}", cancellationToken);
+            return SendAsync<JobStatusResponse>(HttpMethod.Put, $"tickets/mark_many_as_spam.json?ids={ids.ToCsv()}", cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<JobStatusResponse> Merge(long targetId, IList<long> sourceIds, string targetComment = "", string sourceComment = "", CancellationToken cancellationToken = default)
+        public Task<JobStatusResponse> MergeAsync(long targetId, IList<long> sourceIds, string targetComment = "", string sourceComment = "", CancellationToken cancellationToken = default)
         {
-            return SendAync<JobStatusResponse>(HttpMethod.Post, $"tickets/{targetId}/merge.json", new { ids = sourceIds, targetComment, sourceComment }, cancellationToken);
+            return SendAsync<JobStatusResponse>(HttpMethod.Post, $"tickets/{targetId}/merge.json", new { ids = sourceIds, targetComment, sourceComment }, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserListResponse> GetCollaborators(long id, CancellationToken cancellationToken = default)
+        public Task<UserListResponse> GetCollaboratorsAsync(long id, CancellationToken cancellationToken = default)
         {
-            return SendAync<UserListResponse>(HttpMethod.Get, $"tickets/{id}/collaborators.json", cancellationToken);
+            return SendAsync<UserListResponse>(HttpMethod.Get, $"tickets/{id}/collaborators.json", cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserListResponse> Getfollowers(long id, CancellationToken cancellationToken = default)
+        public Task<UserListResponse> GetFollowersAsync(long id, CancellationToken cancellationToken = default)
         {
-            return SendAync<UserListResponse>(HttpMethod.Get, $"tickets/{id}/followers.json", cancellationToken);
+            return SendAsync<UserListResponse>(HttpMethod.Get, $"tickets/{id}/followers", cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<UserListResponse> GetEmailCCs(long id, CancellationToken cancellationToken = default)
+        public Task<UserListResponse> GetEmailCCsAsync(long id, CancellationToken cancellationToken = default)
         {
-            return SendAync<UserListResponse>(HttpMethod.Get, $"tickets/{id}/email_ccs.json", cancellationToken);
+            return SendAsync<UserListResponse>(HttpMethod.Get, $"tickets/{id}/email_ccs", cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<TicketListResponse> GetIncidents(long id, CancellationToken cancellationToken = default)
+        public Task<TicketListResponse> GetIncidentsAsync(long id, CancellationToken cancellationToken = default)
         {
-            return SendAync<TicketListResponse>(HttpMethod.Get, $"tickets/{id}/incidents.json", cancellationToken);
+            return SendAsync<TicketListResponse>(HttpMethod.Get, $"tickets/{id}/incidents.json", cancellationToken: cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<TicketListResponse> GetNextPage(Uri nextPage, CancellationToken cancellationToken = default)
+        public Task<TicketListResponse> GetNextPageAsync(Uri nextPage, CancellationToken cancellationToken = default)
         {
             if (nextPage is null)
             {
                 throw new ArgumentNullException(nameof(nextPage));
             }
 
-            return SendAync<TicketListResponse>(HttpMethod.Get, nextPage.PathAndQuery, cancellationToken);
+            return SendAsync<TicketListResponse>(HttpMethod.Get, nextPage.PathAndQuery, cancellationToken: cancellationToken);
         }
 
         private static string GetSideLoadParam(string requestSuffix, TicketSideloads options, TicketPageParams pageParameters = default)

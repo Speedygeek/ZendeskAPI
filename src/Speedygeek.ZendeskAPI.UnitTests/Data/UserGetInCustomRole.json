@@ -1,0 +1,51 @@
+{
+  "users": [
+    {
+      "id": 282136547,
+      "url": "https://csharpapi.zendesk.com/api/v2/users/282136547.json",
+      "name": "Test User",
+      "email": "eneif123@yahoo.com",
+      "created_at": "2012-10-30T18:33:10Z",
+      "updated_at": "2020-01-02T05:39:16Z",
+      "time_zone": "Atlantic Time (Canada)",
+      "iana_time_zone": "America/Halifax",
+      "phone": null,
+      "shared_phone_number": null,
+      "photo": null,
+      "locale_id": 1,
+      "locale": "en-US",
+      "organization_id": null,
+      "role": "agent",
+      "verified": true,
+      "external_id": null,
+      "tags": [],
+      "alias": "",
+      "active": true,
+      "shared": false,
+      "shared_agent": false,
+      "last_login_at": null,
+      "two_factor_auth_enabled": null,
+      "signature": "",
+      "details": "",
+      "notes": "",
+      "role_type": 0,
+      "custom_role_id": 661482,
+      "moderator": false,
+      "ticket_restriction": "groups",
+      "only_private_comments": false,
+      "restricted_agent": true,
+      "suspended": false,
+      "chat_only": false,
+      "default_group_id": 20402842,
+      "report_csv": false,
+      "user_fields": {
+        "checkbox": false,
+        "test": null,
+        "user_dropdown": null
+      }
+    }
+  ],
+  "next_page": null,
+  "previous_page": null,
+  "count": 1
+}

@@ -1,0 +1,47 @@
+{
+  "user": {
+    "id": 397490051371,
+    "url": "https://csharpapi.zendesk.com/api/v2/users/397490051371.json",
+    "name": "9a452bf9d59b4e5083900acf543d1ace",
+    "email": "1acd6df62aa9466ebbc15f7714cb3e75@corp.com",
+    "created_at": "2020-05-03T10:24:47Z",
+    "updated_at": "2020-05-03T10:24:47Z",
+    "time_zone": "Mountain Time (US & Canada)",
+    "iana_time_zone": "America/Denver",
+    "phone": null,
+    "shared_phone_number": null,
+    "photo": null,
+    "locale_id": 1,
+    "locale": "en-US",
+    "organization_id": null,
+    "role": "end-user",
+    "verified": true,
+    "external_id": null,
+    "tags": [
+    ],
+    "alias": null,
+    "active": true,
+    "shared": false,
+    "shared_agent": false,
+    "last_login_at": null,
+    "two_factor_auth_enabled": false,
+    "signature": null,
+    "details": null,
+    "notes": null,
+    "role_type": null,
+    "custom_role_id": null,
+    "moderator": false,
+    "ticket_restriction": "requested",
+    "only_private_comments": false,
+    "restricted_agent": true,
+    "suspended": false,
+    "chat_only": false,
+    "default_group_id": null,
+    "report_csv": false,
+    "user_fields": {
+      "checkbox": false,
+      "test": null,
+      "user_dropdown": null
+    }
+  }
+}

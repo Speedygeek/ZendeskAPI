@@ -22,7 +22,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="token">tracking token</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>The <see cref="UploadResponse"/></returns>
-        Task<UploadResponse> Upload(ZenFile file, string token = null, CancellationToken cancellationToken = default);
+        Task<UploadResponse> UploadAsync(ZenFile file, string token = null, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Upload Attachments
@@ -31,7 +31,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="token">tracking token</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>The <see cref="UploadResponse"/></returns>
-        Task<UploadResponse[]> Upload(IEnumerable<ZenFile> files, string token = null, CancellationToken cancellationToken = default);
+        Task<UploadResponse[]> UploadAsync(IEnumerable<ZenFile> files, string token = null, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Downloads a given <see cref="Attachment"/>
@@ -39,7 +39,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="attachment"><see cref="Attachment"/> to download</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>a <see cref="ZenFile"/> of the downloaded file</returns>
-        Task<ZenFile> Download(Attachment attachment, CancellationToken cancellationToken = default);
+        Task<ZenFile> DownloadAsync(Attachment attachment, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes a given upload
@@ -47,6 +47,6 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         /// <param name="token">tracking token</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> a <see cref="bool"/> true if successfully removed</returns>
-        Task<bool> Delete(string token, CancellationToken cancellationToken = default);
+        Task<bool> DeleteAsync(string token, CancellationToken cancellationToken = default);
     }
 }

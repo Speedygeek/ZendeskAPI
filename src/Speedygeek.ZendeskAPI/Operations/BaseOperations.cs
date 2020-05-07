@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -21,9 +20,19 @@ namespace Speedygeek.ZendeskAPI
     /// </summary>
     public abstract class BaseOperations
     {
-        private const string JSON_TYPE = "application/json";
+        private const string JSONTYPE = "application/json";
         private const HttpStatusCode TooManyRequests = (HttpStatusCode)429;
         private readonly IRESTClient _restClient;
+
+        /// <summary>
+        /// Status 200 OK
+        /// </summary>
+        protected static readonly Func<HttpResponseMessage, Task<bool>> IsStatus200OK = (HttpResponseMessage resp) => { return Task.FromResult(resp.StatusCode == HttpStatusCode.OK); };
+
+        /// <summary>
+        /// Status 204 NoContent Or 200 OK
+        /// </summary>
+        protected static readonly Func<HttpResponseMessage, Task<bool>> IsStatus204NoContentOr200OK = (HttpResponseMessage resp) => { return Task.FromResult(resp.StatusCode == HttpStatusCode.NoContent || resp.StatusCode == HttpStatusCode.OK); };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseOperations"/> class.
@@ -43,12 +52,17 @@ namespace Speedygeek.ZendeskAPI
         /// <param name="body">data to be sent to zendesk</param>
         /// <param name="cancellationToken">cancellation to support async</param>
         /// <returns> <typeparamref name="TResponse"/></returns>
-        protected async Task<TResponse> SendAync<TResponse>(HttpMethod httpMethod, string requestSuffix, object body = null, CancellationToken cancellationToken = default)
+        protected async Task<TResponse> SendAsync<TResponse>(HttpMethod httpMethod, string requestSuffix, object body = null, CancellationToken cancellationToken = default)
         {
             using var httpRequestMessage = new HttpRequestMessage(httpMethod, requestSuffix);
             cancellationToken.ThrowIfCancellationRequested();
             if (body is ZenFile zenFile)
             {
+                if (zenFile.FileData.Position != 0)
+                {
+                    zenFile.FileData.Position = 0;
+                }
+
                 httpRequestMessage.Content = new StreamContent(zenFile.FileData);
                 httpRequestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse(zenFile.ContentType);
             }
@@ -58,7 +72,8 @@ namespace Speedygeek.ZendeskAPI
             }
             else if (body != null)
             {
-                httpRequestMessage.Content = new StringContent(_restClient.Serializer.Serialize(body), Encoding.UTF8, JSON_TYPE);
+                var json = _restClient.Serializer.Serialize(body);
+                httpRequestMessage.Content = new StringContent(json, Encoding.UTF8, JSONTYPE);
             }
 
             cancellationToken.ThrowIfCancellationRequested();
@@ -68,7 +83,6 @@ namespace Speedygeek.ZendeskAPI
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 using var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(true);
-                stream.Seek(0, SeekOrigin.Begin);
                 result = _restClient.Serializer.Deserialize<TResponse>(stream);
             }
             else if (response.StatusCode == TooManyRequests)
@@ -90,23 +104,30 @@ namespace Speedygeek.ZendeskAPI
 
         private static HttpContent BuildFormContent(Dictionary<string, object> formData)
         {
-            using var fromContent = new MultipartFormDataContent(Constants.FormBoundary);
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            var fromContent = new MultipartFormDataContent(Constants.FormBoundary);
 
             foreach (var item in formData)
             {
                 if (item.Value is ZenFile zenFile)
                 {
-                    using var streamContent = new StreamContent(zenFile.FileData);
+                    if (zenFile.FileData.Position != 0)
+                    {
+                        zenFile.FileData.Position = 0;
+                    }
+
+                    var streamContent = new StreamContent(zenFile.FileData);
                     streamContent.Headers.ContentType = MediaTypeHeaderValue.Parse(zenFile.ContentType);
                     fromContent.Add(streamContent, item.Key, zenFile.FileName);
                 }
                 else
                 {
-                    using var content = new StringContent(item.Value.ToString());
+                    var content = new StringContent(item.Value.ToString());
+
                     fromContent.Add(content, item.Key);
                 }
             }
-
+#pragma warning restore CA2000 // Dispose objects before losing scope
             return fromContent;
         }
 
@@ -119,7 +140,7 @@ namespace Speedygeek.ZendeskAPI
         /// <param name="callBack"> work to be done with the request</param>
         /// <param name="cancellationToken">cancellation to support async</param>
         /// <returns> <typeparamref name="TResult"/></returns>
-        protected async Task<TResult> SendAync<TResult>(HttpMethod httpMethod, string requestSuffix, Func<HttpResponseMessage, Task<TResult>> callBack, CancellationToken cancellationToken = default)
+        protected async Task<TResult> SendAyncAsync<TResult>(HttpMethod httpMethod, string requestSuffix, Func<HttpResponseMessage, Task<TResult>> callBack, CancellationToken cancellationToken = default)
         {
             using var httpRequestMessage = new HttpRequestMessage(httpMethod, requestSuffix);
             cancellationToken.ThrowIfCancellationRequested();
