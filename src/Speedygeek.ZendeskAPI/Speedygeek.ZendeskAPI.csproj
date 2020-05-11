@@ -5,7 +5,7 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>StrongNameKey.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Elizabeth Schneider and contributors</Authors>
     <Company>Speedy-Geek</Company>
     <Product>Zendesk SDK for .NET</Product>
