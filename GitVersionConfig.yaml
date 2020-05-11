@@ -1,6 +1,6 @@
 next-version: 0.1.0
 assembly-versioning-scheme: Major
-mode: ContinuousDeployment
+mode: MainLine
 tag-prefix: '[vV]'
 build-metadata-padding: 3
 legacy-semver-padding: 3
