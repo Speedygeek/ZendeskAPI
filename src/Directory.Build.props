@@ -12,10 +12,14 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <RestoreSources>
+      https://api.nuget.org/v3/index.json;https://www.myget.org/F/coverlet-dev/api/v3/index.json;
+    </RestoreSources>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   
   <ItemGroup Condition="$(IsTestProject) != 'true'">

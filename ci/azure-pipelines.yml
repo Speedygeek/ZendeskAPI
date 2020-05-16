@@ -62,7 +62,7 @@ jobs:
       inputs:
         command: test
         projects: 'src/Speedygeek.ZendeskAPI.UnitTests/Speedygeek.ZendeskAPI.UnitTests.csproj'
-        arguments: '--no-build -c $(BuildConfiguration)  /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura%2copencover /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/ /p:ExcludeByAttribute="Obsolete%2cGeneratedCodeAttribute%2cCompilerGeneratedAttribute"'
+        arguments: '--no-build -c $(BuildConfiguration)  /p:CollectCoverage=true /p:CoverletOutputFormat=Cobertura%2cOpencover /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/ /p:ExcludeByAttribute="Obsolete%2cGeneratedCodeAttribute%2cCompilerGeneratedAttribute"'
 
     - task: Palmmedia.reportgenerator.reportgenerator-build-release-task.reportgenerator@4
       displayName: ReportGenerator
@@ -72,7 +72,7 @@ jobs:
         reporttypes: 'HtmlInline_AzurePipelines_Dark;Cobertura'
 
     - task: PublishCodeCoverageResults@1
-      displayName: 'publish report'
+      displayName: 'publish coverage report'
       inputs:
         codeCoverageTool: 'Cobertura'
         summaryFileLocation: '$(Build.SourcesDirectory)/TestResults/Coverage/coverage.cobertura.xml'
