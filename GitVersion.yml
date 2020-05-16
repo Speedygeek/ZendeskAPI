@@ -1,8 +1,11 @@
 next-version: 0.1.0
 assembly-versioning-scheme: Major
-mode: MainLine
+mode: ContinuousDelivery
 tag-prefix: '[vV]'
 build-metadata-padding: 3
 legacy-semver-padding: 3
-continuous-delivery-fallback-tag: alpha
+commits-since-version-source-padding: 3
 commit-message-incrementing: Enabled
+branches:
+  master:
+    tag: alpha

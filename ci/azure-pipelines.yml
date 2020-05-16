@@ -8,7 +8,7 @@ resources:
 
 variables:
   BuildConfiguration: 'Release'
-  System.Debug: true
+  System.Debug: false
   DOTNET_CLI_TELEMETRY_OPTOUT: true
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   disable.coverage.autogenerate: 'true'
@@ -45,10 +45,10 @@ jobs:
         useGlobalJson: true
 
     - task: UseDotNet@2
-      displayName: Install .NET Core 2.1.14
+      displayName: Install .NET Core 2.1.18
       inputs:
         packageType: 'runtime'
-        version: '2.1.14'
+        version: '2.1.18'
         
     - task: DotNetCoreCLI@2
       displayName: 'dotnet build'
@@ -74,9 +74,10 @@ jobs:
     - task: PublishCodeCoverageResults@1
       displayName: 'publish report'
       inputs:
-        codeCoverageTool: Cobertura
+        codeCoverageTool: 'Cobertura'
         summaryFileLocation: '$(Build.SourcesDirectory)/TestResults/Coverage/coverage.cobertura.xml'
         reportDirectory: '$(Build.SourcesDirectory)/TestResults/Coverage/html'
+        failIfCoverageEmpty: true
 
     - task: PowerShell@2
       displayName: 'Upload coverage to codecov.io'
@@ -96,14 +97,16 @@ jobs:
         command: pack
         searchPatternPack: 'src/Speedygeek.ZendeskAPI/Speedygeek.ZendeskAPI.csproj'
         nobuild: true
+
     - task: PowerShell@2
+      displayName: 'Authenticode sign packages'
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'), ne(variables['speedygeek.signClientUser'], ''), ne(variables['speedygeek.signClientSecret'], ''))
       inputs:
         filePath: .\ci\sign-package.ps1
       env:
        SignClientUser: $(speedygeek.signClientUser)
        SignClientSecret: $(speedygeek.signClientSecret)
-      displayName: 'Authenticode sign packages'
-      condition: and(succeeded(), ne(variables['speedygeek.signClientUser'], ''), ne(variables['speedygeek.signClientSecret'], ''))
+
     - task: PowerShell@2
       displayName: 'Is Pre-release?'
       #condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
