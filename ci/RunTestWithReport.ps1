@@ -6,7 +6,7 @@ $reportTargetDir = Join-Path -Path $resultsDir -ChildPath "html"
 
 $testProject = [IO.Path]::GetFullPath("$($PSScriptRoot)/../src/Speedygeek.ZendeskAPI.UnitTests/Speedygeek.ZendeskAPI.UnitTests.csproj")
 
-dotnet test $testProject -c Debug  /p:CollectCoverage=true /p:CoverletOutputFormat=Cobertura /p:CoverletOutput=$resultsDir /p:ExcludeByAttribute="Obsolete%2cGeneratedCodeAttribute%2cCompilerGeneratedAttribute"
+dotnet test $testProject -c Debug /p:TF_BUILD=true /p:CollectCoverage=true /p:CoverletOutputFormat=Cobertura /p:CoverletOutput=$resultsDir /p:ExcludeByAttribute="Obsolete%2cGeneratedCodeAttribute%2cCompilerGeneratedAttribute"
 reportgenerator -reports:$resultFile -targetdir:$reportTargetDir -reporttypes:"HtmlInline_AzurePipelines_Dark;"
 
 #Start-Process "$reportTargetDir/index.htm"
