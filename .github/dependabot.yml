@@ -1,0 +1,25 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: weekly
+    day: friday
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Microsoft.VisualStudio.Threading.Analyzers
+    versions:
+    - 16.8.55
+    - 16.9.54
+  - dependency-name: Moq
+    versions:
+    - 4.16.0
+  - dependency-name: NUnit.Analyzers
+    versions:
+    - 3.0.0
+  - dependency-name: Codecov
+    versions:
+    - 1.12.4
+  commit-message:
+    prefix: chore
+    include: scope
