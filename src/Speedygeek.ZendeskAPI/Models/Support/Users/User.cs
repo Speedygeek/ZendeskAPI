@@ -180,10 +180,10 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// </summary>
         public bool TwoFactorAuthEnabled { get; }
 
-        /// <summary>
-        /// Values of custom fields in the user's profile.
-        /// </summary>
-        public dynamic UserFields { get; set; }
+        ///// <summary>
+        ///// Values of custom fields in the user's profile.
+        ///// </summary>
+        // public dynamic UserFields { get; set; }
 
         /// <summary>
         /// The user's primary identity is verified or not.

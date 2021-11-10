@@ -43,8 +43,7 @@ namespace Speedygeek.ZendeskAPI.Configuration
         /// Configure the <see cref="HttpClient"/> authentication header
         /// </summary>
         /// <param name="client">to update</param>
-        /// <returns><see cref="Task"/> when completed</returns>
-        public Task ConfigureHttpClientAsync(HttpClient client)
+        public void ConfigureHttpClient(HttpClient client)
         {
             if (client is null)
             {
@@ -53,7 +52,6 @@ namespace Speedygeek.ZendeskAPI.Configuration
 
             var auth = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_userName}/token:{_apiToken}"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", auth);
-            return Task.CompletedTask;
         }
     }
 }

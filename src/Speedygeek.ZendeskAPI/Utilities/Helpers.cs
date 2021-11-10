@@ -56,17 +56,17 @@ namespace Speedygeek.ZendeskAPI.Utilities
             return value.ToString(CultureInfo.InvariantCulture);
         }
 
-        /// <summary>
-        /// converts string to lower Snake Case
-        /// </summary>
-        /// <param name="value"> string to convert</param>
-        /// <returns>string in snake case</returns>
-        public static string ToSnakeCase(this string value)
-        {
-            var strategy = new SnakeCaseNamingStrategy();
+        ///// <summary>
+        ///// converts string to lower Snake Case
+        ///// </summary>
+        ///// <param name="value"> string to convert</param>
+        ///// <returns>string in snake case</returns>
+        // public static string ToSnakeCase(this string value)
+        // {
+        //    var strategy = new SnakeCaseNamingStrategy();
 
-            return strategy.GetPropertyName(value, false);
-        }
+        // return strategy.GetPropertyName(value, false);
+        // }
 
         /// <summary>
         /// Converts to a comma separated list

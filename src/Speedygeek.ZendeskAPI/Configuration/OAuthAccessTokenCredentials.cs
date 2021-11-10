@@ -56,21 +56,19 @@ namespace Speedygeek.ZendeskAPI.Configuration
             _accessToken = accessToken;
         }
 
-        /// <inheritdoc />
-        public Task ConfigureHttpClientAsync(HttpClient client)
+        /// <summary>
+        /// Configure the <see cref="HttpClient"/> authentication header
+        /// </summary>
+        /// <param name="client">to update</param>
+        public void ConfigureHttpClient(HttpClient client)
         {
-            if (client is null)
-            {
-                throw new ArgumentNullException(nameof(client));
-            }
+            ArgumentNullException.ThrowIfNull(client);
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Scheme, _accessToken);
             if (!string.IsNullOrWhiteSpace(_endUserId))
             {
                 client.DefaultRequestHeaders.Add("X-On-Behalf-Of", _endUserId);
             }
-
-            return Task.CompletedTask;
         }
     }
 }

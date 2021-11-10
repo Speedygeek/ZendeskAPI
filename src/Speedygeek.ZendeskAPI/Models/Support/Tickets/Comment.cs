@@ -62,9 +62,9 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// </summary>
         public Via Via { get; set; }
 
-        /// <summary>
-        /// System information (web client, IP address, etc.) and comment flags, if any. See <see href="https://developer.zendesk.com/rest_api/docs/support/ticket_comments#comment-flags"/>
-        /// </summary>
-        public dynamic Metadata { get; set; }
+        ///// <summary>
+        ///// System information (web client, IP address, etc.) and comment flags, if any. See <see href="https://developer.zendesk.com/rest_api/docs/support/ticket_comments#comment-flags"/>
+        ///// </summary>
+        // public dynamic Metadata { get; set; }
     }
 }

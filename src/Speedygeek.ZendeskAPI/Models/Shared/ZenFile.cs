@@ -11,7 +11,7 @@ namespace Speedygeek.ZendeskAPI.Models
     /// </summary>
     public class ZenFile : IDisposable
     {
-        private bool _disposedValue = false; // To detect redundant calls
+        private bool _disposedValue; // To detect redundant calls
 
         /// <summary>
         /// Finalizes an instance of the <see cref="ZenFile"/> class.

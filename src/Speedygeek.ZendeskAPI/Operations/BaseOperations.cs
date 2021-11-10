@@ -21,7 +21,7 @@ namespace Speedygeek.ZendeskAPI
     public abstract class BaseOperations
     {
         private const string JSONTYPE = "application/json";
-        private const HttpStatusCode TooManyRequests = (HttpStatusCode)429;
+        private const HttpStatusCode TooManyRequests = HttpStatusCode.TooManyRequests;
         private readonly IRESTClient _restClient;
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Speedygeek.ZendeskAPI
             if (response.IsSuccessStatusCode)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                using var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(true);
+                using var stream = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(true);
                 result = _restClient.Serializer.Deserialize<TResponse>(stream);
             }
             else if (response.StatusCode == TooManyRequests)
@@ -93,8 +93,8 @@ namespace Speedygeek.ZendeskAPI
             }
             else if (!response.IsSuccessStatusCode)
             {
-                var bodyString = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
-                var message = $"Error {response.StatusCode} details: HEADERS: {response.Headers} BODY: {bodyString}";
+                var bodyString = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(true);
+                var message = $"Error {response.StatusCode}:{response.StatusCode:D} details: HEADERS: {response.Headers} BODY: {bodyString}";
 
                 throw new HttpRequestException(message);
             }
@@ -104,7 +104,6 @@ namespace Speedygeek.ZendeskAPI
 
         private static HttpContent BuildFormContent(Dictionary<string, object> formData)
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             var fromContent = new MultipartFormDataContent(Constants.FormBoundary);
 
             foreach (var item in formData)
@@ -127,7 +126,7 @@ namespace Speedygeek.ZendeskAPI
                     fromContent.Add(content, item.Key);
                 }
             }
-#pragma warning restore CA2000 // Dispose objects before losing scope
+
             return fromContent;
         }
 
@@ -158,7 +157,7 @@ namespace Speedygeek.ZendeskAPI
             }
             else if (!response.IsSuccessStatusCode)
             {
-                var bodyString = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
+                var bodyString = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(true);
                 var message = $"Error {response.StatusCode} details: HEADERS: {response.Headers} BODY: {bodyString}";
 
                 throw new HttpRequestException(message);

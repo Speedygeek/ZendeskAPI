@@ -21,24 +21,25 @@
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
-  
+
   <ItemGroup Condition="$(IsTestProject) != 'true'">
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json">
       <Link>stylecop.json</Link>
     </AdditionalFiles>
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="16.6.13" PrivateAssets="all"/>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0" PrivateAssets="all"/>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02" PrivateAssets="all"/>
+    <!--<PackageReference Include="Microsoft.CodeAnalysis." Version="3.3.1" PrivateAssets="all"/>-->
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.0.64"  PrivateAssets="all"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0" PrivateAssets="all"/>
     <PackageReference Include="DotNetAnalyzers.DocumentationAnalyzers" Version="1.0.0-beta.59" PrivateAssets="all" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.164" PrivateAssets="all" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.354" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="$(IsTestProject) == 'true'">
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.4" />
-    <PackageReference Include="nunit" Version="3.12.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0-beta.1" PrivateAssets="all"/>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
-    <PackageReference Include="NUnit.Analyzers" Version="0.2.0"  PrivateAssets="all"/>
+  <ItemGroup Condition="'$(IsTestProject)' == 'true'">
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="NUnit" Version="3.13.2" />
+    <PackageReference Include="NUnit.Analyzers" Version="3.2.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -47,7 +48,7 @@
          CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
          VSTHRD200:Use "Async" suffix in names of methods that return an awaitable type. -->
     <TestNoWarn>1701,1702,CS1591</TestNoWarn>
-    <NoWarn>NU5105</NoWarn>
+    <NoWarn>NU5105,CS0400,CS1591</NoWarn>
   </PropertyGroup>
 
 </Project>

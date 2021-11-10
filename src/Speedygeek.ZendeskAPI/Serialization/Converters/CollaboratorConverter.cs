@@ -3,8 +3,8 @@
 
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Speedygeek.ZendeskAPI.Models.Support;
 
 namespace Speedygeek.ZendeskAPI.Serialization.Converters
@@ -12,64 +12,57 @@ namespace Speedygeek.ZendeskAPI.Serialization.Converters
     /// <summary>
     /// converts an array of mixed type to a single type
     /// </summary>
-    internal class CollaboratorConverter : JsonConverter
+    public class CollaboratorConverter : JsonConverter<List<Collaborator>>
     {
-        public override bool CanWrite { get => true; }
-
-        public override bool CanConvert(Type objectType)
+        /// <inheritdoc/>
+        public override List<Collaborator> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return typeof(List<Collaborator>).Equals(objectType);
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            var token = JToken.ReadFrom(reader);
-            var collaborators = new List<Collaborator>();
-            foreach (var item in token.Children())
+            var list = new List<Collaborator>();
+            switch (reader.TokenType)
             {
-                if (item.Type == JTokenType.Object)
-                {
-                    var collaborator = item.ToObject<Collaborator>();
-                    collaborators.Add(collaborator);
-                }
-                else if (item.Type == JTokenType.String)
-                {
-                    var collaborator = new Collaborator { Email = item.ToObject<string>() };
-                    collaborators.Add(collaborator);
-                }
-                else if (item.Type == JTokenType.Integer)
-                {
-                    var collaborator = new Collaborator { Id = item.ToObject<long>() };
-                    collaborators.Add(collaborator);
-                }
+                case JsonTokenType.Null:
+                    return list;
+                case JsonTokenType.StartArray:
+                    while (reader.Read())
+                    {
+                        if (reader.TokenType == JsonTokenType.EndArray)
+                        {
+                            break;
+                        }
+                        else if (reader.TokenType == JsonTokenType.StartObject)
+                        {
+                            var item = JsonSerializer.Deserialize<Collaborator>(ref reader, options);
+                            if (item != null)
+                            {
+                                list.Add(item);
+                            }
+                        }
+                        else if (reader.TokenType == JsonTokenType.String)
+                        {
+                            var collaborator = new Collaborator { Email = reader.GetString() };
+                            list.Add(collaborator);
+                        }
+                        else if (reader.TokenType == JsonTokenType.Number)
+                        {
+                            var collaborator = new Collaborator { Id = reader.GetInt64() };
+                            list.Add(collaborator);
+                        }
+                        else if (reader.TokenType == JsonTokenType.Null)
+                        {
+                            continue;
+                        }
+                    }
+
+                    break;
             }
 
-            return collaborators;
+            return list;
         }
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        /// <inheritdoc/>
+        public override void Write(Utf8JsonWriter writer, List<Collaborator> value, JsonSerializerOptions options)
         {
-            if (value is List<Collaborator> collaborators && collaborators?.Count > 0)
-            {
-                writer.WriteStartArray();
-                foreach (var collaborator in collaborators)
-                {
-                    if (collaborator.Id != 0)
-                    {
-                        serializer.Serialize(writer, collaborator.Id);
-                    }
-                    else if (!string.IsNullOrWhiteSpace(collaborator.Name) && !string.IsNullOrWhiteSpace(collaborator.Email))
-                    {
-                        serializer.Serialize(writer, collaborator);
-                    }
-                    else if (!string.IsNullOrWhiteSpace(collaborator.Email))
-                    {
-                        serializer.Serialize(writer, collaborator.Email);
-                    }
-                }
-
-                writer.WriteEndArray();
-            }
+            JsonSerializer.Serialize(writer, value, options);
         }
     }
 }

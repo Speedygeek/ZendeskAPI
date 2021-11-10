@@ -20,7 +20,6 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// <summary>
         /// End User
         /// </summary>
-        [EnumMember(Value = "end-user")]
         EndUser = 1,
 
         /// <summary>

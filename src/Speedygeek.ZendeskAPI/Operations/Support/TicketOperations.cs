@@ -275,14 +275,15 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         }
 
         /// <inheritdoc />
-        public Task<TicketListResponse> GetNextPageAsync(Uri nextPage, CancellationToken cancellationToken = default)
+        public Task<TicketListResponse> GetPageAsync(Uri page, CancellationToken cancellationToken = default)
         {
-            if (nextPage is null)
+            if (page is null)
             {
-                throw new ArgumentNullException(nameof(nextPage));
+                throw new ArgumentNullException(nameof(page));
             }
 
-            return SendAsync<TicketListResponse>(HttpMethod.Get, nextPage.PathAndQuery, cancellationToken: cancellationToken);
+           // var pageUri = new Uri(page);
+            return SendAsync<TicketListResponse>(HttpMethod.Get, page.PathAndQuery, cancellationToken: cancellationToken);
         }
 
         private static string GetSideLoadParam(string requestSuffix, TicketSideloads options, TicketPageParams pageParameters = default)

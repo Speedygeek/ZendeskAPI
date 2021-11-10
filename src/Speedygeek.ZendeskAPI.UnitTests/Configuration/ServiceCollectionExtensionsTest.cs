@@ -6,7 +6,6 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Configuration
     [TestFixture]
     public class ServiceCollectionExtensionsTest
     {
-
         [Test]
         public void BasicAuthSubDomainNull()
         {

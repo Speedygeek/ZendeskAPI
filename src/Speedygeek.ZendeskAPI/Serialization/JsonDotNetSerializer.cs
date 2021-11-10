@@ -33,7 +33,7 @@ namespace Speedygeek.ZendeskAPI.Serialization
             };
 
             _serializerSettings.Converters.Add(new StringEnumConverter(new SnakeCaseNamingStrategy()));
-            _serializerSettings.Converters.Add(new CollaboratorConverter());
+            _serializerSettings.Converters.Add(new CollaboratorConverter_Old());
 
 #if DEBUG
             _serializerSettings.Formatting = Formatting.Indented;
