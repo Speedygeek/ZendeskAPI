@@ -257,6 +257,7 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
                 throw new ArgumentNullException(nameof(nextPage));
             }
 
+            // var pageUri = new Uri(nextPage);
             return SendAsync<UserListResponse>(HttpMethod.Get, nextPage.PathAndQuery, cancellationToken: cancellationToken);
         }
 

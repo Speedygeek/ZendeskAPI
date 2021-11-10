@@ -19,7 +19,7 @@ namespace Speedygeek.ZendeskAPI
         /// <param name="restClient"> client used to make HTTP request</param>
         public ZendeskClient(IRESTClient restClient) => _restClient = restClient;
 
-        private Lazy<ISupportOperations> SupportLazy => new Lazy<ISupportOperations>(() => new SupportOperations(_restClient));
+        private Lazy<ISupportOperations> SupportLazy => new(() => new SupportOperations(_restClient));
 
         /// <inheritdoc />
         public ISupportOperations Support => SupportLazy.Value;

@@ -9,3 +9,13 @@ commit-message-incrementing: Enabled
 branches:
   master:
     tag: alpha
+  pull-request:
+    mode: ContinuousDelivery
+    tag: PullRequest
+    increment: None
+    prevent-increment-of-merged-branch-version: false
+    tag-number-pattern: '[/-](?<number>\d+)[-/]'
+    track-merge-target: false
+    regex: (pull|pull\-requests|pr|[0-9]+)[/-]
+    tracks-release-branches: false
+    is-release-branch: false

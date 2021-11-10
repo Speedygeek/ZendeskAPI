@@ -3,6 +3,7 @@
 
 using System;
 using System.Globalization;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.WebUtilities;
 using Speedygeek.ZendeskAPI.Utilities;
 
@@ -13,24 +14,26 @@ namespace Speedygeek.ZendeskAPI.Models.Base
     /// </summary>
     public class ListResponseBase
     {
-        private int _page = 0;
+        private int _page;
         private int _perPage = 100;
-        private bool _updatedValues = false;
+        private bool _updatedValues;
 
         /// <summary>
         /// URL of the next page
         /// </summary>
-        public Uri NextPage { get; } = null;
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public Uri NextPage { get; private set; }
 
         /// <summary>
         /// URl of the Previous page
         /// </summary>
-        public Uri PreviousPage { get; } = null;
+        [JsonInclude]
+        public Uri PreviousPage { get; private set; }
 
         /// <summary>
         /// Count of Items
         /// </summary>
-        public int Count { get; } = 0;
+        public long Count { get; internal set; }
 
         /// <summary>
         /// Total number of pages

@@ -22,20 +22,37 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Serialization
         }
 
 
-        [Test]
-        public void PageNumber()
-        {
-            var json = @"{ ""next_page"":""https://csharpapi.zendesk.com/api/v2/tickets.json?page=3"",""previous_page"":""https://csharpapi.zendesk.com/api/v2/tickets.json?page=1"",""count"":1365}";
+        //[Test]
+        //public void PageNumber()
+        //{
+        //    var json = @"{ ""next_page"":""https://csharpapi.zendesk.com/api/v2/tickets.json?page=3"",""previous_page"":""https://csharpapi.zendesk.com/api/v2/tickets.json?page=1"",""count"":1365}";
 
+        //    TicketListResponse resp = null;
+        //    using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
+        //    {
+        //        resp = _serializer.Deserialize<TicketListResponse>(stream);
+        //    }
+
+        //    Assert.That(resp.Page, Is.EqualTo(2));
+        //}
+
+
+        [Test]
+        public void Meta()
+        {
+            var json = @"{ ""meta"": {""has_more"": true, ""after_cursor"": ""100"", ""before_cursor"": ""200"" },
+""links"": {
+    ""next"": ""https://example.zendesk.com/api/v2/tickets.json?page[size]=100&page[after]=101"",
+    ""prev"": ""https://example.zendesk.com/api/v2/tickets.json?page[size]=100&page[before]=200""
+}
+}";
             TicketListResponse resp = null;
-            using (var stream = new MemoryStream(Encoding.ASCII.GetBytes(json)))
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
                 resp = _serializer.Deserialize<TicketListResponse>(stream);
             }
 
-            Assert.That(resp.Page, Is.EqualTo(2));
+            Assert.That(resp.Meta.HasMore, Is.True);
         }
-
-
     }
 }

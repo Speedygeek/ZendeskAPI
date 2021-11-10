@@ -23,7 +23,7 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// <summary>
         /// Update action
         /// </summary>
-        [DefaultValue(FollowerAction.None)]
+       // [DefaultValue(FollowerAction.None)]
         public FollowerAction Action { get; set; } = FollowerAction.None;
     }
 }

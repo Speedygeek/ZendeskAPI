@@ -1,7 +1,7 @@
 <!-- Workaround. Remove once we're on 3.1.300+
 https://github.com/dotnet/sourcelink/issues/572 -->
 <Project>
-  <PropertyGroup Condition="$(IsTestProject) != 'true'">
+  <!--<PropertyGroup Condition="$(IsTestProject) != 'true'">
     <TargetFrameworkMonikerAssemblyAttributesPath>$([System.IO.Path]::Combine('$(IntermediateOutputPath)','$(TargetFrameworkMoniker).AssemblyAttributes$(DefaultLanguageSourceExtension)'))</TargetFrameworkMonikerAssemblyAttributesPath>
     <GitVersionInformationPath>$([System.IO.Path]::Combine('$(IntermediateOutputPath)','GitVersionInformation.g$(DefaultLanguageSourceExtension)'))</GitVersionInformationPath>
   </PropertyGroup>
@@ -11,7 +11,7 @@ https://github.com/dotnet/sourcelink/issues/572 -->
     <EmbeddedFiles Include="$(GitVersionInformationPath)"/>
   </ItemGroup>
 
-  <!-- Workaround for https://github.com/dotnet/sdk/issues/11105 -->
+  --><!-- Workaround for https://github.com/dotnet/sdk/issues/11105 --><!--
   <ItemGroup>
     <SourceRoot Include="$(NuGetPackageRoot)" />
   </ItemGroup>
@@ -23,6 +23,6 @@ https://github.com/dotnet/sourcelink/issues/572 -->
     <ItemGroup>
       <_LocalTopLevelSourceRoot Include="@(SourceRoot)" Condition="'%(SourceRoot.NestedRoot)' == ''"/>
     </ItemGroup>
-  </Target>
+  </Target>-->
 
 </Project>

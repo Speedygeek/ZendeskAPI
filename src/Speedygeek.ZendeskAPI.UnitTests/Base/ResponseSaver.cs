@@ -23,9 +23,9 @@ namespace Speedygeek.ZendeskAPI.UnitTests.Base
 
             if (!File.Exists(filePath) | FileName == DEFAULTFILENAME)
             {
-                var content = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
+                var content = await resp.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                 content = Regex.Replace(content, @"\s+", " ");
-                await File.WriteAllTextAsync(filePath, content);
+                await File.WriteAllTextAsync(filePath, content, cancellationToken);
             }
             return resp;
         }

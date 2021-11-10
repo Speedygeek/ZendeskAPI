@@ -9,16 +9,16 @@ namespace Speedygeek.ZendeskAPI.Models.Support
     /// <summary>
     /// Paged list of Tickets
     /// </summary>
-    public class TicketListResponse : ListResponseBase
+    public class TicketListResponse : PaginationBase
     {
         /// <summary>
         /// Requested Tickets
         /// </summary>
-        public IList<Ticket> Tickets { get; }
+        public List<Ticket> Tickets { get; }
 
         /// <summary>
         /// Users related to requested tickets
         /// </summary>
-        public IList<User> Users { get; }
+        public List<User> Users { get; }
     }
 }

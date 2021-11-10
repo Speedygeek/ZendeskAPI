@@ -269,11 +269,11 @@ namespace Speedygeek.ZendeskAPI.Operations.Support
         Task<TicketListResponse> GetIncidentsAsync(long id, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// will load the next page for a list of <see cref="Ticket"/>
+        /// will load the page for a list of <see cref="Ticket"/>
         /// </summary>
-        /// <param name="nextPage">URL of the next page</param>
+        /// <param name="page">URL of the page</param>
         /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns> Returns a <see cref="TicketListResponse"/> </returns>
-        Task<TicketListResponse> GetNextPageAsync(Uri nextPage, CancellationToken cancellationToken = default);
+        Task<TicketListResponse> GetPageAsync(Uri page, CancellationToken cancellationToken = default);
     }
 }

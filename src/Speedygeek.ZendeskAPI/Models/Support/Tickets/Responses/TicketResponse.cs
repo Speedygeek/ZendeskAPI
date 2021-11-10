@@ -15,9 +15,9 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// </summary>
         public Ticket Ticket { get; }
 
-        /// <summary>
-        /// Users related to requested tickets
-        /// </summary>
-        public IList<User> Users { get; }
+        ///// <summary>
+        ///// Users related to requested tickets
+        ///// </summary>
+        // public IList<User> Users { get; }
     }
 }

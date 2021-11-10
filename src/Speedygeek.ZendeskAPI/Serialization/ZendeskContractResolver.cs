@@ -16,7 +16,7 @@ namespace Speedygeek.ZendeskAPI.Serialization
         /// <summary>
         ///  Static Instance used to speed and memory
         /// </summary>
-        public static readonly ZendeskContractResolver Instance = new ZendeskContractResolver();
+        public static readonly ZendeskContractResolver Instance = new();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ZendeskContractResolver"/> class.

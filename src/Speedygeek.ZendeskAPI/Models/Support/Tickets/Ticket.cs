@@ -85,7 +85,7 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// <summary>
         /// The ids of users currently CC'ed on the ticket
         /// </summary>
-        public IList<long> CollaboratorIds { get; set; }
+        public List<long> CollaboratorIds { get; set; }
 
         /// <summary>
         /// Update operations only
@@ -95,39 +95,39 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// so make sure to include existing collaborators in the array
         /// if you wish to retain these on the ticket.
         /// </summary>
-        [JsonConverter(typeof(CollaboratorConverter))]
-        public IList<Collaborator> Collaborators { get; set; }
+        // [JsonConverter(typeof(CollaboratorConverter_Old))]
+        public List<Collaborator> Collaborators { get; set; }
 
         /// <summary>
         /// An array of numeric IDs, emails, or objects containing name and email properties.
         /// An email notification is sent to them when the ticket is updated
         /// </summary>
-        [JsonConverter(typeof(CollaboratorConverter))]
-        public IList<Collaborator> AdditionalCollaborators { get; set; }
+        // [JsonConverter(typeof(CollaboratorConverter_Old))]
+        public List<Collaborator> AdditionalCollaborators { get; set; }
 
         /// <summary>
         /// The ids of agents or end users currently CC'ed on the ticket.
         /// See <see href="https://support.zendesk.com/hc/en-us/articles/360020585233"/>
         /// </summary>
-        public IList<string> EmailCcIds { get; set; }
+        public List<string> EmailCcIds { get; set; }
 
         /// <summary>
         /// The ids of agents currently following the ticket.
         /// See <see href="https://support.zendesk.com/hc/en-us/articles/360020585233"/>
         /// </summary>
-        public IList<long> FollowerIds { get; set; }
+        public List<long> FollowerIds { get; set; }
 
         /// <summary>
         /// The list of Agnets currently following the ticket.
         /// See <see href="https://developer.zendesk.com/rest_api/docs/support/tickets#setting-followers"/>
         /// </summary>
-        public IList<Follower> Followers { get; set; }
+        public List<Follower> Followers { get; set; }
 
         /// <summary>
         /// The list of Users currently CCed for the ticket.
         /// See <see href="https://developer.zendesk.com/rest_api/docs/support/tickets#setting-email-ccs"/>
         /// </summary>
-        public IList<Follower> EmailCcs { get; set; }
+        public List<Follower> EmailCcs { get; set; }
 
         /// <summary>
         /// The topic this ticket originated from, if any
@@ -153,19 +153,19 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// <summary>
         /// The tags applied to this ticket
         /// </summary>
-        public IList<string> Tags { get; set; }
+        public List<string> Tags { get; set; }
 
         /// <summary>
         /// Use to add tags in bulk updates
         /// <see href="https://developer.zendesk.com/rest_api/docs/support/tickets#updating-tag-lists"/>
         /// </summary>
-        public IList<string> AdditionalTags { get; set; }
+        public List<string> AdditionalTags { get; set; }
 
         /// <summary>
         /// Use to Remove tags in bulk updates
         /// <see href="https://developer.zendesk.com/rest_api/docs/support/tickets#updating-tag-lists"/>
         /// </summary>
-        public IList<string> RemoveTags { get; set; }
+        public List<string> RemoveTags { get; set; }
 
         /// <summary>
         /// This object explains how the ticket was created
@@ -175,7 +175,7 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// <summary>
         /// Custom fields for the ticket.
         /// </summary>
-        public IList<CustomField> CustomFields { get; set; }
+        public List<CustomField> CustomFields { get; set; }
 
         /// <summary>
         /// The satisfaction rating of the ticket, if it exists
@@ -185,13 +185,13 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// <summary>
         /// The ids of the sharing agreements used for this ticket.
         /// </summary>
-        public IList<long> SharingAgreementIds { get; set; }
+        public List<long> SharingAgreementIds { get; set; }
 
         /// <summary>
         /// The ids of the followup's created from this ticket.
         /// Ids are only visible once the ticket is closed
         /// </summary>
-        public IList<long> FollowupIds { get; set; }
+        public List<long> FollowupIds { get; set; }
 
         /// <summary>
         /// Update operations only
@@ -204,7 +204,7 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// Update operations only
         /// List of macro IDs to be recorded in the ticket audit
         /// </summary>
-        public IList<long> MacroIds { get; set; }
+        public List<long> MacroIds { get; set; }
 
         /// <summary>
         /// Enterprise Accounts only.

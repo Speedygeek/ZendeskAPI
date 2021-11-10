@@ -15,7 +15,6 @@ namespace Speedygeek.ZendeskAPI.Configuration
         /// Override to configure the <see cref="HttpClient">HttpClient</see>
         /// </summary>
         /// <param name="client"> HttpClient to configure</param>
-        /// <returns>as <see cref="Task"/> when complete</returns>
-        Task ConfigureHttpClientAsync(HttpClient client);
+        void ConfigureHttpClient(HttpClient client);
     }
 }

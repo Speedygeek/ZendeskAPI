@@ -19,6 +19,6 @@ namespace Speedygeek.ZendeskAPI.Models.Support
         /// <summary>
         /// Total number of open tickets assigned to the user.
         /// </summary>
-        public dynamic OpenTicketCount { get; set; }
+        public long OpenTicketCount { get; set; }
     }
 }
